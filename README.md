@@ -16,6 +16,7 @@ Docs can be built using sphinx, more information can be found in `docs/`
 
 Tests
 =====
+to run tests run `nosetests`
 
 
 Contributors
