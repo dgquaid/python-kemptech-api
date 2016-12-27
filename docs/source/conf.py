@@ -56,7 +56,7 @@ master_doc = 'index'
 
 # General information about the project.
 project = 'python-kemptech-api'
-copyright = '2016, Shane McGough, Andrew Conti, Jonathan Malek, Stephen Power'
+copyright = '2016, KEMP Technologies"
 author = 'Shane McGough, Andrew Conti, Jonathan Malek, Stephen Power'
 
 # The version info for the project you're documenting, acts as replacement for
