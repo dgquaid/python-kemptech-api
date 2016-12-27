@@ -1,4 +1,4 @@
-KEMPtechnologies API
+KEMP API Python SDK
 ====================
 
 This is a python implementation of a wrapper around the KEMP RESTful API
