@@ -23,6 +23,7 @@ import sphinx_rtd_theme
 sys.path.insert(0, os.path.abspath('../../python-kemptech-api/python_kemptech_api'))
 
 html_theme = "sphinx_rtd_theme"
+html_add_permalinks = None
 
 html_theme_path = [sphinx_rtd_theme.get_html_theme_path()]
 
