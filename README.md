@@ -12,7 +12,12 @@ To install run:
 Documentation
 =====
 
-Documentation can be built using sphinx, more information can be found in [docs/](docs)
+Documentation can be built using sphinx, more information can be found in [docs](docs)
+
+Examples
+=====
+
+Examples can be found in [examples](examples)
 
 Tests
 =====
