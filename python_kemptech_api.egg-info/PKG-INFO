@@ -1,0 +1,29 @@
+Metadata-Version: 1.1
+Name: python-kemptech-api
+Version: 0.7.14
+Summary: KEMP Technologies Python API
+Home-page: http://pypi.python.org/pypi/python-kemptech-api/
+Author: Shane McGough
+Author-email: smcgough@kemptechnologies.com,aconti@kemptechnologis.com,spower@kemptechnologies.com
+License: Apache
+Description: KEMPtechnologies API
+        ====================
+        
+        This is a python implementation of a wrapper around the KEMP RESTful API
+        
+        Contributors
+        ============
+        
+        * Shane McGough, KEMP Technologies
+        * Andrew Conti, KEMP Technologies
+        * Jonathan Malek, KEMP Technologies
+        * Stephen Power, KEMP Technologies
+        
+Keywords: python api kemptech kemp technologies restfull loadmaster
+Platform: UNKNOWN
+Classifier: License :: OSI Approved :: Apache Software License
+Classifier: Operating System :: POSIX
+Classifier: Programming Language :: Python
+Classifier: Programming Language :: Python :: 2.7
+Classifier: Programming Language :: Python :: 3
+Classifier: Topic :: Internet
