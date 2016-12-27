@@ -16,7 +16,7 @@ Documentation can be built using sphinx, more information can be found in [docs/
 
 Tests
 =====
-to run tests run `nosetests`
+To run tests run `nosetests`
 
 Changelog
 =========
