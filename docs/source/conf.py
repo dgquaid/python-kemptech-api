@@ -22,15 +22,10 @@ import sys
 import sphinx_rtd_theme
 sys.path.insert(0, os.path.abspath('../../python-kemptech-api/python_kemptech_api'))
 
+# Using RTD theme 
 html_theme = "sphinx_rtd_theme"
-html_add_permalinks = None
-
 html_theme_path = [sphinx_rtd_theme.get_html_theme_path()]
-
-
-# Note, I've cloned the theme into _themes manually. This may be considered terrible.
-# html_theme = "sphinx_rtd_theme"
-# html_theme_path = ["_themes"]
+html_add_permalinks = None
 
 # -- General configuration ------------------------------------------------
 
