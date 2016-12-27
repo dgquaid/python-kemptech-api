@@ -1,4 +1,4 @@
-KEMPtechnologies API
+KEMP API Python SDK
 ====================
 
 This is a python implementation of a wrapper around the KEMP RESTful API
@@ -12,11 +12,15 @@ To install run:
 Documentation
 =====
 
-Docs can be built using sphinx, more information can be found in `docs/`
+Documentation can be built using sphinx, more information can be found in [docs/](docs)
 
 Tests
 =====
-to run tests run `nosetests`
+To run tests run `nosetests`
+
+Changelog
+=========
+For changelog see [changes.rst](CHANGES.rst)
 
 
 Contributors
