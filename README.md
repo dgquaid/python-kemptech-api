@@ -3,6 +3,21 @@ KEMPtechnologies API
 
 This is a python implementation of a wrapper around the KEMP RESTful API
 
+Installation 
+============
+
+To install run:
+`pip install python-kemptech-api`
+
+Documentation
+=====
+
+Docs can be built using sphinx, more information can be found in `docs/`
+
+Tests
+=====
+
+
 Contributors
 ============
 
@@ -10,17 +25,6 @@ Contributors
 * Andrew Conti, KEMP Technologies
 * Jonathan Malek, KEMP Technologies
 * Stephen Power, KEMP Technologies
-
-
-Installation 
-============
-
-To install run:
-`pip install python-kemptech-api`
-
-Tests
-=====
-
 
 License
 =====
