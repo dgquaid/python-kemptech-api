@@ -8,7 +8,11 @@ loadmaster_password = " " # Your LoadMaster user password
 loadmaster_port = "443" # By default this is 443.  
 lm = loadmaster(loadmaster_ip, loadmaster_login, loadmaster_password, loadmaster_port)  
 
-virtual_services = lm.get_virtual_services() 
+virtual_services = lm.get_virtual_services()
 
-for virtual_service in virtual_services: 
-    print(virtual_service) 
+for virtual_service in virtual_services:
+    real_services = virtual_service.get_real_servers()
+
+for real_service in real_services:
+    print(real_service)
+

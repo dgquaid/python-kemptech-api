@@ -1,13 +1,6 @@
 Examples
 =======
 
-This directory contains example `.py` files that can be used to get started with the KEMP Python API SDK. Each file contains the following variables that are required by the SDK:
+This directory contains example `.py` files that can be used to get started with the KEMP Python API SDK. Each file contains variables that are required by the SDK. Make sure to fill these variables out when playing with the examples.
 
-```
-LoadMaster_IP = " " # Your LoadMaster’s administrative IP 
-LoadMaster_User = " " # Your LoadMaster’s Login User 
-LoadMaster_Password = " " # Your LoadMaster’s User’s Password 
-LoadMaster_Port = "443" # By default this is 443.  
-```
 
-In order to use these scripts, you must fill in the variables with the appropriate values.
