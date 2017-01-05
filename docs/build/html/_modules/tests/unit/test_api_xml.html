@@ -1,0 +1,283 @@
+
+
+<!DOCTYPE html>
+<!--[if IE 8]><html class="no-js lt-ie9" lang="en" > <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js" lang="en" > <!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  
+  <title>tests.unit.test_api_xml &mdash; python-kemptech-api 0.7.14 documentation</title>
+  
+
+  
+  
+
+  
+
+  
+  
+    
+
+  
+
+  
+  
+    <link rel="stylesheet" href="../../../_static/css/theme.css" type="text/css" />
+  
+
+  
+
+  
+        <link rel="index" title="Index"
+              href="../../../genindex.html"/>
+        <link rel="search" title="Search" href="../../../search.html"/>
+    <link rel="top" title="python-kemptech-api 0.7.14 documentation" href="../../../index.html"/>
+        <link rel="up" title="Module code" href="../../index.html"/> 
+
+  
+  <script src="../../../_static/js/modernizr.min.js"></script>
+
+</head>
+
+<body class="wy-body-for-nav" role="document">
+
+  <div class="wy-grid-for-nav">
+
+    
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search">
+          
+
+          
+            <a href="../../../index.html" class="icon icon-home"> python-kemptech-api
+          
+
+          
+          </a>
+
+          
+            
+            
+              <div class="version">
+                0.7.14
+              </div>
+            
+          
+
+          
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../../../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+
+          
+        </div>
+
+        <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
+          
+            
+            
+                <p class="caption"><span class="caption-text">Contents:</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../../../python_kemptech_api.html">python_kemptech_api package</a></li>
+</ul>
+
+            
+          
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+
+      
+      <nav class="wy-nav-top" role="navigation" aria-label="top navigation">
+        <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+        <a href="../../../index.html">python-kemptech-api</a>
+      </nav>
+
+
+      
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          
+
+
+
+
+
+<div role="navigation" aria-label="breadcrumbs navigation">
+  <ul class="wy-breadcrumbs">
+    <li><a href="../../../index.html">Docs</a> &raquo;</li>
+      
+          <li><a href="../../index.html">Module code</a> &raquo;</li>
+      
+    <li>tests.unit.test_api_xml</li>
+      <li class="wy-breadcrumbs-aside">
+        
+          
+        
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+            
+  <h1>Source code for tests.unit.test_api_xml</h1><div class="highlight"><pre>
+<span></span><span class="kn">import</span> <span class="nn">os</span>
+
+<span class="kn">from</span> <span class="nn">nose.tools</span> <span class="k">import</span> <span class="n">assert_equal</span><span class="p">,</span> <span class="n">assert_is_none</span>
+
+<span class="c1"># handle py3 and py2 cases:</span>
+<span class="k">try</span><span class="p">:</span>
+    <span class="kn">import</span> <span class="nn">unittest.mock</span> <span class="k">as</span> <span class="nn">mock</span>
+<span class="k">except</span> <span class="ne">ImportError</span><span class="p">:</span>
+    <span class="kn">import</span> <span class="nn">mock</span>
+
+<span class="n">patch</span> <span class="o">=</span> <span class="n">mock</span><span class="o">.</span><span class="n">patch</span>
+<span class="n">sentinel</span> <span class="o">=</span> <span class="n">mock</span><span class="o">.</span><span class="n">sentinel</span>
+
+<span class="kn">import</span> <span class="nn">xmltodict</span>
+
+<span class="kn">import</span> <span class="nn">python_kemptech_api.api_xml</span> <span class="k">as</span> <span class="nn">api_xml</span>
+<span class="kn">from</span> <span class="nn">bin.conf</span> <span class="k">import</span> <span class="n">XML_DATA_DIR</span>
+
+
+<div class="viewcode-block" id="test_is_successful_str"><a class="viewcode-back" href="../../../tests.unit.test_api_xml.html#tests.unit.test_api_xml.test_is_successful_str">[docs]</a><span class="k">def</span> <span class="nf">test_is_successful_str</span><span class="p">():</span>
+    <span class="k">with</span> <span class="n">patch</span><span class="o">.</span><span class="n">object</span><span class="p">(</span><span class="n">api_xml</span><span class="p">,</span><span class="s1">&#39;get_success_msg&#39;</span><span class="p">)</span> <span class="k">as</span> <span class="n">get_success_msg</span><span class="p">:</span>
+        <span class="n">get_success_msg</span><span class="o">.</span><span class="n">return_value</span> <span class="o">=</span> <span class="s1">&#39;any string&#39;</span>
+        <span class="n">res</span> <span class="o">=</span> <span class="n">api_xml</span><span class="o">.</span><span class="n">is_successful</span><span class="p">(</span><span class="s1">&#39;any_xml&#39;</span><span class="p">)</span>
+        <span class="n">assert_equal</span><span class="p">(</span><span class="n">res</span><span class="p">,</span> <span class="kc">True</span><span class="p">)</span></div>
+
+
+<div class="viewcode-block" id="test_is_successful_None"><a class="viewcode-back" href="../../../tests.unit.test_api_xml.html#tests.unit.test_api_xml.test_is_successful_None">[docs]</a><span class="k">def</span> <span class="nf">test_is_successful_None</span><span class="p">():</span>
+    <span class="k">with</span> <span class="n">patch</span><span class="o">.</span><span class="n">object</span><span class="p">(</span><span class="n">api_xml</span><span class="p">,</span><span class="s1">&#39;get_success_msg&#39;</span><span class="p">)</span> <span class="k">as</span> <span class="n">get_success_msg</span><span class="p">:</span>
+        <span class="n">get_success_msg</span><span class="o">.</span><span class="n">return_value</span> <span class="o">=</span><span class="kc">None</span>
+        <span class="n">res</span> <span class="o">=</span> <span class="n">api_xml</span><span class="o">.</span><span class="n">is_successful</span><span class="p">(</span><span class="s1">&#39;any_xml&#39;</span><span class="p">)</span>
+        <span class="n">assert_equal</span><span class="p">(</span><span class="n">res</span><span class="p">,</span> <span class="kc">False</span><span class="p">)</span></div>
+
+
+<div class="viewcode-block" id="test_get_xml_field_no_data_field"><a class="viewcode-back" href="../../../tests.unit.test_api_xml.html#tests.unit.test_api_xml.test_get_xml_field_no_data_field">[docs]</a><span class="k">def</span> <span class="nf">test_get_xml_field_no_data_field</span><span class="p">():</span>
+    <span class="k">with</span> <span class="n">patch</span><span class="o">.</span><span class="n">object</span><span class="p">(</span><span class="n">api_xml</span><span class="p">,</span><span class="s1">&#39;xmltodict&#39;</span><span class="p">)</span> <span class="k">as</span> <span class="n">xmltodict</span><span class="p">:</span>
+        <span class="n">xmltodict</span><span class="o">.</span><span class="n">parse</span><span class="o">.</span><span class="n">return_value</span> <span class="o">=</span> <span class="p">{</span><span class="s1">&#39;Response&#39;</span><span class="p">:{</span><span class="s1">&#39;myfield&#39;</span><span class="p">:</span> <span class="s1">&#39;myfield-value&#39;</span><span class="p">}}</span>
+        <span class="n">res</span> <span class="o">=</span> <span class="n">api_xml</span><span class="o">.</span><span class="n">_get_xml_field</span><span class="p">(</span><span class="s1">&#39;any_xml&#39;</span><span class="p">,</span> <span class="s1">&#39;myfield&#39;</span><span class="p">)</span>
+        <span class="n">assert_equal</span><span class="p">(</span><span class="n">res</span><span class="p">,</span> <span class="s1">&#39;myfield-value&#39;</span><span class="p">)</span></div>
+
+
+<div class="viewcode-block" id="test_get_xml_field_with_data_field"><a class="viewcode-back" href="../../../tests.unit.test_api_xml.html#tests.unit.test_api_xml.test_get_xml_field_with_data_field">[docs]</a><span class="k">def</span> <span class="nf">test_get_xml_field_with_data_field</span><span class="p">():</span>
+    <span class="k">with</span> <span class="n">patch</span><span class="o">.</span><span class="n">object</span><span class="p">(</span><span class="n">api_xml</span><span class="p">,</span><span class="s1">&#39;xmltodict&#39;</span><span class="p">)</span> <span class="k">as</span> <span class="n">xmltodict</span><span class="p">:</span>
+        <span class="n">xmltodict</span><span class="o">.</span><span class="n">parse</span><span class="o">.</span><span class="n">return_value</span> <span class="o">=</span> <span class="p">{</span>
+        <span class="s1">&#39;Response&#39;</span><span class="p">:{</span><span class="s1">&#39;Success&#39;</span><span class="p">:</span> <span class="p">{</span><span class="s1">&#39;myfield&#39;</span><span class="p">:</span> <span class="p">{</span>
+             <span class="s1">&#39;mydata&#39;</span><span class="p">:</span> <span class="s1">&#39;mydata-value&#39;</span><span class="p">}}}}</span>
+        <span class="n">res</span> <span class="o">=</span> <span class="n">api_xml</span><span class="o">.</span><span class="n">_get_xml_field</span><span class="p">(</span><span class="s1">&#39;any_xml&#39;</span><span class="p">,</span> <span class="s1">&#39;myfield&#39;</span><span class="p">,</span> <span class="s1">&#39;mydata&#39;</span><span class="p">)</span>
+        <span class="n">assert_equal</span><span class="p">(</span><span class="n">res</span><span class="p">,</span> <span class="s1">&#39;mydata-value&#39;</span><span class="p">)</span></div>
+
+<div class="viewcode-block" id="test_get_xml_field_with_KeyError"><a class="viewcode-back" href="../../../tests.unit.test_api_xml.html#tests.unit.test_api_xml.test_get_xml_field_with_KeyError">[docs]</a><span class="k">def</span> <span class="nf">test_get_xml_field_with_KeyError</span><span class="p">():</span>
+    <span class="k">with</span> <span class="n">patch</span><span class="o">.</span><span class="n">object</span><span class="p">(</span><span class="n">api_xml</span><span class="p">,</span><span class="s1">&#39;xmltodict&#39;</span><span class="p">)</span> <span class="k">as</span> <span class="n">xmltodict</span><span class="p">:</span>
+        <span class="n">xmltodict</span><span class="o">.</span><span class="n">parse</span><span class="o">.</span><span class="n">return_value</span> <span class="o">=</span> <span class="p">{}</span>
+        <span class="n">res</span> <span class="o">=</span> <span class="n">api_xml</span><span class="o">.</span><span class="n">_get_xml_field</span><span class="p">(</span><span class="s1">&#39;any_xml&#39;</span><span class="p">,</span> <span class="s1">&#39;myfield&#39;</span><span class="p">)</span>
+        <span class="n">assert_equal</span><span class="p">(</span><span class="n">res</span><span class="p">,</span> <span class="p">{})</span></div>
+
+<div class="viewcode-block" id="test_get_data_ok"><a class="viewcode-back" href="../../../tests.unit.test_api_xml.html#tests.unit.test_api_xml.test_get_data_ok">[docs]</a><span class="k">def</span> <span class="nf">test_get_data_ok</span><span class="p">():</span>
+    <span class="k">with</span> <span class="n">patch</span><span class="o">.</span><span class="n">object</span><span class="p">(</span><span class="n">api_xml</span><span class="p">,</span> <span class="s1">&#39;_get_xml_field&#39;</span><span class="p">)</span> <span class="k">as</span> <span class="n">_get_xml_field</span><span class="p">:</span>
+        <span class="n">_get_xml_field</span><span class="o">.</span><span class="n">return_value</span> <span class="o">=</span> <span class="p">{</span><span class="s1">&#39;Data&#39;</span><span class="p">:</span> <span class="n">sentinel</span><span class="o">.</span><span class="n">data</span><span class="p">}</span>
+        <span class="n">res</span> <span class="o">=</span> <span class="n">api_xml</span><span class="o">.</span><span class="n">get_data</span><span class="p">(</span><span class="s1">&#39;anyxml&#39;</span><span class="p">)</span>
+        <span class="n">assert_equal</span><span class="p">(</span><span class="n">sentinel</span><span class="o">.</span><span class="n">data</span><span class="p">,</span> <span class="n">res</span><span class="p">)</span></div>
+
+<div class="viewcode-block" id="test_get_data_no_Data_key"><a class="viewcode-back" href="../../../tests.unit.test_api_xml.html#tests.unit.test_api_xml.test_get_data_no_Data_key">[docs]</a><span class="k">def</span> <span class="nf">test_get_data_no_Data_key</span><span class="p">():</span>
+    <span class="k">with</span> <span class="n">patch</span><span class="o">.</span><span class="n">object</span><span class="p">(</span><span class="n">api_xml</span><span class="p">,</span> <span class="s1">&#39;_get_xml_field&#39;</span><span class="p">)</span> <span class="k">as</span> <span class="n">_get_xml_field</span><span class="p">:</span>
+        <span class="n">_get_xml_field</span><span class="o">.</span><span class="n">return_value</span> <span class="o">=</span> <span class="p">{</span><span class="s1">&#39;junk&#39;</span><span class="p">:</span> <span class="s1">&#39;anything&#39;</span><span class="p">}</span>
+        <span class="n">res</span> <span class="o">=</span> <span class="n">api_xml</span><span class="o">.</span><span class="n">get_data</span><span class="p">(</span><span class="s1">&#39;anyxml&#39;</span><span class="p">)</span>
+        <span class="n">assert_equal</span><span class="p">(</span><span class="n">res</span><span class="p">,</span> <span class="p">{})</span></div>
+
+<div class="viewcode-block" id="test_get_xml_field_ExpatError_returns_empty_dict"><a class="viewcode-back" href="../../../tests.unit.test_api_xml.html#tests.unit.test_api_xml.test_get_xml_field_ExpatError_returns_empty_dict">[docs]</a><span class="k">def</span> <span class="nf">test_get_xml_field_ExpatError_returns_empty_dict</span><span class="p">():</span>
+    <span class="k">with</span> <span class="n">patch</span><span class="o">.</span><span class="n">object</span><span class="p">(</span><span class="n">xmltodict</span><span class="p">,</span> <span class="s2">&quot;parse&quot;</span><span class="p">)</span> <span class="k">as</span> <span class="n">parse</span><span class="p">:</span>
+        <span class="n">parse</span><span class="o">.</span><span class="n">side_effect</span> <span class="o">=</span> <span class="n">xmltodict</span><span class="o">.</span><span class="n">expat</span><span class="o">.</span><span class="n">ExpatError</span>
+        <span class="n">actual</span> <span class="o">=</span> <span class="n">api_xml</span><span class="o">.</span><span class="n">_get_xml_field</span><span class="p">(</span><span class="s1">&#39;any_xml&#39;</span><span class="p">,</span> <span class="s1">&#39;myfield&#39;</span><span class="p">)</span>
+        <span class="n">assert_equal</span><span class="p">(</span><span class="n">actual</span><span class="p">,</span> <span class="p">{})</span></div>
+
+<div class="viewcode-block" id="test_get_success_msg"><a class="viewcode-back" href="../../../tests.unit.test_api_xml.html#tests.unit.test_api_xml.test_get_success_msg">[docs]</a><span class="k">def</span> <span class="nf">test_get_success_msg</span><span class="p">():</span>
+    <span class="k">with</span> <span class="n">patch</span><span class="o">.</span><span class="n">object</span><span class="p">(</span><span class="n">api_xml</span><span class="p">,</span> <span class="s1">&#39;_get_xml_field&#39;</span><span class="p">)</span> <span class="k">as</span> <span class="n">_get_xml_field</span><span class="p">:</span>
+        <span class="n">_get_xml_field</span><span class="o">.</span><span class="n">return_value</span> <span class="o">=</span> <span class="p">{</span><span class="s1">&#39;Success&#39;</span><span class="p">:</span> <span class="n">sentinel</span><span class="o">.</span><span class="n">data</span><span class="p">}</span>
+        <span class="n">res</span> <span class="o">=</span> <span class="n">api_xml</span><span class="o">.</span><span class="n">get_success_msg</span><span class="p">(</span><span class="s1">&#39;anyxml&#39;</span><span class="p">)</span>
+        <span class="n">assert_equal</span><span class="p">(</span><span class="s2">&quot;{&#39;Success&#39;: sentinel.data}&quot;</span><span class="p">,</span> <span class="n">res</span><span class="p">)</span></div>
+
+<div class="viewcode-block" id="test_get_error_msg"><a class="viewcode-back" href="../../../tests.unit.test_api_xml.html#tests.unit.test_api_xml.test_get_error_msg">[docs]</a><span class="k">def</span> <span class="nf">test_get_error_msg</span><span class="p">():</span>
+    <span class="k">with</span> <span class="n">patch</span><span class="o">.</span><span class="n">object</span><span class="p">(</span><span class="n">api_xml</span><span class="p">,</span> <span class="s1">&#39;_get_xml_field&#39;</span><span class="p">)</span> <span class="k">as</span> <span class="n">_get_xml_field</span><span class="p">:</span>
+        <span class="n">_get_xml_field</span><span class="o">.</span><span class="n">return_value</span> <span class="o">=</span> <span class="p">{</span><span class="s1">&#39;Error&#39;</span><span class="p">:</span> <span class="n">sentinel</span><span class="o">.</span><span class="n">data</span><span class="p">}</span>
+        <span class="n">res</span> <span class="o">=</span> <span class="n">api_xml</span><span class="o">.</span><span class="n">get_error_msg</span><span class="p">(</span><span class="s1">&#39;anyxml&#39;</span><span class="p">)</span>
+        <span class="n">assert_equal</span><span class="p">(</span><span class="s2">&quot;{&#39;Error&#39;: sentinel.data}&quot;</span><span class="p">,</span> <span class="n">res</span><span class="p">)</span></div>
+
+<div class="viewcode-block" id="test_get_data_field"><a class="viewcode-back" href="../../../tests.unit.test_api_xml.html#tests.unit.test_api_xml.test_get_data_field">[docs]</a><span class="k">def</span> <span class="nf">test_get_data_field</span><span class="p">():</span>
+    <span class="k">with</span> <span class="n">patch</span><span class="o">.</span><span class="n">object</span><span class="p">(</span><span class="n">api_xml</span><span class="p">,</span> <span class="s1">&#39;_get_xml_field&#39;</span><span class="p">)</span> <span class="k">as</span> <span class="n">_get_xml_field</span><span class="p">:</span>
+        <span class="n">_get_xml_field</span><span class="o">.</span><span class="n">return_value</span> <span class="o">=</span> <span class="p">{</span><span class="s1">&#39;Data&#39;</span><span class="p">:</span> <span class="n">sentinel</span><span class="o">.</span><span class="n">data</span><span class="p">}</span>
+        <span class="n">res</span> <span class="o">=</span> <span class="n">api_xml</span><span class="o">.</span><span class="n">get_data_field</span><span class="p">(</span><span class="s1">&#39;any_xml&#39;</span><span class="p">,</span> <span class="s1">&#39;any_field&#39;</span><span class="p">)</span>
+        <span class="n">assert_equal</span><span class="p">({</span><span class="s1">&#39;Data&#39;</span><span class="p">:</span> <span class="n">sentinel</span><span class="o">.</span><span class="n">data</span><span class="p">},</span> <span class="n">res</span><span class="p">)</span></div>
+</pre></div>
+
+           </div>
+          </div>
+          <footer>
+  
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>
+        &copy; Copyright 2016, KEMP Technologies.
+
+    </p>
+  </div>
+  Built with <a href="http://sphinx-doc.org/">Sphinx</a> using a <a href="https://github.com/snide/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>. 
+
+</footer>
+
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+  
+
+
+  
+
+    <script type="text/javascript">
+        var DOCUMENTATION_OPTIONS = {
+            URL_ROOT:'../../../',
+            VERSION:'0.7.14',
+            COLLAPSE_INDEX:false,
+            FILE_SUFFIX:'.html',
+            HAS_SOURCE:  true
+        };
+    </script>
+      <script type="text/javascript" src="../../../_static/jquery.js"></script>
+      <script type="text/javascript" src="../../../_static/underscore.js"></script>
+      <script type="text/javascript" src="../../../_static/doctools.js"></script>
+
+  
+
+  
+  
+    <script type="text/javascript" src="../../../_static/js/theme.js"></script>
+  
+
+  
+  
+  <script type="text/javascript">
+      jQuery(function () {
+          SphinxRtdTheme.StickyNav.enable();
+      });
+  </script>
+   
+
+</body>
+</html>

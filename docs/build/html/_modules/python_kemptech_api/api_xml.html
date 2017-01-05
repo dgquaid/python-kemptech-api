@@ -136,26 +136,26 @@
 <span class="kn">import</span> <span class="nn">xmltodict</span>
 
 
-<div class="viewcode-block" id="get_success_msg"><a class="viewcode-back" href="../../python_kemptech_api.html#python_kemptech_api.api_xml.get_success_msg">[docs]</a><span class="k">def</span> <span class="nf">get_success_msg</span><span class="p">(</span><span class="n">xml</span><span class="p">):</span>
+<div class="viewcode-block" id="get_success_msg"><a class="viewcode-back" href="../../python_kemptech_api.api_xml.html#python_kemptech_api.api_xml.get_success_msg">[docs]</a><span class="k">def</span> <span class="nf">get_success_msg</span><span class="p">(</span><span class="n">xml</span><span class="p">):</span>
     <span class="k">return</span> <span class="nb">str</span><span class="p">(</span><span class="n">_get_xml_field</span><span class="p">(</span><span class="n">xml</span><span class="p">,</span> <span class="s2">&quot;Success&quot;</span><span class="p">))</span></div>
 
 
-<div class="viewcode-block" id="get_error_msg"><a class="viewcode-back" href="../../python_kemptech_api.html#python_kemptech_api.api_xml.get_error_msg">[docs]</a><span class="k">def</span> <span class="nf">get_error_msg</span><span class="p">(</span><span class="n">xml</span><span class="p">):</span>
+<div class="viewcode-block" id="get_error_msg"><a class="viewcode-back" href="../../python_kemptech_api.api_xml.html#python_kemptech_api.api_xml.get_error_msg">[docs]</a><span class="k">def</span> <span class="nf">get_error_msg</span><span class="p">(</span><span class="n">xml</span><span class="p">):</span>
     <span class="k">return</span> <span class="nb">str</span><span class="p">(</span><span class="n">_get_xml_field</span><span class="p">(</span><span class="n">xml</span><span class="p">,</span> <span class="s2">&quot;Error&quot;</span><span class="p">))</span></div>
 
 
-<div class="viewcode-block" id="is_successful"><a class="viewcode-back" href="../../python_kemptech_api.html#python_kemptech_api.api_xml.is_successful">[docs]</a><span class="k">def</span> <span class="nf">is_successful</span><span class="p">(</span><span class="n">xml</span><span class="p">):</span>
+<div class="viewcode-block" id="is_successful"><a class="viewcode-back" href="../../python_kemptech_api.api_xml.html#python_kemptech_api.api_xml.is_successful">[docs]</a><span class="k">def</span> <span class="nf">is_successful</span><span class="p">(</span><span class="n">xml</span><span class="p">):</span>
     <span class="sd">&quot;&quot;&quot;Return True if xml response contains a success, else false.&quot;&quot;&quot;</span>
     <span class="k">return</span> <span class="nb">bool</span><span class="p">(</span><span class="n">get_success_msg</span><span class="p">(</span><span class="n">xml</span><span class="p">))</span></div>
 
 
-<div class="viewcode-block" id="get_data_field"><a class="viewcode-back" href="../../python_kemptech_api.html#python_kemptech_api.api_xml.get_data_field">[docs]</a><span class="k">def</span> <span class="nf">get_data_field</span><span class="p">(</span><span class="n">xml</span><span class="p">,</span> <span class="n">field</span><span class="p">):</span>
+<div class="viewcode-block" id="get_data_field"><a class="viewcode-back" href="../../python_kemptech_api.api_xml.html#python_kemptech_api.api_xml.get_data_field">[docs]</a><span class="k">def</span> <span class="nf">get_data_field</span><span class="p">(</span><span class="n">xml</span><span class="p">,</span> <span class="n">field</span><span class="p">):</span>
     <span class="sd">&quot;&quot;&quot;Get the value of a field in the &#39;Data&#39; part of the LM&#39;s XML&quot;&quot;&quot;</span>
     <span class="n">value</span> <span class="o">=</span> <span class="n">_get_xml_field</span><span class="p">(</span><span class="n">xml</span><span class="p">,</span> <span class="s2">&quot;Data&quot;</span><span class="p">,</span> <span class="n">data_field</span><span class="o">=</span><span class="n">field</span><span class="p">)</span>
     <span class="k">return</span> <span class="n">value</span> <span class="ow">or</span> <span class="s2">&quot;&quot;</span></div>
 
 
-<div class="viewcode-block" id="get_data"><a class="viewcode-back" href="../../python_kemptech_api.html#python_kemptech_api.api_xml.get_data">[docs]</a><span class="k">def</span> <span class="nf">get_data</span><span class="p">(</span><span class="n">xml</span><span class="p">):</span>
+<div class="viewcode-block" id="get_data"><a class="viewcode-back" href="../../python_kemptech_api.api_xml.html#python_kemptech_api.api_xml.get_data">[docs]</a><span class="k">def</span> <span class="nf">get_data</span><span class="p">(</span><span class="n">xml</span><span class="p">):</span>
     <span class="sd">&quot;&quot;&quot;Return the &#39;Data&#39; entry from LM&#39;s XML as a dict&quot;&quot;&quot;</span>
     <span class="n">success_xml_entry</span> <span class="o">=</span> <span class="n">_get_xml_field</span><span class="p">(</span><span class="n">xml</span><span class="p">,</span> <span class="s2">&quot;Success&quot;</span><span class="p">)</span>
     <span class="k">try</span><span class="p">:</span>
@@ -166,7 +166,7 @@
     <span class="k">return</span> <span class="n">data</span></div>
 
 
-<div class="viewcode-block" id="parse_to_dict"><a class="viewcode-back" href="../../python_kemptech_api.html#python_kemptech_api.api_xml.parse_to_dict">[docs]</a><span class="k">def</span> <span class="nf">parse_to_dict</span><span class="p">(</span><span class="n">xml</span><span class="p">):</span>
+<div class="viewcode-block" id="parse_to_dict"><a class="viewcode-back" href="../../python_kemptech_api.api_xml.html#python_kemptech_api.api_xml.parse_to_dict">[docs]</a><span class="k">def</span> <span class="nf">parse_to_dict</span><span class="p">(</span><span class="n">xml</span><span class="p">):</span>
     <span class="sd">&quot;&quot;&quot;Return the XML as an OrderedDict.&quot;&quot;&quot;</span>
     <span class="k">try</span><span class="p">:</span>
         <span class="k">return</span> <span class="n">xmltodict</span><span class="o">.</span><span class="n">parse</span><span class="p">(</span><span class="n">xml</span><span class="p">)</span>

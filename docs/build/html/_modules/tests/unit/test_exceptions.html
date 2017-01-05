@@ -1,0 +1,343 @@
+
+
+<!DOCTYPE html>
+<!--[if IE 8]><html class="no-js lt-ie9" lang="en" > <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js" lang="en" > <!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  
+  <title>tests.unit.test_exceptions &mdash; python-kemptech-api 0.7.14 documentation</title>
+  
+
+  
+  
+
+  
+
+  
+  
+    
+
+  
+
+  
+  
+    <link rel="stylesheet" href="../../../_static/css/theme.css" type="text/css" />
+  
+
+  
+
+  
+        <link rel="index" title="Index"
+              href="../../../genindex.html"/>
+        <link rel="search" title="Search" href="../../../search.html"/>
+    <link rel="top" title="python-kemptech-api 0.7.14 documentation" href="../../../index.html"/>
+        <link rel="up" title="Module code" href="../../index.html"/> 
+
+  
+  <script src="../../../_static/js/modernizr.min.js"></script>
+
+</head>
+
+<body class="wy-body-for-nav" role="document">
+
+  <div class="wy-grid-for-nav">
+
+    
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search">
+          
+
+          
+            <a href="../../../index.html" class="icon icon-home"> python-kemptech-api
+          
+
+          
+          </a>
+
+          
+            
+            
+              <div class="version">
+                0.7.14
+              </div>
+            
+          
+
+          
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../../../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+
+          
+        </div>
+
+        <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
+          
+            
+            
+                <p class="caption"><span class="caption-text">Contents:</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../../../python_kemptech_api.html">python_kemptech_api package</a></li>
+</ul>
+
+            
+          
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+
+      
+      <nav class="wy-nav-top" role="navigation" aria-label="top navigation">
+        <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+        <a href="../../../index.html">python-kemptech-api</a>
+      </nav>
+
+
+      
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          
+
+
+
+
+
+<div role="navigation" aria-label="breadcrumbs navigation">
+  <ul class="wy-breadcrumbs">
+    <li><a href="../../../index.html">Docs</a> &raquo;</li>
+      
+          <li><a href="../../index.html">Module code</a> &raquo;</li>
+      
+    <li>tests.unit.test_exceptions</li>
+      <li class="wy-breadcrumbs-aside">
+        
+          
+        
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+            
+  <h1>Source code for tests.unit.test_exceptions</h1><div class="highlight"><pre>
+<span></span><span class="kn">import</span> <span class="nn">inspect</span>
+<span class="kn">from</span> <span class="nn">nose.tools</span> <span class="k">import</span> <span class="n">assert_equal</span><span class="p">,</span> <span class="n">assert_raises</span><span class="p">,</span> <span class="n">assert_is_none</span>
+
+<span class="c1"># handle py3 and py2 cases:</span>
+<span class="k">try</span><span class="p">:</span>
+    <span class="kn">import</span> <span class="nn">unittest.mock</span> <span class="k">as</span> <span class="nn">mock</span>
+<span class="k">except</span> <span class="ne">ImportError</span><span class="p">:</span>
+    <span class="kn">import</span> <span class="nn">mock</span>
+
+<span class="n">patch</span> <span class="o">=</span> <span class="n">mock</span><span class="o">.</span><span class="n">patch</span>
+<span class="n">sentinel</span> <span class="o">=</span> <span class="n">mock</span><span class="o">.</span><span class="n">sentinel</span>
+
+<span class="kn">import</span> <span class="nn">python_kemptech_api.exceptions</span> <span class="k">as</span> <span class="nn">exceptions</span>
+<span class="kn">from</span> <span class="nn">python_kemptech_api.utils</span> <span class="k">import</span> <span class="n">IS_PY3</span>
+
+<div class="viewcode-block" id="Test_get_api_exception_message"><a class="viewcode-back" href="../../../tests.unit.test_exceptions.html#tests.unit.test_exceptions.Test_get_api_exception_message">[docs]</a><span class="k">class</span> <span class="nc">Test_get_api_exception_message</span><span class="p">:</span>
+
+<div class="viewcode-block" id="Test_get_api_exception_message.setup"><a class="viewcode-back" href="../../../tests.unit.test_exceptions.html#tests.unit.test_exceptions.Test_get_api_exception_message.setup">[docs]</a>    <span class="k">def</span> <span class="nf">setup</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">p_get_error_msg</span> <span class="o">=</span> <span class="n">patch</span><span class="o">.</span><span class="n">object</span><span class="p">(</span><span class="n">exceptions</span><span class="p">,</span> <span class="s1">&#39;get_error_msg&#39;</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">get_error_msg</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">p_get_error_msg</span><span class="o">.</span><span class="n">start</span><span class="p">()</span></div>
+
+<div class="viewcode-block" id="Test_get_api_exception_message.teardown"><a class="viewcode-back" href="../../../tests.unit.test_exceptions.html#tests.unit.test_exceptions.Test_get_api_exception_message.teardown">[docs]</a>    <span class="k">def</span> <span class="nf">teardown</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">p_get_error_msg</span><span class="o">.</span><span class="n">stop</span><span class="p">()</span></div>
+
+<div class="viewcode-block" id="Test_get_api_exception_message.test_msg_str_is_xml_msg"><a class="viewcode-back" href="../../../tests.unit.test_exceptions.html#tests.unit.test_exceptions.Test_get_api_exception_message.test_msg_str_is_xml_msg">[docs]</a>    <span class="k">def</span> <span class="nf">test_msg_str_is_xml_msg</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">get_error_msg</span><span class="o">.</span><span class="n">return_value</span> <span class="o">=</span> <span class="n">sentinel</span><span class="o">.</span><span class="n">err</span>
+        <span class="n">res</span> <span class="o">=</span> <span class="n">exceptions</span><span class="o">.</span><span class="n">get_api_exception_message</span><span class="p">(</span><span class="s1">&#39;a message&#39;</span><span class="p">,</span> <span class="mi">401</span><span class="p">,</span> <span class="kc">True</span><span class="p">)</span>
+        <span class="n">assert_equal</span><span class="p">(</span><span class="n">res</span><span class="p">,</span> <span class="n">sentinel</span><span class="o">.</span><span class="n">err</span><span class="p">)</span></div>
+
+<div class="viewcode-block" id="Test_get_api_exception_message.test_msg_str_not_xml_msg"><a class="viewcode-back" href="../../../tests.unit.test_exceptions.html#tests.unit.test_exceptions.Test_get_api_exception_message.test_msg_str_not_xml_msg">[docs]</a>    <span class="k">def</span> <span class="nf">test_msg_str_not_xml_msg</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="n">res</span> <span class="o">=</span> <span class="n">exceptions</span><span class="o">.</span><span class="n">get_api_exception_message</span><span class="p">(</span><span class="s1">&#39;a message&#39;</span><span class="p">,</span> <span class="mi">401</span><span class="p">,</span> <span class="kc">False</span><span class="p">)</span>
+        <span class="n">assert_equal</span><span class="p">(</span><span class="n">res</span><span class="p">,</span> <span class="s1">&#39;a message&#39;</span><span class="p">)</span></div>
+
+<div class="viewcode-block" id="Test_get_api_exception_message.test_msg_None_status_code_ok"><a class="viewcode-back" href="../../../tests.unit.test_exceptions.html#tests.unit.test_exceptions.Test_get_api_exception_message.test_msg_None_status_code_ok">[docs]</a>    <span class="k">def</span> <span class="nf">test_msg_None_status_code_ok</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="k">for</span> <span class="n">is_xml_msg</span> <span class="ow">in</span> <span class="p">(</span><span class="kc">True</span><span class="p">,</span> <span class="kc">False</span><span class="p">):</span>
+            <span class="n">res</span> <span class="o">=</span> <span class="n">exceptions</span><span class="o">.</span><span class="n">get_api_exception_message</span><span class="p">(</span><span class="kc">None</span><span class="p">,</span> <span class="mi">401</span><span class="p">,</span> <span class="n">is_xml_msg</span><span class="p">)</span>
+            <span class="n">assert_equal</span><span class="p">(</span><span class="n">res</span><span class="p">,</span> <span class="s1">&#39;401 Client Error: Authorization required.&#39;</span><span class="p">)</span></div>
+
+<div class="viewcode-block" id="Test_get_api_exception_message.test_msg_None_status_code_fail"><a class="viewcode-back" href="../../../tests.unit.test_exceptions.html#tests.unit.test_exceptions.Test_get_api_exception_message.test_msg_None_status_code_fail">[docs]</a>    <span class="k">def</span> <span class="nf">test_msg_None_status_code_fail</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="k">for</span> <span class="n">is_xml_msg</span> <span class="ow">in</span> <span class="p">(</span><span class="kc">True</span><span class="p">,</span> <span class="kc">False</span><span class="p">):</span>
+            <span class="n">res</span> <span class="o">=</span> <span class="n">exceptions</span><span class="o">.</span><span class="n">get_api_exception_message</span><span class="p">(</span><span class="kc">None</span><span class="p">,</span> <span class="mi">450</span><span class="p">,</span> <span class="n">is_xml_msg</span><span class="p">)</span>
+            <span class="n">assert_equal</span><span class="p">(</span><span class="n">res</span><span class="p">,</span> <span class="s1">&#39;An unknown error has occurred (450).&#39;</span><span class="p">)</span></div></div>
+
+
+<div class="viewcode-block" id="Test_get_parameter_message"><a class="viewcode-back" href="../../../tests.unit.test_exceptions.html#tests.unit.test_exceptions.Test_get_parameter_message">[docs]</a><span class="k">class</span> <span class="nc">Test_get_parameter_message</span><span class="p">:</span>
+
+<div class="viewcode-block" id="Test_get_parameter_message.test_dict_input"><a class="viewcode-back" href="../../../tests.unit.test_exceptions.html#tests.unit.test_exceptions.Test_get_parameter_message.test_dict_input">[docs]</a>    <span class="k">def</span> <span class="nf">test_dict_input</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="n">lm</span> <span class="o">=</span> <span class="s1">&#39;my-loadmaster&#39;</span>
+        <span class="n">parameters</span> <span class="o">=</span> <span class="p">{</span><span class="s1">&#39;param&#39;</span><span class="p">:</span> <span class="s1">&#39;a&#39;</span><span class="p">,</span> <span class="s1">&#39;value&#39;</span><span class="p">:</span> <span class="s1">&#39;b&#39;</span><span class="p">}</span>
+        <span class="n">msg</span> <span class="o">=</span> <span class="n">exceptions</span><span class="o">.</span><span class="n">get_parameter_message</span><span class="p">(</span><span class="n">lm</span><span class="p">,</span> <span class="n">parameters</span><span class="p">)</span>
+        <span class="n">assert_equal</span><span class="p">(</span><span class="n">msg</span><span class="p">,</span><span class="s1">&#39;my-loadmaster failed to set a: b&#39;</span><span class="p">)</span></div>
+
+<div class="viewcode-block" id="Test_get_parameter_message.test_non_dict_input"><a class="viewcode-back" href="../../../tests.unit.test_exceptions.html#tests.unit.test_exceptions.Test_get_parameter_message.test_non_dict_input">[docs]</a>    <span class="k">def</span> <span class="nf">test_non_dict_input</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="n">lm</span> <span class="o">=</span> <span class="s1">&#39;my-loadmaster&#39;</span>
+        <span class="n">parameters</span> <span class="o">=</span> <span class="mi">23</span>  <span class="c1"># Not a dictionary</span>
+        <span class="n">msg</span> <span class="o">=</span> <span class="n">exceptions</span><span class="o">.</span><span class="n">get_parameter_message</span><span class="p">(</span><span class="n">lm</span><span class="p">,</span> <span class="n">parameters</span><span class="p">)</span>
+        <span class="k">if</span> <span class="n">IS_PY3</span><span class="p">:</span>
+            <span class="n">assert_equal</span><span class="p">(</span><span class="n">msg</span><span class="p">,</span><span class="s2">&quot;my-loadmaster failed to set 23 (&#39;int&#39; object is not subscriptable)&quot;</span><span class="p">)</span>
+        <span class="k">else</span><span class="p">:</span>
+            <span class="n">assert_equal</span><span class="p">(</span><span class="n">msg</span><span class="p">,</span><span class="s2">&quot;my-loadmaster failed to set 23 (&#39;int&#39; object has no attribute &#39;__getitem__&#39;)&quot;</span><span class="p">)</span></div></div>
+
+
+<div class="viewcode-block" id="Test_MissingInfo"><a class="viewcode-back" href="../../../tests.unit.test_exceptions.html#tests.unit.test_exceptions.Test_MissingInfo">[docs]</a><span class="k">class</span> <span class="nc">Test_MissingInfo</span><span class="p">:</span>
+
+<div class="viewcode-block" id="Test_MissingInfo.test_call"><a class="viewcode-back" href="../../../tests.unit.test_exceptions.html#tests.unit.test_exceptions.Test_MissingInfo.test_call">[docs]</a>    <span class="k">def</span> <span class="nf">test_call</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="k">with</span> <span class="n">assert_raises</span><span class="p">(</span><span class="n">exceptions</span><span class="o">.</span><span class="n">MissingInfo</span><span class="p">)</span> <span class="k">as</span> <span class="n">err</span><span class="p">:</span>
+            <span class="k">raise</span> <span class="n">exceptions</span><span class="o">.</span><span class="n">MissingInfo</span><span class="p">(</span><span class="s1">&#39;avalue&#39;</span><span class="p">)</span>
+        <span class="n">expect</span> <span class="o">=</span> <span class="s2">&quot;My service is missing the parameter_name parameter &#39;avalue&#39;&quot;</span>
+        <span class="n">assert_equal</span><span class="p">(</span><span class="nb">str</span><span class="p">(</span><span class="n">err</span><span class="o">.</span><span class="n">exception</span><span class="p">),</span> <span class="n">expect</span><span class="p">)</span></div></div>
+
+
+<div class="viewcode-block" id="test_status_code_is_set"><a class="viewcode-back" href="../../../tests.unit.test_exceptions.html#tests.unit.test_exceptions.test_status_code_is_set">[docs]</a><span class="k">def</span> <span class="nf">test_status_code_is_set</span><span class="p">():</span>
+    <span class="n">expected</span> <span class="o">=</span> <span class="mi">45</span>
+    <span class="k">try</span><span class="p">:</span>
+        <span class="k">raise</span> <span class="n">exceptions</span><span class="o">.</span><span class="n">UnauthorizedAccessError</span><span class="p">(</span><span class="s2">&quot;1.1.1.1&quot;</span><span class="p">,</span> <span class="n">code</span><span class="o">=</span><span class="n">expected</span><span class="p">)</span>
+    <span class="k">except</span> <span class="n">exceptions</span><span class="o">.</span><span class="n">UnauthorizedAccessError</span> <span class="k">as</span> <span class="n">e</span><span class="p">:</span>
+        <span class="n">actual</span> <span class="o">=</span> <span class="n">e</span><span class="o">.</span><span class="n">status_code</span>
+        <span class="n">assert_equal</span><span class="p">(</span><span class="n">expected</span><span class="p">,</span> <span class="n">actual</span><span class="p">)</span></div>
+
+
+<div class="viewcode-block" id="test_exception_inits"><a class="viewcode-back" href="../../../tests.unit.test_exceptions.html#tests.unit.test_exceptions.test_exception_inits">[docs]</a><span class="k">def</span> <span class="nf">test_exception_inits</span><span class="p">():</span>
+    <span class="sd">&quot;&quot;&quot;Ensure that all the __init__s of exceptions defined in exceptions.py</span>
+<span class="sd">    are constructed correctly (ie without syntax errors)</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="n">errors</span> <span class="o">=</span> <span class="p">[]</span>
+    <span class="n">exception_classes</span> <span class="o">=</span> <span class="n">get_exception_classes_gen</span><span class="p">()</span>
+
+    <span class="k">for</span> <span class="n">ex</span> <span class="ow">in</span> <span class="n">exception_classes</span><span class="p">:</span>
+
+        <span class="k">try</span><span class="p">:</span>
+            <span class="n">check_exception_init</span><span class="p">(</span><span class="n">ex</span><span class="p">)</span>
+        <span class="k">except</span> <span class="ne">Exception</span> <span class="k">as</span> <span class="n">e</span><span class="p">:</span>
+            <span class="n">errors</span> <span class="o">+=</span> <span class="p">[</span><span class="s2">&quot;</span><span class="si">{}</span><span class="s2"> failed with &#39;</span><span class="si">{}</span><span class="s2">&#39;&quot;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">ex</span><span class="p">,</span> <span class="n">e</span><span class="p">)]</span>
+
+    <span class="k">if</span> <span class="n">errors</span><span class="p">:</span>
+        <span class="k">for</span> <span class="n">err</span> <span class="ow">in</span> <span class="n">errors</span><span class="p">:</span>
+           <span class="nb">print</span> <span class="p">(</span><span class="n">err</span><span class="p">)</span>
+        <span class="k">assert</span> <span class="kc">False</span></div>
+
+
+<div class="viewcode-block" id="get_exception_classes_gen"><a class="viewcode-back" href="../../../tests.unit.test_exceptions.html#tests.unit.test_exceptions.get_exception_classes_gen">[docs]</a><span class="k">def</span> <span class="nf">get_exception_classes_gen</span><span class="p">():</span>
+    <span class="sd">&quot;&quot;&quot;generator yielding the next exception class in exceptions.py&quot;&quot;&quot;</span>
+
+    <span class="k">for</span> <span class="n">attr</span> <span class="ow">in</span> <span class="nb">dir</span><span class="p">(</span><span class="n">exceptions</span><span class="p">):</span>
+        <span class="n">e</span> <span class="o">=</span> <span class="nb">getattr</span><span class="p">(</span><span class="n">exceptions</span><span class="p">,</span> <span class="n">attr</span><span class="p">)</span>
+        <span class="sd">&quot;&quot;&quot;we are only interested in Exception subclasses which have __init__</span>
+<span class="sd">        as a methos, not as a slot ( python2.7 builtins have this case&quot;&quot;&quot;</span>
+
+        <span class="k">if</span> <span class="n">inspect</span><span class="o">.</span><span class="n">isclass</span><span class="p">(</span><span class="n">e</span><span class="p">)</span> <span class="ow">and</span> <span class="nb">issubclass</span><span class="p">(</span><span class="n">e</span><span class="p">,</span> <span class="ne">Exception</span><span class="p">)</span> <span class="p">:</span>
+            <span class="k">if</span> <span class="n">IS_PY3</span><span class="p">:</span>
+                <span class="k">yield</span> <span class="n">e</span>
+
+            <span class="c1"># in python2 case, we have to check that the __init__ is actually</span>
+            <span class="c1"># a method , and not a slot wrapper</span>
+            <span class="k">elif</span> <span class="n">inspect</span><span class="o">.</span><span class="n">ismethod</span><span class="p">(</span><span class="nb">getattr</span><span class="p">(</span><span class="n">e</span><span class="p">,</span> <span class="s1">&#39;__init__&#39;</span><span class="p">)):</span>
+                <span class="k">yield</span> <span class="n">e</span></div>
+
+
+<div class="viewcode-block" id="check_exception_init"><a class="viewcode-back" href="../../../tests.unit.test_exceptions.html#tests.unit.test_exceptions.check_exception_init">[docs]</a><span class="k">def</span> <span class="nf">check_exception_init</span><span class="p">(</span><span class="n">ex</span><span class="p">):</span>
+    <span class="c1"># get the expected argument list</span>
+    <span class="n">args</span> <span class="o">=</span> <span class="n">inspect</span><span class="o">.</span><span class="n">getargspec</span><span class="p">(</span><span class="n">ex</span><span class="o">.</span><span class="n">__init__</span><span class="p">)[</span><span class="mi">0</span><span class="p">]</span>
+    <span class="c1">#remove &quot;self from this list</span>
+    <span class="n">args</span> <span class="o">=</span> <span class="n">args</span><span class="p">[</span><span class="mi">1</span><span class="p">:]</span>
+    <span class="k">try</span><span class="p">:</span>
+        <span class="c1"># we raise the exception using the names of the arguments as values (for simplicity)</span>
+        <span class="c1"># so this is, eg, raise DownloadUserCertFailed(&#39;ip_address&#39;, &#39;code&#39;)</span>
+        <span class="k">raise</span> <span class="n">ex</span><span class="p">(</span><span class="o">*</span><span class="n">args</span><span class="p">)</span>
+    <span class="k">except</span> <span class="n">ex</span><span class="p">:</span>
+        <span class="k">pass</span>
+    <span class="k">except</span><span class="p">:</span>
+        <span class="k">raise</span></div>
+
+<span class="c1"># tests for the test functions:</span>
+
+<div class="viewcode-block" id="test_check_exception_init_ok"><a class="viewcode-back" href="../../../tests.unit.test_exceptions.html#tests.unit.test_exceptions.test_check_exception_init_ok">[docs]</a><span class="k">def</span> <span class="nf">test_check_exception_init_ok</span><span class="p">():</span>
+    <span class="k">class</span> <span class="nc">OKException</span><span class="p">(</span><span class="ne">Exception</span><span class="p">):</span>
+        <span class="k">def</span> <span class="nf">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">param</span><span class="p">):</span>
+            <span class="nb">super</span><span class="p">(</span><span class="n">OKException</span><span class="p">,</span> <span class="bp">self</span><span class="p">)</span><span class="o">.</span><span class="n">__init__</span><span class="p">()</span>
+
+    <span class="n">assert_is_none</span><span class="p">(</span><span class="n">check_exception_init</span><span class="p">(</span><span class="n">OKException</span><span class="p">))</span></div>
+
+<div class="viewcode-block" id="test_check_exception_init_fails_if_syntax_error"><a class="viewcode-back" href="../../../tests.unit.test_exceptions.html#tests.unit.test_exceptions.test_check_exception_init_fails_if_syntax_error">[docs]</a><span class="k">def</span> <span class="nf">test_check_exception_init_fails_if_syntax_error</span><span class="p">():</span>
+    <span class="k">class</span> <span class="nc">SyntaxErrorException</span><span class="p">(</span><span class="ne">Exception</span><span class="p">):</span>
+        <span class="k">def</span> <span class="nf">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">param</span><span class="p">):</span>
+            <span class="n">syntax_error</span> <span class="o">=</span> <span class="n">param</span> <span class="o">+</span> <span class="mi">7</span>
+            <span class="nb">super</span><span class="p">(</span><span class="n">SyntaxErrorException</span><span class="p">,</span> <span class="bp">self</span><span class="p">)</span><span class="o">.</span><span class="n">__init__</span><span class="p">()</span>
+
+    <span class="k">with</span> <span class="n">assert_raises</span><span class="p">(</span><span class="ne">TypeError</span><span class="p">):</span>
+        <span class="n">check_exception_init</span><span class="p">(</span><span class="n">SyntaxErrorException</span><span class="p">)</span></div>
+</pre></div>
+
+           </div>
+          </div>
+          <footer>
+  
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>
+        &copy; Copyright 2016, KEMP Technologies.
+
+    </p>
+  </div>
+  Built with <a href="http://sphinx-doc.org/">Sphinx</a> using a <a href="https://github.com/snide/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>. 
+
+</footer>
+
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+  
+
+
+  
+
+    <script type="text/javascript">
+        var DOCUMENTATION_OPTIONS = {
+            URL_ROOT:'../../../',
+            VERSION:'0.7.14',
+            COLLAPSE_INDEX:false,
+            FILE_SUFFIX:'.html',
+            HAS_SOURCE:  true
+        };
+    </script>
+      <script type="text/javascript" src="../../../_static/jquery.js"></script>
+      <script type="text/javascript" src="../../../_static/underscore.js"></script>
+      <script type="text/javascript" src="../../../_static/doctools.js"></script>
+
+  
+
+  
+  
+    <script type="text/javascript" src="../../../_static/js/theme.js"></script>
+  
+
+  
+  
+  <script type="text/javascript">
+      jQuery(function () {
+          SphinxRtdTheme.StickyNav.enable();
+      });
+  </script>
+   
+
+</body>
+</html>

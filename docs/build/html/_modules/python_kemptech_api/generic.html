@@ -156,16 +156,14 @@
 <span class="n">logging</span><span class="o">.</span><span class="n">basicConfig</span><span class="p">()</span>
 
 
-<div class="viewcode-block" id="HttpClient"><a class="viewcode-back" href="../../python_kemptech_api.html#python_kemptech_api.generic.HttpClient">[docs]</a><span class="k">class</span> <span class="nc">HttpClient</span><span class="p">(</span><span class="nb">object</span><span class="p">):</span>
+<div class="viewcode-block" id="HttpClient"><a class="viewcode-back" href="../../python_kemptech_api.generic.html#python_kemptech_api.generic.HttpClient">[docs]</a><span class="k">class</span> <span class="nc">HttpClient</span><span class="p">(</span><span class="nb">object</span><span class="p">):</span>
     <span class="sd">&quot;&quot;&quot;Client that performs HTTP requests.&quot;&quot;&quot;</span>
 
     <span class="n">ip_address</span> <span class="o">=</span> <span class="kc">None</span>
     <span class="n">endpoint</span> <span class="o">=</span> <span class="kc">None</span>
 
-    <span class="k">def</span> <span class="nf">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">tls_version</span><span class="o">=</span><span class="n">utils</span><span class="o">.</span><span class="n">DEFAULT_TLS_VERSION</span><span class="p">,</span> <span class="n">cert</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span>
-                 <span class="n">user</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">password</span><span class="o">=</span><span class="kc">None</span><span class="p">):</span>
+    <span class="k">def</span> <span class="nf">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">tls_version</span><span class="o">=</span><span class="n">utils</span><span class="o">.</span><span class="n">DEFAULT_TLS_VERSION</span><span class="p">,</span> <span class="n">cert</span><span class="o">=</span><span class="kc">None</span><span class="p">):</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">cert</span> <span class="o">=</span> <span class="n">cert</span>
-        <span class="bp">self</span><span class="o">.</span><span class="n">auth</span> <span class="o">=</span> <span class="p">(</span><span class="n">user</span><span class="p">,</span> <span class="n">password</span><span class="p">)</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">_tls_version</span> <span class="o">=</span> <span class="n">tls_version</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">_tls_session</span> <span class="o">=</span> <span class="n">Session</span><span class="p">()</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">_tls_session</span><span class="o">.</span><span class="n">mount</span><span class="p">(</span><span class="s2">&quot;http://&quot;</span><span class="p">,</span> <span class="n">UseTlsAdapter</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">_tls_version</span><span class="p">))</span>
@@ -205,8 +203,7 @@
                                                          <span class="n">verify</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span>
                                                          <span class="n">data</span><span class="o">=</span><span class="n">payload</span><span class="p">,</span>
                                                          <span class="n">headers</span><span class="o">=</span><span class="n">headers</span><span class="p">,</span>
-                                                         <span class="n">cert</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">cert</span><span class="p">,</span>
-                                                         <span class="n">auth</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">auth</span><span class="p">)</span>
+                                                         <span class="n">cert</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">cert</span><span class="p">)</span>
             <span class="k">else</span><span class="p">:</span>
                 <span class="n">response</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_tls_session</span><span class="o">.</span><span class="n">request</span><span class="p">(</span><span class="n">http_method</span><span class="p">,</span>
                                                      <span class="n">cmd_url</span><span class="p">,</span>
@@ -214,8 +211,7 @@
                                                      <span class="n">timeout</span><span class="o">=</span><span class="n">utils</span><span class="o">.</span><span class="n">TIMEOUT</span><span class="p">,</span>
                                                      <span class="n">verify</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span>
                                                      <span class="n">headers</span><span class="o">=</span><span class="n">headers</span><span class="p">,</span>
-                                                     <span class="n">cert</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">cert</span><span class="p">,</span>
-                                                     <span class="n">auth</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">auth</span><span class="p">)</span>
+                                                     <span class="n">cert</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">cert</span><span class="p">)</span>
             <span class="bp">self</span><span class="o">.</span><span class="n">_tls_session</span><span class="o">.</span><span class="n">close</span><span class="p">()</span>
 
             <span class="c1"># Raise specific error for authentication failure</span>
@@ -276,11 +272,10 @@
                                 <span class="n">file</span><span class="o">=</span><span class="n">file</span><span class="p">)</span></div>
 
 
-<div class="viewcode-block" id="AccessInfoMixin"><a class="viewcode-back" href="../../python_kemptech_api.html#python_kemptech_api.generic.AccessInfoMixin">[docs]</a><span class="k">class</span> <span class="nc">AccessInfoMixin</span><span class="p">(</span><span class="nb">object</span><span class="p">):</span>
+<div class="viewcode-block" id="AccessInfoMixin"><a class="viewcode-back" href="../../python_kemptech_api.generic.html#python_kemptech_api.generic.AccessInfoMixin">[docs]</a><span class="k">class</span> <span class="nc">AccessInfoMixin</span><span class="p">(</span><span class="nb">object</span><span class="p">):</span>
     <span class="n">endpoint</span> <span class="o">=</span> <span class="kc">None</span>
     <span class="n">ip_address</span> <span class="o">=</span> <span class="kc">None</span>
     <span class="n">cert</span> <span class="o">=</span> <span class="kc">None</span>
-    <span class="n">auth</span> <span class="o">=</span> <span class="kc">None</span>
 
     <span class="nd">@property</span>
     <span class="k">def</span> <span class="nf">access_info</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
@@ -288,13 +283,12 @@
             <span class="s2">&quot;endpoint&quot;</span><span class="p">:</span> <span class="bp">self</span><span class="o">.</span><span class="n">endpoint</span><span class="p">,</span>
             <span class="s2">&quot;ip_address&quot;</span><span class="p">:</span> <span class="bp">self</span><span class="o">.</span><span class="n">ip_address</span><span class="p">,</span>
             <span class="s2">&quot;cert&quot;</span><span class="p">:</span> <span class="bp">self</span><span class="o">.</span><span class="n">cert</span><span class="p">,</span>
-            <span class="s2">&quot;auth&quot;</span><span class="p">:</span> <span class="bp">self</span><span class="o">.</span><span class="n">auth</span><span class="p">,</span>
             <span class="s2">&quot;appliance&quot;</span><span class="p">:</span> <span class="bp">self</span>
         <span class="p">}</span>
         <span class="k">return</span> <span class="n">info</span></div>
 
 
-<div class="viewcode-block" id="BaseKempObject"><a class="viewcode-back" href="../../python_kemptech_api.html#python_kemptech_api.generic.BaseKempObject">[docs]</a><span class="k">class</span> <span class="nc">BaseKempObject</span><span class="p">(</span><span class="n">HttpClient</span><span class="p">,</span> <span class="n">AccessInfoMixin</span><span class="p">):</span>
+<div class="viewcode-block" id="BaseKempObject"><a class="viewcode-back" href="../../python_kemptech_api.generic.html#python_kemptech_api.generic.BaseKempObject">[docs]</a><span class="k">class</span> <span class="nc">BaseKempObject</span><span class="p">(</span><span class="n">HttpClient</span><span class="p">,</span> <span class="n">AccessInfoMixin</span><span class="p">):</span>
     <span class="n">_API_ADD</span> <span class="o">=</span> <span class="s2">&quot;&quot;</span>
     <span class="n">_API_MOD</span> <span class="o">=</span> <span class="s2">&quot;&quot;</span>
     <span class="n">_API_DELETE</span> <span class="o">=</span> <span class="s2">&quot;&quot;</span>
@@ -309,7 +303,7 @@
     <span class="n">_API_IGNORE</span> <span class="o">=</span> <span class="p">(</span>
         <span class="s2">&quot;log_urls&quot;</span><span class="p">,</span> <span class="s2">&quot;ip_address&quot;</span><span class="p">,</span> <span class="s2">&quot;endpoint&quot;</span><span class="p">,</span> <span class="s2">&quot;rsindex&quot;</span><span class="p">,</span> <span class="s2">&quot;vsindex&quot;</span><span class="p">,</span> <span class="s2">&quot;index&quot;</span><span class="p">,</span>
         <span class="s2">&quot;status&quot;</span><span class="p">,</span> <span class="s2">&quot;subvs_data&quot;</span><span class="p">,</span> <span class="s2">&quot;subvs_entries&quot;</span><span class="p">,</span> <span class="s2">&quot;real_servers&quot;</span><span class="p">,</span> <span class="s2">&quot;cert&quot;</span><span class="p">,</span>
-        <span class="s2">&quot;checkuse1_1&quot;</span><span class="p">,</span> <span class="s2">&quot;mastervsid&quot;</span><span class="p">,</span> <span class="s2">&quot;API_INIT_PARAMS&quot;</span><span class="p">,</span> <span class="s2">&quot;API_TAG&quot;</span><span class="p">,</span> <span class="s2">&quot;auth&quot;</span>
+        <span class="s2">&quot;checkuse1_1&quot;</span><span class="p">,</span> <span class="s2">&quot;mastervsid&quot;</span><span class="p">,</span> <span class="s2">&quot;API_INIT_PARAMS&quot;</span><span class="p">,</span> <span class="s2">&quot;API_TAG&quot;</span>
     <span class="p">)</span>
 
     <span class="k">def</span> <span class="nf">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">loadmaster_info</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">):</span>
@@ -323,12 +317,7 @@
         <span class="k">except</span> <span class="ne">KeyError</span><span class="p">:</span>
             <span class="k">raise</span> <span class="n">GenericObjectMissingLoadMasterInfo</span><span class="p">(</span><span class="nb">type</span><span class="p">(</span><span class="bp">self</span><span class="p">),</span> <span class="s2">&quot;ip_address&quot;</span><span class="p">)</span>
 
-        <span class="k">try</span><span class="p">:</span>
-            <span class="bp">self</span><span class="o">.</span><span class="n">auth</span> <span class="o">=</span> <span class="n">loadmaster_info</span><span class="p">[</span><span class="s2">&quot;auth&quot;</span><span class="p">]</span>
-        <span class="k">except</span> <span class="ne">KeyError</span><span class="p">:</span>
-            <span class="k">raise</span> <span class="n">GenericObjectMissingLoadMasterInfo</span><span class="p">(</span><span class="nb">type</span><span class="p">(</span><span class="bp">self</span><span class="p">),</span> <span class="s2">&quot;auth&quot;</span><span class="p">)</span>
-        <span class="nb">super</span><span class="p">(</span><span class="n">BaseKempObject</span><span class="p">,</span> <span class="bp">self</span><span class="p">)</span><span class="o">.</span><span class="n">__init__</span><span class="p">(</span><span class="n">cert</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">cert</span><span class="p">,</span>
-                                             <span class="n">user</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">auth</span><span class="p">[</span><span class="mi">0</span><span class="p">],</span> <span class="n">password</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">auth</span><span class="p">[</span><span class="mi">1</span><span class="p">])</span>
+        <span class="nb">super</span><span class="p">(</span><span class="n">BaseKempObject</span><span class="p">,</span> <span class="bp">self</span><span class="p">)</span><span class="o">.</span><span class="n">__init__</span><span class="p">(</span><span class="n">loadmaster_info</span><span class="p">)</span>
 
     <span class="k">def</span> <span class="nf">__repr__</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
         <span class="k">return</span> <span class="s1">&#39;</span><span class="si">{}</span><span class="s1"> </span><span class="si">{}</span><span class="s1">&#39;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span>
@@ -348,7 +337,7 @@
         <span class="n">info</span><span class="o">.</span><span class="n">update</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">_get_base_parameters</span><span class="p">())</span>
         <span class="k">return</span> <span class="n">info</span>
 
-<div class="viewcode-block" id="BaseKempObject.save"><a class="viewcode-back" href="../../python_kemptech_api.html#python_kemptech_api.generic.BaseKempObject.save">[docs]</a>    <span class="k">def</span> <span class="nf">save</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">update</span><span class="o">=</span><span class="kc">False</span><span class="p">):</span>
+<div class="viewcode-block" id="BaseKempObject.save"><a class="viewcode-back" href="../../python_kemptech_api.generic.html#python_kemptech_api.generic.BaseKempObject.save">[docs]</a>    <span class="k">def</span> <span class="nf">save</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">update</span><span class="o">=</span><span class="kc">False</span><span class="p">):</span>
         <span class="k">if</span> <span class="ow">not</span> <span class="n">update</span><span class="p">:</span>
             <span class="n">response</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_get</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">_API_ADD</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">to_api_dict</span><span class="p">())</span>
         <span class="k">else</span><span class="p">:</span>
@@ -356,10 +345,10 @@
 
         <span class="bp">self</span><span class="o">.</span><span class="n">_is_successful_or_raise</span><span class="p">(</span><span class="n">response</span><span class="p">)</span></div>
 
-<div class="viewcode-block" id="BaseKempObject.update"><a class="viewcode-back" href="../../python_kemptech_api.html#python_kemptech_api.generic.BaseKempObject.update">[docs]</a>    <span class="k">def</span> <span class="nf">update</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+<div class="viewcode-block" id="BaseKempObject.update"><a class="viewcode-back" href="../../python_kemptech_api.generic.html#python_kemptech_api.generic.BaseKempObject.update">[docs]</a>    <span class="k">def</span> <span class="nf">update</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">save</span><span class="p">(</span><span class="n">update</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span></div>
 
-<div class="viewcode-block" id="BaseKempObject.refresh"><a class="viewcode-back" href="../../python_kemptech_api.html#python_kemptech_api.generic.BaseKempObject.refresh">[docs]</a>    <span class="k">def</span> <span class="nf">refresh</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+<div class="viewcode-block" id="BaseKempObject.refresh"><a class="viewcode-back" href="../../python_kemptech_api.generic.html#python_kemptech_api.generic.BaseKempObject.refresh">[docs]</a>    <span class="k">def</span> <span class="nf">refresh</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
         <span class="n">response</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_get</span><span class="p">(</span>
             <span class="bp">self</span><span class="o">.</span><span class="n">_API_GET</span><span class="p">,</span>
             <span class="bp">self</span><span class="o">.</span><span class="n">_get_base_parameters</span><span class="p">())</span>
@@ -368,11 +357,11 @@
         <span class="c1"># empty responselm.</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">populate_default_attributes</span><span class="p">(</span><span class="n">xml_object</span><span class="p">)</span></div>
 
-<div class="viewcode-block" id="BaseKempObject.delete"><a class="viewcode-back" href="../../python_kemptech_api.html#python_kemptech_api.generic.BaseKempObject.delete">[docs]</a>    <span class="k">def</span> <span class="nf">delete</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+<div class="viewcode-block" id="BaseKempObject.delete"><a class="viewcode-back" href="../../python_kemptech_api.generic.html#python_kemptech_api.generic.BaseKempObject.delete">[docs]</a>    <span class="k">def</span> <span class="nf">delete</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
         <span class="n">response</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_get</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">_API_DELETE</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">_get_base_parameters</span><span class="p">())</span>
         <span class="k">return</span> <span class="n">send_response</span><span class="p">(</span><span class="n">response</span><span class="p">)</span></div>
 
-<div class="viewcode-block" id="BaseKempObject.to_api_dict"><a class="viewcode-back" href="../../python_kemptech_api.html#python_kemptech_api.generic.BaseKempObject.to_api_dict">[docs]</a>    <span class="k">def</span> <span class="nf">to_api_dict</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+<div class="viewcode-block" id="BaseKempObject.to_api_dict"><a class="viewcode-back" href="../../python_kemptech_api.generic.html#python_kemptech_api.generic.BaseKempObject.to_api_dict">[docs]</a>    <span class="k">def</span> <span class="nf">to_api_dict</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
         <span class="sd">&quot;&quot;&quot;Returns API related attributes as a dict</span>
 
 <span class="sd">        Ignores attributes listed in _api_ignore and also attributes</span>
@@ -385,7 +374,7 @@
             <span class="n">api_dict</span><span class="p">[</span><span class="n">key</span><span class="p">]</span> <span class="o">=</span> <span class="n">value</span>
         <span class="k">return</span> <span class="n">api_dict</span></div>
 
-<div class="viewcode-block" id="BaseKempObject.to_dict"><a class="viewcode-back" href="../../python_kemptech_api.html#python_kemptech_api.generic.BaseKempObject.to_dict">[docs]</a>    <span class="k">def</span> <span class="nf">to_dict</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+<div class="viewcode-block" id="BaseKempObject.to_dict"><a class="viewcode-back" href="../../python_kemptech_api.generic.html#python_kemptech_api.generic.BaseKempObject.to_dict">[docs]</a>    <span class="k">def</span> <span class="nf">to_dict</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
         <span class="sd">&quot;&quot;&quot;returns attributes whose values are not None or whose name starts</span>
 <span class="sd">        with _ as a dict&quot;&quot;&quot;</span>
         <span class="n">api_dict</span> <span class="o">=</span> <span class="p">{}</span>
@@ -402,7 +391,7 @@
             <span class="n">base_parameters</span><span class="p">[</span><span class="n">parameter</span><span class="p">]</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">__getattribute__</span><span class="p">(</span><span class="n">parameter</span><span class="p">)</span>
         <span class="k">return</span> <span class="n">base_parameters</span>
 
-<div class="viewcode-block" id="BaseKempObject.populate_default_attributes"><a class="viewcode-back" href="../../python_kemptech_api.html#python_kemptech_api.generic.BaseKempObject.populate_default_attributes">[docs]</a>    <span class="k">def</span> <span class="nf">populate_default_attributes</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">params</span><span class="p">):</span>
+<div class="viewcode-block" id="BaseKempObject.populate_default_attributes"><a class="viewcode-back" href="../../python_kemptech_api.generic.html#python_kemptech_api.generic.BaseKempObject.populate_default_attributes">[docs]</a>    <span class="k">def</span> <span class="nf">populate_default_attributes</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">params</span><span class="p">):</span>
         <span class="sd">&quot;&quot;&quot;Populate object instance with standard defaults&quot;&quot;&quot;</span>
         <span class="k">if</span> <span class="nb">len</span><span class="p">(</span><span class="n">params</span><span class="p">)</span> <span class="o">==</span> <span class="mi">0</span><span class="p">:</span>
             <span class="n">log</span><span class="o">.</span><span class="n">warning</span><span class="p">(</span><span class="s2">&quot;No data was returned, leaving data intact&quot;</span><span class="p">)</span>

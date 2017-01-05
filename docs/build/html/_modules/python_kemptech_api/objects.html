@@ -169,7 +169,7 @@
 <span class="n">log</span> <span class="o">=</span> <span class="n">logging</span><span class="o">.</span><span class="n">getLogger</span><span class="p">(</span><span class="n">__name__</span><span class="p">)</span>
 
 
-<div class="viewcode-block" id="VirtualService"><a class="viewcode-back" href="../../python_kemptech_api.html#python_kemptech_api.objects.VirtualService">[docs]</a><span class="k">class</span> <span class="nc">VirtualService</span><span class="p">(</span><span class="n">BaseKempObject</span><span class="p">):</span>
+<div class="viewcode-block" id="VirtualService"><a class="viewcode-back" href="../../python_kemptech_api.objects.html#python_kemptech_api.objects.VirtualService">[docs]</a><span class="k">class</span> <span class="nc">VirtualService</span><span class="p">(</span><span class="n">BaseKempObject</span><span class="p">):</span>
     <span class="n">_API_ADD</span> <span class="o">=</span> <span class="s2">&quot;/addvs&quot;</span>
     <span class="n">_API_MOD</span> <span class="o">=</span> <span class="s2">&quot;/modvs&quot;</span>
     <span class="n">_API_DELETE</span> <span class="o">=</span> <span class="s2">&quot;/delvs&quot;</span>
@@ -360,7 +360,7 @@
     <span class="k">def</span> <span class="nf">servers</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
         <span class="k">return</span> <span class="p">{</span><span class="nb">int</span><span class="p">(</span><span class="n">rs</span><span class="o">.</span><span class="n">rsindex</span><span class="p">):</span> <span class="n">rs</span> <span class="k">for</span> <span class="n">rs</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">get_real_servers</span><span class="p">()}</span>
 
-<div class="viewcode-block" id="VirtualService.to_api_dict"><a class="viewcode-back" href="../../python_kemptech_api.html#python_kemptech_api.objects.VirtualService.to_api_dict">[docs]</a>    <span class="k">def</span> <span class="nf">to_api_dict</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+<div class="viewcode-block" id="VirtualService.to_api_dict"><a class="viewcode-back" href="../../python_kemptech_api.objects.html#python_kemptech_api.objects.VirtualService.to_api_dict">[docs]</a>    <span class="k">def</span> <span class="nf">to_api_dict</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
         <span class="n">api</span> <span class="o">=</span> <span class="nb">super</span><span class="p">(</span><span class="n">VirtualService</span><span class="p">,</span> <span class="bp">self</span><span class="p">)</span><span class="o">.</span><span class="n">to_api_dict</span><span class="p">()</span>
 
         <span class="k">def</span> <span class="nf">delete_non_existing_parameters</span><span class="p">(</span><span class="n">api_params</span><span class="p">,</span> <span class="n">mode</span><span class="p">,</span> <span class="n">params</span><span class="p">):</span>
@@ -385,7 +385,7 @@
 
         <span class="k">return</span> <span class="n">api</span></div>
 
-<div class="viewcode-block" id="VirtualService.export"><a class="viewcode-back" href="../../python_kemptech_api.html#python_kemptech_api.objects.VirtualService.export">[docs]</a>    <span class="k">def</span> <span class="nf">export</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+<div class="viewcode-block" id="VirtualService.export"><a class="viewcode-back" href="../../python_kemptech_api.objects.html#python_kemptech_api.objects.VirtualService.export">[docs]</a>    <span class="k">def</span> <span class="nf">export</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
         <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">_get</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">_API_EXPORT</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">_get_base_parameters</span><span class="p">())</span></div>
 
     <span class="k">def</span> <span class="nf">_get_base_parameters</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
@@ -427,7 +427,7 @@
 <span class="sd">        to the API, the parameter uses the string literal &#39;checkuse1.1&#39; &quot;&quot;&quot;</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">__dict__</span><span class="p">[</span><span class="s1">&#39;checkuse1.1&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">value</span>
 
-<div class="viewcode-block" id="VirtualService.save"><a class="viewcode-back" href="../../python_kemptech_api.html#python_kemptech_api.objects.VirtualService.save">[docs]</a>    <span class="k">def</span> <span class="nf">save</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">update</span><span class="o">=</span><span class="kc">False</span><span class="p">):</span>
+<div class="viewcode-block" id="VirtualService.save"><a class="viewcode-back" href="../../python_kemptech_api.objects.html#python_kemptech_api.objects.VirtualService.save">[docs]</a>    <span class="k">def</span> <span class="nf">save</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">update</span><span class="o">=</span><span class="kc">False</span><span class="p">):</span>
         <span class="c1"># Parse certfile field if SSL acceleration is enabled</span>
         <span class="k">if</span> <span class="nb">hasattr</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="s2">&quot;sslacceleration&quot;</span><span class="p">)</span> <span class="ow">and</span> <span class="bp">self</span><span class="o">.</span><span class="n">sslacceleration</span> <span class="o">==</span> <span class="s2">&quot;Y&quot;</span><span class="p">:</span>
             <span class="k">if</span> <span class="nb">hasattr</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="s2">&quot;certfile&quot;</span><span class="p">):</span>
@@ -479,7 +479,7 @@
         <span class="k">else</span><span class="p">:</span>
             <span class="k">raise</span> <span class="n">KempTechApiException</span><span class="p">(</span><span class="n">get_error_msg</span><span class="p">(</span><span class="n">response</span><span class="p">))</span></div>
 
-<div class="viewcode-block" id="VirtualService.create_sub_virtual_service"><a class="viewcode-back" href="../../python_kemptech_api.html#python_kemptech_api.objects.VirtualService.create_sub_virtual_service">[docs]</a>    <span class="k">def</span> <span class="nf">create_sub_virtual_service</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+<div class="viewcode-block" id="VirtualService.create_sub_virtual_service"><a class="viewcode-back" href="../../python_kemptech_api.objects.html#python_kemptech_api.objects.VirtualService.create_sub_virtual_service">[docs]</a>    <span class="k">def</span> <span class="nf">create_sub_virtual_service</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
         <span class="sd">&quot;&quot;&quot;VirtualService factory with pre-configured LoadMaster connection</span>
 
 <span class="sd">        When creating a virtual service that is a sub virtual service you must</span>
@@ -492,11 +492,11 @@
             <span class="k">raise</span> <span class="n">SubVsCannotCreateSubVs</span><span class="p">()</span>
         <span class="k">return</span> <span class="n">VirtualService</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">access_info</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">index</span><span class="p">,</span> <span class="n">is_sub_vs</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span></div>
 
-<div class="viewcode-block" id="VirtualService.create_real_server"><a class="viewcode-back" href="../../python_kemptech_api.html#python_kemptech_api.objects.VirtualService.create_real_server">[docs]</a>    <span class="k">def</span> <span class="nf">create_real_server</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">ip</span><span class="p">,</span> <span class="n">port</span><span class="o">=</span><span class="mi">80</span><span class="p">):</span>
+<div class="viewcode-block" id="VirtualService.create_real_server"><a class="viewcode-back" href="../../python_kemptech_api.objects.html#python_kemptech_api.objects.VirtualService.create_real_server">[docs]</a>    <span class="k">def</span> <span class="nf">create_real_server</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">ip</span><span class="p">,</span> <span class="n">port</span><span class="o">=</span><span class="mi">80</span><span class="p">):</span>
         <span class="sd">&quot;&quot;&quot;RealServer factory with pre-configured LoadMaster connection.&quot;&quot;&quot;</span>
         <span class="k">return</span> <span class="n">RealServer</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">access_info</span><span class="p">,</span> <span class="n">ip</span><span class="p">,</span> <span class="n">port</span><span class="p">)</span></div>
 
-<div class="viewcode-block" id="VirtualService.create_access_control"><a class="viewcode-back" href="../../python_kemptech_api.html#python_kemptech_api.objects.VirtualService.create_access_control">[docs]</a>    <span class="k">def</span> <span class="nf">create_access_control</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">addvs</span><span class="p">,</span> <span class="n">addr</span><span class="p">):</span>
+<div class="viewcode-block" id="VirtualService.create_access_control"><a class="viewcode-back" href="../../python_kemptech_api.objects.html#python_kemptech_api.objects.VirtualService.create_access_control">[docs]</a>    <span class="k">def</span> <span class="nf">create_access_control</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">addvs</span><span class="p">,</span> <span class="n">addr</span><span class="p">):</span>
         <span class="sd">&quot;&quot;&quot;AccessControl factory with pre-configured LoadMaster connection and</span>
 <span class="sd">        ACL definition.&quot;&quot;&quot;</span>
 
@@ -521,7 +521,7 @@
     <span class="k">def</span> <span class="nf">acl</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
         <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">get_vs_acl</span><span class="p">()</span>
 
-<div class="viewcode-block" id="VirtualService.get_vs_acl"><a class="viewcode-back" href="../../python_kemptech_api.html#python_kemptech_api.objects.VirtualService.get_vs_acl">[docs]</a>    <span class="k">def</span> <span class="nf">get_vs_acl</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+<div class="viewcode-block" id="VirtualService.get_vs_acl"><a class="viewcode-back" href="../../python_kemptech_api.objects.html#python_kemptech_api.objects.VirtualService.get_vs_acl">[docs]</a>    <span class="k">def</span> <span class="nf">get_vs_acl</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
         <span class="n">access_info</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">access_info</span>
         <span class="n">access_info</span><span class="p">[</span><span class="s2">&quot;ip&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">vs</span>
         <span class="n">access_info</span><span class="p">[</span><span class="s2">&quot;port&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">port</span>
@@ -529,7 +529,7 @@
 
         <span class="k">return</span> <span class="n">VirtualServiceACL</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">access_info</span><span class="p">)</span></div>
 
-<div class="viewcode-block" id="VirtualService.get_real_server"><a class="viewcode-back" href="../../python_kemptech_api.html#python_kemptech_api.objects.VirtualService.get_real_server">[docs]</a>    <span class="k">def</span> <span class="nf">get_real_server</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">real_server_address</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">real_server_port</span><span class="o">=</span><span class="kc">None</span><span class="p">):</span>
+<div class="viewcode-block" id="VirtualService.get_real_server"><a class="viewcode-back" href="../../python_kemptech_api.objects.html#python_kemptech_api.objects.VirtualService.get_real_server">[docs]</a>    <span class="k">def</span> <span class="nf">get_real_server</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">real_server_address</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">real_server_port</span><span class="o">=</span><span class="kc">None</span><span class="p">):</span>
         <span class="n">validate_port</span><span class="p">(</span><span class="n">real_server_port</span><span class="p">)</span>
 
         <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">index</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">:</span>
@@ -554,7 +554,7 @@
         <span class="n">real_server</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">build_real_server</span><span class="p">(</span><span class="n">server</span><span class="p">)</span>
         <span class="k">return</span> <span class="n">real_server</span></div>
 
-<div class="viewcode-block" id="VirtualService.get_real_servers"><a class="viewcode-back" href="../../python_kemptech_api.html#python_kemptech_api.objects.VirtualService.get_real_servers">[docs]</a>    <span class="k">def</span> <span class="nf">get_real_servers</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+<div class="viewcode-block" id="VirtualService.get_real_servers"><a class="viewcode-back" href="../../python_kemptech_api.objects.html#python_kemptech_api.objects.VirtualService.get_real_servers">[docs]</a>    <span class="k">def</span> <span class="nf">get_real_servers</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
         <span class="n">response</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_get</span><span class="p">(</span><span class="s2">&quot;/showvs&quot;</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">_get_base_parameters</span><span class="p">())</span>
         <span class="n">data</span> <span class="o">=</span> <span class="n">get_data</span><span class="p">(</span><span class="n">response</span><span class="p">)</span>
         <span class="n">real_servers</span> <span class="o">=</span> <span class="p">[]</span>
@@ -565,7 +565,7 @@
             <span class="n">real_servers</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">real_server</span><span class="p">)</span>
         <span class="k">return</span> <span class="n">real_servers</span></div>
 
-<div class="viewcode-block" id="VirtualService.build_real_server"><a class="viewcode-back" href="../../python_kemptech_api.html#python_kemptech_api.objects.VirtualService.build_real_server">[docs]</a>    <span class="k">def</span> <span class="nf">build_real_server</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">server</span><span class="p">):</span>
+<div class="viewcode-block" id="VirtualService.build_real_server"><a class="viewcode-back" href="../../python_kemptech_api.objects.html#python_kemptech_api.objects.VirtualService.build_real_server">[docs]</a>    <span class="k">def</span> <span class="nf">build_real_server</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">server</span><span class="p">):</span>
         <span class="k">if</span> <span class="s2">&quot;Addr&quot;</span> <span class="ow">not</span> <span class="ow">in</span> <span class="n">server</span><span class="p">:</span>
             <span class="k">raise</span> <span class="n">ValidationError</span><span class="p">(</span><span class="s1">&#39;&quot;Addr&quot; key not present </span><span class="si">{}</span><span class="s1">&#39;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">server</span><span class="p">))</span>
         <span class="k">if</span> <span class="s2">&quot;Port&quot;</span> <span class="ow">not</span> <span class="ow">in</span> <span class="n">server</span><span class="p">:</span>
@@ -573,7 +573,7 @@
         <span class="n">real_server</span> <span class="o">=</span> <span class="n">build_object</span><span class="p">(</span><span class="n">RealServer</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">access_info</span><span class="p">,</span> <span class="n">server</span><span class="p">)</span>
         <span class="k">return</span> <span class="n">real_server</span></div>
 
-<div class="viewcode-block" id="VirtualService.populate_default_attributes"><a class="viewcode-back" href="../../python_kemptech_api.html#python_kemptech_api.objects.VirtualService.populate_default_attributes">[docs]</a>    <span class="k">def</span> <span class="nf">populate_default_attributes</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">service</span><span class="p">):</span>
+<div class="viewcode-block" id="VirtualService.populate_default_attributes"><a class="viewcode-back" href="../../python_kemptech_api.objects.html#python_kemptech_api.objects.VirtualService.populate_default_attributes">[docs]</a>    <span class="k">def</span> <span class="nf">populate_default_attributes</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">service</span><span class="p">):</span>
         <span class="sd">&quot;&quot;&quot;Populate VirtualService instance with standard defaults&quot;&quot;&quot;</span>
         <span class="c1"># pylint: disable=too-many-branches,too-many-statements</span>
         <span class="c1">#super(VirtualService, self).populate_default_attributes(dictionary)</span>
@@ -724,7 +724,7 @@
         <span class="bp">self</span><span class="o">.</span><span class="n">rsminimum</span> <span class="o">=</span> <span class="n">falsey_to_none</span><span class="p">(</span><span class="nb">int</span><span class="p">(</span><span class="n">service</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s1">&#39;RsMinimum&#39;</span><span class="p">,</span> <span class="mi">0</span><span class="p">)))</span></div></div>
 
 
-<div class="viewcode-block" id="RealServer"><a class="viewcode-back" href="../../python_kemptech_api.html#python_kemptech_api.objects.RealServer">[docs]</a><span class="k">class</span> <span class="nc">RealServer</span><span class="p">(</span><span class="n">BaseKempObject</span><span class="p">):</span>
+<div class="viewcode-block" id="RealServer"><a class="viewcode-back" href="../../python_kemptech_api.objects.html#python_kemptech_api.objects.RealServer">[docs]</a><span class="k">class</span> <span class="nc">RealServer</span><span class="p">(</span><span class="n">BaseKempObject</span><span class="p">):</span>
     <span class="n">_API_ADD</span> <span class="o">=</span> <span class="s2">&quot;/addrs&quot;</span>
     <span class="n">_API_MOD</span> <span class="o">=</span> <span class="s2">&quot;/modrs&quot;</span>
     <span class="n">_API_DELETE</span> <span class="o">=</span> <span class="s2">&quot;/delrs&quot;</span>
@@ -772,7 +772,7 @@
         <span class="k">else</span><span class="p">:</span>
             <span class="bp">self</span><span class="o">.</span><span class="n">addr</span> <span class="o">=</span> <span class="n">value</span>
 
-<div class="viewcode-block" id="RealServer.to_api_dict"><a class="viewcode-back" href="../../python_kemptech_api.html#python_kemptech_api.objects.RealServer.to_api_dict">[docs]</a>    <span class="k">def</span> <span class="nf">to_api_dict</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+<div class="viewcode-block" id="RealServer.to_api_dict"><a class="viewcode-back" href="../../python_kemptech_api.objects.html#python_kemptech_api.objects.RealServer.to_api_dict">[docs]</a>    <span class="k">def</span> <span class="nf">to_api_dict</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
         <span class="c1"># Populate RS field into dictionary manually</span>
         <span class="n">as_dict</span> <span class="o">=</span> <span class="nb">super</span><span class="p">(</span><span class="n">RealServer</span><span class="p">,</span> <span class="bp">self</span><span class="p">)</span><span class="o">.</span><span class="n">to_api_dict</span><span class="p">()</span>
         <span class="n">as_dict</span><span class="p">[</span><span class="s1">&#39;rs&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">rs</span>
@@ -809,17 +809,17 @@
     <span class="k">def</span> <span class="nf">__str__</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
         <span class="k">return</span> <span class="s1">&#39;Real Server </span><span class="si">{}</span><span class="s1"> on </span><span class="si">{}</span><span class="s1">&#39;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">rs</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">vs</span><span class="p">)</span>
 
-<div class="viewcode-block" id="RealServer.save"><a class="viewcode-back" href="../../python_kemptech_api.html#python_kemptech_api.objects.RealServer.save">[docs]</a>    <span class="k">def</span> <span class="nf">save</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">update</span><span class="o">=</span><span class="kc">False</span><span class="p">):</span>
+<div class="viewcode-block" id="RealServer.save"><a class="viewcode-back" href="../../python_kemptech_api.objects.html#python_kemptech_api.objects.RealServer.save">[docs]</a>    <span class="k">def</span> <span class="nf">save</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">update</span><span class="o">=</span><span class="kc">False</span><span class="p">):</span>
         <span class="nb">super</span><span class="p">(</span><span class="n">RealServer</span><span class="p">,</span> <span class="bp">self</span><span class="p">)</span><span class="o">.</span><span class="n">save</span><span class="p">(</span><span class="n">update</span><span class="p">)</span>
         <span class="c1"># If a new port is set, update the assigned port value</span>
         <span class="c1"># in order to correctly look up the updated RS</span>
         <span class="c1"># If .save fails, this will never be performed</span>
-        <span class="k">if</span> <span class="nb">getattr</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="s1">&#39;newport&#39;</span><span class="p">,</span> <span class="kc">None</span><span class="p">):</span>
+        <span class="k">if</span> <span class="n">update</span> <span class="ow">and</span> <span class="nb">getattr</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="s1">&#39;newport&#39;</span><span class="p">,</span> <span class="kc">None</span><span class="p">):</span>
             <span class="bp">self</span><span class="o">.</span><span class="n">rsport</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">newport</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">refresh</span><span class="p">()</span></div></div>
 
 
-<div class="viewcode-block" id="BaseACLObject"><a class="viewcode-back" href="../../python_kemptech_api.html#python_kemptech_api.objects.BaseACLObject">[docs]</a><span class="k">class</span> <span class="nc">BaseACLObject</span><span class="p">(</span><span class="n">BaseKempObject</span><span class="p">):</span>
+<div class="viewcode-block" id="BaseACLObject"><a class="viewcode-back" href="../../python_kemptech_api.objects.html#python_kemptech_api.objects.BaseACLObject">[docs]</a><span class="k">class</span> <span class="nc">BaseACLObject</span><span class="p">(</span><span class="n">BaseKempObject</span><span class="p">):</span>
     <span class="n">_API</span> <span class="o">=</span> <span class="s2">&quot;/aclcontrol&quot;</span>
     <span class="n">_API_ADD</span> <span class="o">=</span> <span class="s2">&quot;&quot;</span>
     <span class="n">_API_DEL</span> <span class="o">=</span> <span class="s2">&quot;&quot;</span>
@@ -843,7 +843,7 @@
 
         <span class="bp">self</span><span class="o">.</span><span class="n">refresh</span><span class="p">()</span>
 
-<div class="viewcode-block" id="BaseACLObject.save"><a class="viewcode-back" href="../../python_kemptech_api.html#python_kemptech_api.objects.BaseACLObject.save">[docs]</a>    <span class="k">def</span> <span class="nf">save</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">update</span><span class="o">=</span><span class="kc">False</span><span class="p">):</span>
+<div class="viewcode-block" id="BaseACLObject.save"><a class="viewcode-back" href="../../python_kemptech_api.objects.html#python_kemptech_api.objects.BaseACLObject.save">[docs]</a>    <span class="k">def</span> <span class="nf">save</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">update</span><span class="o">=</span><span class="kc">False</span><span class="p">):</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">_sync</span><span class="p">()</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">refresh</span><span class="p">()</span></div>
 
@@ -913,7 +913,7 @@
         <span class="k">if</span> <span class="ow">not</span> <span class="n">is_successful</span><span class="p">(</span><span class="n">response</span><span class="p">):</span>
             <span class="k">raise</span> <span class="n">KempTechApiException</span><span class="p">(</span><span class="n">get_error_msg</span><span class="p">(</span><span class="n">response</span><span class="p">))</span>
 
-<div class="viewcode-block" id="BaseACLObject.refresh"><a class="viewcode-back" href="../../python_kemptech_api.html#python_kemptech_api.objects.BaseACLObject.refresh">[docs]</a>    <span class="k">def</span> <span class="nf">refresh</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+<div class="viewcode-block" id="BaseACLObject.refresh"><a class="viewcode-back" href="../../python_kemptech_api.objects.html#python_kemptech_api.objects.BaseACLObject.refresh">[docs]</a>    <span class="k">def</span> <span class="nf">refresh</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
         <span class="c1"># First handle whitelist</span>
         <span class="n">parameters</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_get_base_parameters</span><span class="p">()</span>
 
@@ -975,7 +975,7 @@
             <span class="p">}</span></div></div>
 
 
-<div class="viewcode-block" id="GlobalACL"><a class="viewcode-back" href="../../python_kemptech_api.html#python_kemptech_api.objects.GlobalACL">[docs]</a><span class="k">class</span> <span class="nc">GlobalACL</span><span class="p">(</span><span class="n">BaseACLObject</span><span class="p">):</span>
+<div class="viewcode-block" id="GlobalACL"><a class="viewcode-back" href="../../python_kemptech_api.objects.html#python_kemptech_api.objects.GlobalACL">[docs]</a><span class="k">class</span> <span class="nc">GlobalACL</span><span class="p">(</span><span class="n">BaseACLObject</span><span class="p">):</span>
     <span class="n">_API_ADD</span> <span class="o">=</span> <span class="s2">&quot;add&quot;</span>
     <span class="n">_API_DEL</span> <span class="o">=</span> <span class="s2">&quot;del&quot;</span>
     <span class="n">_API_LIST</span> <span class="o">=</span> <span class="s2">&quot;list&quot;</span>
@@ -984,7 +984,7 @@
         <span class="k">return</span> <span class="s1">&#39;Global ACL on </span><span class="si">{}</span><span class="s1">&#39;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">appliance</span><span class="p">)</span></div>
 
 
-<div class="viewcode-block" id="VirtualServiceACL"><a class="viewcode-back" href="../../python_kemptech_api.html#python_kemptech_api.objects.VirtualServiceACL">[docs]</a><span class="k">class</span> <span class="nc">VirtualServiceACL</span><span class="p">(</span><span class="n">BaseACLObject</span><span class="p">):</span>
+<div class="viewcode-block" id="VirtualServiceACL"><a class="viewcode-back" href="../../python_kemptech_api.objects.html#python_kemptech_api.objects.VirtualServiceACL">[docs]</a><span class="k">class</span> <span class="nc">VirtualServiceACL</span><span class="p">(</span><span class="n">BaseACLObject</span><span class="p">):</span>
     <span class="n">_API_ADD</span> <span class="o">=</span> <span class="s2">&quot;addvs&quot;</span>
     <span class="n">_API_DEL</span> <span class="o">=</span> <span class="s2">&quot;delvs&quot;</span>
     <span class="n">_API_LIST</span> <span class="o">=</span> <span class="s2">&quot;listvs&quot;</span>
@@ -1020,7 +1020,7 @@
             <span class="bp">self</span><span class="o">.</span><span class="n">vsport</span><span class="p">)</span></div>
 
 
-<div class="viewcode-block" id="Template"><a class="viewcode-back" href="../../python_kemptech_api.html#python_kemptech_api.objects.Template">[docs]</a><span class="k">class</span> <span class="nc">Template</span><span class="p">(</span><span class="n">BaseKempObject</span><span class="p">):</span>
+<div class="viewcode-block" id="Template"><a class="viewcode-back" href="../../python_kemptech_api.objects.html#python_kemptech_api.objects.Template">[docs]</a><span class="k">class</span> <span class="nc">Template</span><span class="p">(</span><span class="n">BaseKempObject</span><span class="p">):</span>
     <span class="n">_API_ADD</span> <span class="o">=</span> <span class="s2">&quot;&quot;</span>
     <span class="n">_API_MOD</span> <span class="o">=</span> <span class="s2">&quot;&quot;</span>
     <span class="n">_API_DELETE</span> <span class="o">=</span> <span class="s2">&quot;/deltemplate&quot;</span>
@@ -1047,11 +1047,11 @@
 
         <span class="nb">super</span><span class="p">(</span><span class="n">Template</span><span class="p">,</span> <span class="bp">self</span><span class="p">)</span><span class="o">.</span><span class="n">__init__</span><span class="p">(</span><span class="n">loadmaster_info</span><span class="p">)</span>
 
-<div class="viewcode-block" id="Template.save"><a class="viewcode-back" href="../../python_kemptech_api.html#python_kemptech_api.objects.Template.save">[docs]</a>    <span class="k">def</span> <span class="nf">save</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">update</span><span class="o">=</span><span class="kc">False</span><span class="p">):</span>
+<div class="viewcode-block" id="Template.save"><a class="viewcode-back" href="../../python_kemptech_api.objects.html#python_kemptech_api.objects.Template.save">[docs]</a>    <span class="k">def</span> <span class="nf">save</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">update</span><span class="o">=</span><span class="kc">False</span><span class="p">):</span>
         <span class="k">raise</span> <span class="n">KempTechApiException</span><span class="p">(</span><span class="s2">&quot;Templates are read-only objects&quot;</span><span class="p">)</span></div></div>
 
 
-<div class="viewcode-block" id="Rule"><a class="viewcode-back" href="../../python_kemptech_api.html#python_kemptech_api.objects.Rule">[docs]</a><span class="k">class</span> <span class="nc">Rule</span><span class="p">(</span><span class="n">BaseKempObject</span><span class="p">):</span>
+<div class="viewcode-block" id="Rule"><a class="viewcode-back" href="../../python_kemptech_api.objects.html#python_kemptech_api.objects.Rule">[docs]</a><span class="k">class</span> <span class="nc">Rule</span><span class="p">(</span><span class="n">BaseKempObject</span><span class="p">):</span>
     <span class="n">_API_ADD</span> <span class="o">=</span> <span class="s2">&quot;/addrule&quot;</span>
     <span class="n">_API_MOD</span> <span class="o">=</span> <span class="s2">&quot;/modrule&quot;</span>
     <span class="n">_API_DELETE</span> <span class="o">=</span> <span class="s2">&quot;/delrule&quot;</span>
@@ -1140,7 +1140,7 @@
 
         <span class="k">return</span> <span class="n">base_parameters</span>
 
-<div class="viewcode-block" id="Rule.populate_default_attributes"><a class="viewcode-back" href="../../python_kemptech_api.html#python_kemptech_api.objects.Rule.populate_default_attributes">[docs]</a>    <span class="k">def</span> <span class="nf">populate_default_attributes</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">parameters</span><span class="p">):</span>
+<div class="viewcode-block" id="Rule.populate_default_attributes"><a class="viewcode-back" href="../../python_kemptech_api.objects.html#python_kemptech_api.objects.Rule.populate_default_attributes">[docs]</a>    <span class="k">def</span> <span class="nf">populate_default_attributes</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">parameters</span><span class="p">):</span>
         <span class="sd">&quot;&quot;&quot;Populate object instance with standard defaults&quot;&quot;&quot;</span>
         <span class="c1"># Get data from inside tag</span>
         <span class="c1"># Tag is unknown since different rule types have</span>
@@ -1154,7 +1154,7 @@
         <span class="bp">self</span><span class="o">.</span><span class="n">type_string</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">type</span></div></div>
 
 
-<div class="viewcode-block" id="Sso"><a class="viewcode-back" href="../../python_kemptech_api.html#python_kemptech_api.objects.Sso">[docs]</a><span class="k">class</span> <span class="nc">Sso</span><span class="p">(</span><span class="n">BaseKempObject</span><span class="p">):</span>
+<div class="viewcode-block" id="Sso"><a class="viewcode-back" href="../../python_kemptech_api.objects.html#python_kemptech_api.objects.Sso">[docs]</a><span class="k">class</span> <span class="nc">Sso</span><span class="p">(</span><span class="n">BaseKempObject</span><span class="p">):</span>
     <span class="k">def</span> <span class="nf">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">loadmaster_info</span><span class="p">,</span> <span class="n">name</span><span class="p">):</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">name</span> <span class="o">=</span> <span class="n">name</span>
 
@@ -1174,7 +1174,7 @@
             <span class="s2">&quot;domain&quot;</span><span class="p">:</span> <span class="bp">self</span><span class="o">.</span><span class="n">name</span>
         <span class="p">}</span>
 
-<div class="viewcode-block" id="Sso.save"><a class="viewcode-back" href="../../python_kemptech_api.html#python_kemptech_api.objects.Sso.save">[docs]</a>    <span class="k">def</span> <span class="nf">save</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">update</span><span class="o">=</span><span class="kc">False</span><span class="p">):</span>
+<div class="viewcode-block" id="Sso.save"><a class="viewcode-back" href="../../python_kemptech_api.objects.html#python_kemptech_api.objects.Sso.save">[docs]</a>    <span class="k">def</span> <span class="nf">save</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">update</span><span class="o">=</span><span class="kc">False</span><span class="p">):</span>
         <span class="k">if</span> <span class="ow">not</span> <span class="n">update</span><span class="p">:</span>
             <span class="n">response</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_get</span><span class="p">(</span><span class="s2">&quot;/adddomain&quot;</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">_get_base_parameters</span><span class="p">())</span>
 
@@ -1189,11 +1189,11 @@
         <span class="k">else</span><span class="p">:</span>
             <span class="k">raise</span> <span class="n">KempTechApiException</span><span class="p">(</span><span class="n">get_error_msg</span><span class="p">(</span><span class="n">response</span><span class="p">))</span></div>
 
-<div class="viewcode-block" id="Sso.delete"><a class="viewcode-back" href="../../python_kemptech_api.html#python_kemptech_api.objects.Sso.delete">[docs]</a>    <span class="k">def</span> <span class="nf">delete</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+<div class="viewcode-block" id="Sso.delete"><a class="viewcode-back" href="../../python_kemptech_api.objects.html#python_kemptech_api.objects.Sso.delete">[docs]</a>    <span class="k">def</span> <span class="nf">delete</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
         <span class="n">response</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_get</span><span class="p">(</span><span class="s2">&quot;/deldomain&quot;</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">_get_base_parameters</span><span class="p">())</span>
         <span class="k">return</span> <span class="n">send_response</span><span class="p">(</span><span class="n">response</span><span class="p">)</span></div>
 
-<div class="viewcode-block" id="Sso.populate_default_attributes"><a class="viewcode-back" href="../../python_kemptech_api.html#python_kemptech_api.objects.Sso.populate_default_attributes">[docs]</a>    <span class="k">def</span> <span class="nf">populate_default_attributes</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">sso</span><span class="p">):</span>
+<div class="viewcode-block" id="Sso.populate_default_attributes"><a class="viewcode-back" href="../../python_kemptech_api.objects.html#python_kemptech_api.objects.Sso.populate_default_attributes">[docs]</a>    <span class="k">def</span> <span class="nf">populate_default_attributes</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">sso</span><span class="p">):</span>
         <span class="sd">&quot;&quot;&quot;Populate SSO instance with standard defaults&quot;&quot;&quot;</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">id</span> <span class="o">=</span> <span class="n">sso</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s1">&#39;Id&#39;</span><span class="p">,</span> <span class="kc">None</span><span class="p">)</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">name</span> <span class="o">=</span> <span class="n">sso</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s1">&#39;Name&#39;</span><span class="p">,</span> <span class="kc">None</span><span class="p">)</span>
@@ -1219,7 +1219,7 @@
         <span class="bp">self</span><span class="o">.</span><span class="n">cert_check_asi</span> <span class="o">=</span> <span class="n">sso</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s1">&#39;cert_check_asi&#39;</span><span class="p">,</span> <span class="kc">None</span><span class="p">)</span></div></div>
 
 
-<div class="viewcode-block" id="Fqdn"><a class="viewcode-back" href="../../python_kemptech_api.html#python_kemptech_api.objects.Fqdn">[docs]</a><span class="k">class</span> <span class="nc">Fqdn</span><span class="p">(</span><span class="n">BaseKempObject</span><span class="p">):</span>
+<div class="viewcode-block" id="Fqdn"><a class="viewcode-back" href="../../python_kemptech_api.objects.html#python_kemptech_api.objects.Fqdn">[docs]</a><span class="k">class</span> <span class="nc">Fqdn</span><span class="p">(</span><span class="n">BaseKempObject</span><span class="p">):</span>
     <span class="n">_API_ADD</span> <span class="o">=</span> <span class="s2">&quot;/addfqdn&quot;</span>
     <span class="n">_API_MOD</span> <span class="o">=</span> <span class="s2">&quot;/modfqdn&quot;</span>
     <span class="n">_API_DELETE</span> <span class="o">=</span> <span class="s2">&quot;/delfqdn&quot;</span>
@@ -1256,7 +1256,7 @@
         <span class="k">return</span> <span class="s1">&#39;FQDN </span><span class="si">{}</span><span class="s1"> on LoadMaster </span><span class="si">{}</span><span class="s1">&#39;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span>
             <span class="bp">self</span><span class="o">.</span><span class="n">fqdn</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">ip_address</span><span class="p">)</span>
 
-<div class="viewcode-block" id="Fqdn.save"><a class="viewcode-back" href="../../python_kemptech_api.html#python_kemptech_api.objects.Fqdn.save">[docs]</a>    <span class="k">def</span> <span class="nf">save</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">update</span><span class="o">=</span><span class="kc">False</span><span class="p">):</span>
+<div class="viewcode-block" id="Fqdn.save"><a class="viewcode-back" href="../../python_kemptech_api.objects.html#python_kemptech_api.objects.Fqdn.save">[docs]</a>    <span class="k">def</span> <span class="nf">save</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">update</span><span class="o">=</span><span class="kc">False</span><span class="p">):</span>
         <span class="k">try</span><span class="p">:</span>
             <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">selectioncriteria</span> <span class="o">!=</span> <span class="s2">&quot;lb&quot;</span><span class="p">:</span>
                 <span class="c1"># Failover is not available when not using Location Based</span>
@@ -1267,7 +1267,7 @@
         <span class="nb">super</span><span class="p">(</span><span class="n">Fqdn</span><span class="p">,</span> <span class="bp">self</span><span class="p">)</span><span class="o">.</span><span class="n">save</span><span class="p">(</span><span class="n">update</span><span class="p">)</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">refresh</span><span class="p">()</span></div>
 
-<div class="viewcode-block" id="Fqdn.populate_default_attributes"><a class="viewcode-back" href="../../python_kemptech_api.html#python_kemptech_api.objects.Fqdn.populate_default_attributes">[docs]</a>    <span class="k">def</span> <span class="nf">populate_default_attributes</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">dictionary</span><span class="p">):</span>
+<div class="viewcode-block" id="Fqdn.populate_default_attributes"><a class="viewcode-back" href="../../python_kemptech_api.objects.html#python_kemptech_api.objects.Fqdn.populate_default_attributes">[docs]</a>    <span class="k">def</span> <span class="nf">populate_default_attributes</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">dictionary</span><span class="p">):</span>
         <span class="nb">super</span><span class="p">(</span><span class="n">Fqdn</span><span class="p">,</span> <span class="bp">self</span><span class="p">)</span><span class="o">.</span><span class="n">populate_default_attributes</span><span class="p">(</span><span class="n">dictionary</span><span class="p">)</span>
 
         <span class="c1"># Failtime is set by minute, but recorded by second</span>
@@ -1285,11 +1285,11 @@
     <span class="k">def</span> <span class="nf">sites</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
         <span class="k">return</span> <span class="p">{</span><span class="n">site</span><span class="o">.</span><span class="n">ipaddress</span><span class="p">:</span> <span class="n">site</span> <span class="k">for</span> <span class="n">site</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">get_sites</span><span class="p">()}</span>
 
-<div class="viewcode-block" id="Fqdn.create_site"><a class="viewcode-back" href="../../python_kemptech_api.html#python_kemptech_api.objects.Fqdn.create_site">[docs]</a>    <span class="k">def</span> <span class="nf">create_site</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">ip</span><span class="p">):</span>
+<div class="viewcode-block" id="Fqdn.create_site"><a class="viewcode-back" href="../../python_kemptech_api.objects.html#python_kemptech_api.objects.Fqdn.create_site">[docs]</a>    <span class="k">def</span> <span class="nf">create_site</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">ip</span><span class="p">):</span>
         <span class="sd">&quot;&quot;&quot;Site factory with pre-configured LoadMaster connection.&quot;&quot;&quot;</span>
         <span class="k">return</span> <span class="n">Site</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">access_info</span><span class="p">,</span> <span class="n">ip</span><span class="p">)</span></div>
 
-<div class="viewcode-block" id="Fqdn.get_site"><a class="viewcode-back" href="../../python_kemptech_api.html#python_kemptech_api.objects.Fqdn.get_site">[docs]</a>    <span class="k">def</span> <span class="nf">get_site</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">ip</span><span class="p">):</span>
+<div class="viewcode-block" id="Fqdn.get_site"><a class="viewcode-back" href="../../python_kemptech_api.objects.html#python_kemptech_api.objects.Fqdn.get_site">[docs]</a>    <span class="k">def</span> <span class="nf">get_site</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">ip</span><span class="p">):</span>
         <span class="n">validate_ip</span><span class="p">(</span><span class="n">ip</span><span class="p">)</span>
 
         <span class="n">service_id</span> <span class="o">=</span> <span class="p">{</span>
@@ -1313,7 +1313,7 @@
 
         <span class="k">return</span> <span class="n">build_object</span><span class="p">(</span><span class="n">Site</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">access_info</span><span class="p">,</span> <span class="nb">map</span><span class="p">[</span><span class="mi">0</span><span class="p">])</span></div>
 
-<div class="viewcode-block" id="Fqdn.get_sites"><a class="viewcode-back" href="../../python_kemptech_api.html#python_kemptech_api.objects.Fqdn.get_sites">[docs]</a>    <span class="k">def</span> <span class="nf">get_sites</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+<div class="viewcode-block" id="Fqdn.get_sites"><a class="viewcode-back" href="../../python_kemptech_api.objects.html#python_kemptech_api.objects.Fqdn.get_sites">[docs]</a>    <span class="k">def</span> <span class="nf">get_sites</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
         <span class="n">fqdn</span> <span class="o">=</span> <span class="p">{</span>
             <span class="s2">&quot;fqdn&quot;</span><span class="p">:</span> <span class="bp">self</span><span class="o">.</span><span class="n">fqdn</span>
         <span class="p">}</span>
@@ -1339,7 +1339,7 @@
             <span class="n">obj_list</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">obj</span><span class="p">)</span>
         <span class="k">return</span> <span class="n">obj_list</span></div>
 
-<div class="viewcode-block" id="Fqdn.build_site"><a class="viewcode-back" href="../../python_kemptech_api.html#python_kemptech_api.objects.Fqdn.build_site">[docs]</a>    <span class="k">def</span> <span class="nf">build_site</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">site</span><span class="p">):</span>
+<div class="viewcode-block" id="Fqdn.build_site"><a class="viewcode-back" href="../../python_kemptech_api.objects.html#python_kemptech_api.objects.Fqdn.build_site">[docs]</a>    <span class="k">def</span> <span class="nf">build_site</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">site</span><span class="p">):</span>
         <span class="sd">&quot;&quot;&quot;Create a object instance with standard defaults&quot;&quot;&quot;</span>
         <span class="n">build_parameters</span> <span class="o">=</span> <span class="p">{}</span>
 
@@ -1351,7 +1351,7 @@
         <span class="k">return</span> <span class="n">obj</span></div></div>
 
 
-<div class="viewcode-block" id="Site"><a class="viewcode-back" href="../../python_kemptech_api.html#python_kemptech_api.objects.Site">[docs]</a><span class="k">class</span> <span class="nc">Site</span><span class="p">(</span><span class="n">BaseKempObject</span><span class="p">):</span>
+<div class="viewcode-block" id="Site"><a class="viewcode-back" href="../../python_kemptech_api.objects.html#python_kemptech_api.objects.Site">[docs]</a><span class="k">class</span> <span class="nc">Site</span><span class="p">(</span><span class="n">BaseKempObject</span><span class="p">):</span>
     <span class="n">_API_ADD</span> <span class="o">=</span> <span class="s2">&quot;/addmap&quot;</span>
     <span class="n">_API_MOD</span> <span class="o">=</span> <span class="s2">&quot;/modmap&quot;</span>
     <span class="n">_API_DELETE</span> <span class="o">=</span> <span class="s2">&quot;/delmap&quot;</span>
@@ -1445,7 +1445,7 @@
             <span class="s2">&quot;ip&quot;</span><span class="p">:</span> <span class="bp">self</span><span class="o">.</span><span class="n">ip</span>
         <span class="p">}</span>
 
-<div class="viewcode-block" id="Site.populate_default_attributes"><a class="viewcode-back" href="../../python_kemptech_api.html#python_kemptech_api.objects.Site.populate_default_attributes">[docs]</a>    <span class="k">def</span> <span class="nf">populate_default_attributes</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">dictionary</span><span class="p">):</span>
+<div class="viewcode-block" id="Site.populate_default_attributes"><a class="viewcode-back" href="../../python_kemptech_api.objects.html#python_kemptech_api.objects.Site.populate_default_attributes">[docs]</a>    <span class="k">def</span> <span class="nf">populate_default_attributes</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">dictionary</span><span class="p">):</span>
         <span class="nb">super</span><span class="p">(</span><span class="n">Site</span><span class="p">,</span> <span class="bp">self</span><span class="p">)</span><span class="o">.</span><span class="n">populate_default_attributes</span><span class="p">(</span><span class="n">dictionary</span><span class="p">)</span>
 
         <span class="c1"># Fix annoying API inconsistencies</span>
@@ -1477,7 +1477,7 @@
             <span class="k">if</span> <span class="ow">not</span> <span class="mi">1</span> <span class="o">&lt;</span> <span class="bp">self</span><span class="o">.</span><span class="n">checkerport</span> <span class="o">&lt;</span> <span class="mi">65530</span><span class="p">:</span>
                 <span class="bp">self</span><span class="o">.</span><span class="n">checkerport</span> <span class="o">=</span> <span class="kc">None</span></div>
 
-<div class="viewcode-block" id="Site.save"><a class="viewcode-back" href="../../python_kemptech_api.html#python_kemptech_api.objects.Site.save">[docs]</a>    <span class="k">def</span> <span class="nf">save</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">update</span><span class="o">=</span><span class="kc">False</span><span class="p">):</span>
+<div class="viewcode-block" id="Site.save"><a class="viewcode-back" href="../../python_kemptech_api.objects.html#python_kemptech_api.objects.Site.save">[docs]</a>    <span class="k">def</span> <span class="nf">save</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">update</span><span class="o">=</span><span class="kc">False</span><span class="p">):</span>
         <span class="k">if</span> <span class="ow">not</span> <span class="n">update</span><span class="p">:</span>
             <span class="n">response</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_get</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">_API_ADD</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">_get_base_parameters</span><span class="p">())</span>
         <span class="k">else</span><span class="p">:</span>
@@ -1516,7 +1516,7 @@
         <span class="k">else</span><span class="p">:</span>
             <span class="k">raise</span> <span class="n">KempTechApiException</span><span class="p">(</span><span class="n">get_error_msg</span><span class="p">(</span><span class="n">response</span><span class="p">))</span></div>
 
-<div class="viewcode-block" id="Site.refresh"><a class="viewcode-back" href="../../python_kemptech_api.html#python_kemptech_api.objects.Site.refresh">[docs]</a>    <span class="k">def</span> <span class="nf">refresh</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+<div class="viewcode-block" id="Site.refresh"><a class="viewcode-back" href="../../python_kemptech_api.objects.html#python_kemptech_api.objects.Site.refresh">[docs]</a>    <span class="k">def</span> <span class="nf">refresh</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
         <span class="n">response</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_get</span><span class="p">(</span>
             <span class="bp">self</span><span class="o">.</span><span class="n">_API_GET</span><span class="p">,</span>
             <span class="bp">self</span><span class="o">.</span><span class="n">_get_base_parameters</span><span class="p">())</span>
@@ -1589,7 +1589,7 @@
         <span class="k">else</span><span class="p">:</span>
             <span class="k">raise</span> <span class="n">KempTechApiException</span><span class="p">(</span><span class="n">get_error_msg</span><span class="p">(</span><span class="n">response</span><span class="p">))</span>
 
-<div class="viewcode-block" id="Site.set_locations"><a class="viewcode-back" href="../../python_kemptech_api.html#python_kemptech_api.objects.Site.set_locations">[docs]</a>    <span class="k">def</span> <span class="nf">set_locations</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">locations</span><span class="p">):</span>
+<div class="viewcode-block" id="Site.set_locations"><a class="viewcode-back" href="../../python_kemptech_api.objects.html#python_kemptech_api.objects.Site.set_locations">[docs]</a>    <span class="k">def</span> <span class="nf">set_locations</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">locations</span><span class="p">):</span>
 
         <span class="c1"># Remove all existing locations</span>
         <span class="k">for</span> <span class="n">location</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">continent</span> <span class="ow">or</span> <span class="p">[]:</span>
@@ -1613,19 +1613,19 @@
 
         <span class="bp">self</span><span class="o">.</span><span class="n">refresh</span><span class="p">()</span></div>
 
-<div class="viewcode-block" id="Site.add_location"><a class="viewcode-back" href="../../python_kemptech_api.html#python_kemptech_api.objects.Site.add_location">[docs]</a>    <span class="k">def</span> <span class="nf">add_location</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">location</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">is_continent</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span> <span class="n">is_custom</span><span class="o">=</span><span class="kc">False</span><span class="p">):</span>
+<div class="viewcode-block" id="Site.add_location"><a class="viewcode-back" href="../../python_kemptech_api.objects.html#python_kemptech_api.objects.Site.add_location">[docs]</a>    <span class="k">def</span> <span class="nf">add_location</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">location</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">is_continent</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span> <span class="n">is_custom</span><span class="o">=</span><span class="kc">False</span><span class="p">):</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">__mod_location</span><span class="p">(</span><span class="n">location</span><span class="p">,</span>
                             <span class="n">is_continent</span><span class="p">,</span>
                             <span class="n">is_custom</span><span class="p">,</span>
                             <span class="n">remove</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span></div>
 
-<div class="viewcode-block" id="Site.remove_location"><a class="viewcode-back" href="../../python_kemptech_api.html#python_kemptech_api.objects.Site.remove_location">[docs]</a>    <span class="k">def</span> <span class="nf">remove_location</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">location</span><span class="p">,</span> <span class="n">is_continent</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span> <span class="n">is_custom</span><span class="o">=</span><span class="kc">False</span><span class="p">):</span>
+<div class="viewcode-block" id="Site.remove_location"><a class="viewcode-back" href="../../python_kemptech_api.objects.html#python_kemptech_api.objects.Site.remove_location">[docs]</a>    <span class="k">def</span> <span class="nf">remove_location</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">location</span><span class="p">,</span> <span class="n">is_continent</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span> <span class="n">is_custom</span><span class="o">=</span><span class="kc">False</span><span class="p">):</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">__mod_location</span><span class="p">(</span><span class="n">location</span><span class="p">,</span>
                             <span class="n">is_continent</span><span class="p">,</span>
                             <span class="n">is_custom</span><span class="p">,</span>
                             <span class="n">remove</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span></div>
 
-<div class="viewcode-block" id="Site.set_coordinates"><a class="viewcode-back" href="../../python_kemptech_api.html#python_kemptech_api.objects.Site.set_coordinates">[docs]</a>    <span class="k">def</span> <span class="nf">set_coordinates</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">latitude</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">longitude</span><span class="o">=</span><span class="kc">None</span><span class="p">):</span>
+<div class="viewcode-block" id="Site.set_coordinates"><a class="viewcode-back" href="../../python_kemptech_api.objects.html#python_kemptech_api.objects.Site.set_coordinates">[docs]</a>    <span class="k">def</span> <span class="nf">set_coordinates</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">latitude</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">longitude</span><span class="o">=</span><span class="kc">None</span><span class="p">):</span>
         <span class="n">latitude</span> <span class="o">=</span> <span class="n">latitude</span> <span class="ow">or</span> <span class="bp">self</span><span class="o">.</span><span class="n">locationlatitude</span>
         <span class="n">longitude</span> <span class="o">=</span> <span class="n">longitude</span> <span class="ow">or</span> <span class="bp">self</span><span class="o">.</span><span class="n">locationlongitude</span>
 
@@ -1645,7 +1645,7 @@
             <span class="k">raise</span> <span class="n">KempTechApiException</span><span class="p">(</span><span class="n">get_error_msg</span><span class="p">(</span><span class="n">response</span><span class="p">))</span></div></div>
 
 
-<div class="viewcode-block" id="Cluster"><a class="viewcode-back" href="../../python_kemptech_api.html#python_kemptech_api.objects.Cluster">[docs]</a><span class="k">class</span> <span class="nc">Cluster</span><span class="p">(</span><span class="n">BaseKempObject</span><span class="p">):</span>
+<div class="viewcode-block" id="Cluster"><a class="viewcode-back" href="../../python_kemptech_api.objects.html#python_kemptech_api.objects.Cluster">[docs]</a><span class="k">class</span> <span class="nc">Cluster</span><span class="p">(</span><span class="n">BaseKempObject</span><span class="p">):</span>
     <span class="n">_API_ADD</span> <span class="o">=</span> <span class="s2">&quot;/addcluster&quot;</span>
     <span class="n">_API_MOD</span> <span class="o">=</span> <span class="s2">&quot;/modcluster&quot;</span>
     <span class="n">_API_DELETE</span> <span class="o">=</span> <span class="s2">&quot;/delcluster&quot;</span>
@@ -1697,11 +1697,11 @@
             <span class="k">return</span> <span class="s1">&#39;Cluster #</span><span class="si">{}</span><span class="s1"> </span><span class="si">{}</span><span class="s1"> at </span><span class="si">{}</span><span class="s1"> on LoadMaster </span><span class="si">{}</span><span class="s1">&#39;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span>
                 <span class="bp">self</span><span class="o">.</span><span class="n">id</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">name</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">ip</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">ip_address</span><span class="p">)</span>
 
-<div class="viewcode-block" id="Cluster.save"><a class="viewcode-back" href="../../python_kemptech_api.html#python_kemptech_api.objects.Cluster.save">[docs]</a>    <span class="k">def</span> <span class="nf">save</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">update</span><span class="o">=</span><span class="kc">False</span><span class="p">):</span>
+<div class="viewcode-block" id="Cluster.save"><a class="viewcode-back" href="../../python_kemptech_api.objects.html#python_kemptech_api.objects.Cluster.save">[docs]</a>    <span class="k">def</span> <span class="nf">save</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">update</span><span class="o">=</span><span class="kc">False</span><span class="p">):</span>
         <span class="nb">super</span><span class="p">(</span><span class="n">Cluster</span><span class="p">,</span> <span class="bp">self</span><span class="p">)</span><span class="o">.</span><span class="n">save</span><span class="p">(</span><span class="n">update</span><span class="p">)</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">refresh</span><span class="p">()</span></div>
 
-<div class="viewcode-block" id="Cluster.populate_default_attributes"><a class="viewcode-back" href="../../python_kemptech_api.html#python_kemptech_api.objects.Cluster.populate_default_attributes">[docs]</a>    <span class="k">def</span> <span class="nf">populate_default_attributes</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">dictionary</span><span class="p">):</span>
+<div class="viewcode-block" id="Cluster.populate_default_attributes"><a class="viewcode-back" href="../../python_kemptech_api.objects.html#python_kemptech_api.objects.Cluster.populate_default_attributes">[docs]</a>    <span class="k">def</span> <span class="nf">populate_default_attributes</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">dictionary</span><span class="p">):</span>
         <span class="nb">super</span><span class="p">(</span><span class="n">Cluster</span><span class="p">,</span> <span class="bp">self</span><span class="p">)</span><span class="o">.</span><span class="n">populate_default_attributes</span><span class="p">(</span><span class="n">dictionary</span><span class="p">)</span>
 
         <span class="c1"># Clear checkerport if it&#39;s not in use</span>
@@ -1713,7 +1713,7 @@
                 <span class="bp">self</span><span class="o">.</span><span class="n">checkerport</span> <span class="o">=</span> <span class="s2">&quot;80&quot;</span></div></div>
 
 
-<div class="viewcode-block" id="Range"><a class="viewcode-back" href="../../python_kemptech_api.html#python_kemptech_api.objects.Range">[docs]</a><span class="k">class</span> <span class="nc">Range</span><span class="p">(</span><span class="n">BaseKempObject</span><span class="p">):</span>
+<div class="viewcode-block" id="Range"><a class="viewcode-back" href="../../python_kemptech_api.objects.html#python_kemptech_api.objects.Range">[docs]</a><span class="k">class</span> <span class="nc">Range</span><span class="p">(</span><span class="n">BaseKempObject</span><span class="p">):</span>
     <span class="n">_API_ADD</span> <span class="o">=</span> <span class="s2">&quot;/addip&quot;</span>
     <span class="n">_API_MOD_LOC</span> <span class="o">=</span> <span class="s2">&quot;/modiploc&quot;</span>
     <span class="n">_API_DEL_LOC</span> <span class="o">=</span> <span class="s2">&quot;/deliploc&quot;</span>
@@ -1799,7 +1799,7 @@
             <span class="s2">&quot;ip&quot;</span><span class="p">:</span> <span class="bp">self</span><span class="o">.</span><span class="n">ip</span>
         <span class="p">}</span>
 
-<div class="viewcode-block" id="Range.save"><a class="viewcode-back" href="../../python_kemptech_api.html#python_kemptech_api.objects.Range.save">[docs]</a>    <span class="k">def</span> <span class="nf">save</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">update</span><span class="o">=</span><span class="kc">False</span><span class="p">):</span>
+<div class="viewcode-block" id="Range.save"><a class="viewcode-back" href="../../python_kemptech_api.objects.html#python_kemptech_api.objects.Range.save">[docs]</a>    <span class="k">def</span> <span class="nf">save</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">update</span><span class="o">=</span><span class="kc">False</span><span class="p">):</span>
         <span class="k">if</span> <span class="ow">not</span> <span class="n">update</span><span class="p">:</span>
             <span class="n">base_parameters</span> <span class="o">=</span> <span class="p">{</span>
                 <span class="s2">&quot;ip&quot;</span><span class="p">:</span> <span class="bp">self</span><span class="o">.</span><span class="n">ip</span> <span class="o">+</span> <span class="s2">&quot;/&quot;</span> <span class="o">+</span> <span class="nb">str</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">mask</span><span class="p">)</span>
@@ -1848,7 +1848,7 @@
         <span class="k">else</span><span class="p">:</span>
             <span class="k">raise</span> <span class="n">KempTechApiException</span><span class="p">(</span><span class="n">get_error_msg</span><span class="p">(</span><span class="n">response</span><span class="p">))</span></div>
 
-<div class="viewcode-block" id="Range.populate_default_attributes"><a class="viewcode-back" href="../../python_kemptech_api.html#python_kemptech_api.objects.Range.populate_default_attributes">[docs]</a>    <span class="k">def</span> <span class="nf">populate_default_attributes</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">dictionary</span><span class="p">):</span>
+<div class="viewcode-block" id="Range.populate_default_attributes"><a class="viewcode-back" href="../../python_kemptech_api.objects.html#python_kemptech_api.objects.Range.populate_default_attributes">[docs]</a>    <span class="k">def</span> <span class="nf">populate_default_attributes</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">dictionary</span><span class="p">):</span>
         <span class="nb">super</span><span class="p">(</span><span class="n">Range</span><span class="p">,</span> <span class="bp">self</span><span class="p">)</span><span class="o">.</span><span class="n">populate_default_attributes</span><span class="p">(</span><span class="n">dictionary</span><span class="p">)</span>
 
         <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">country</span> <span class="o">==</span> <span class="s2">&quot;-1&quot;</span><span class="p">:</span>
@@ -1861,7 +1861,7 @@
             <span class="bp">self</span><span class="o">.</span><span class="n">long</span> <span class="o">=</span> <span class="nb">int</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">long</span><span class="p">)</span></div></div>
 
 
-<div class="viewcode-block" id="CustomLocation"><a class="viewcode-back" href="../../python_kemptech_api.html#python_kemptech_api.objects.CustomLocation">[docs]</a><span class="k">class</span> <span class="nc">CustomLocation</span><span class="p">(</span><span class="n">BaseKempObject</span><span class="p">):</span>
+<div class="viewcode-block" id="CustomLocation"><a class="viewcode-back" href="../../python_kemptech_api.objects.html#python_kemptech_api.objects.CustomLocation">[docs]</a><span class="k">class</span> <span class="nc">CustomLocation</span><span class="p">(</span><span class="n">BaseKempObject</span><span class="p">):</span>
     <span class="k">def</span> <span class="nf">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">loadmaster_info</span><span class="p">,</span> <span class="n">name</span><span class="p">):</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">name</span> <span class="o">=</span> <span class="n">name</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">old_name</span> <span class="o">=</span> <span class="n">name</span>
@@ -1887,7 +1887,7 @@
             <span class="s2">&quot;location&quot;</span><span class="p">:</span> <span class="bp">self</span><span class="o">.</span><span class="n">name</span>
         <span class="p">}</span>
 
-<div class="viewcode-block" id="CustomLocation.save"><a class="viewcode-back" href="../../python_kemptech_api.html#python_kemptech_api.objects.CustomLocation.save">[docs]</a>    <span class="k">def</span> <span class="nf">save</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">update</span><span class="o">=</span><span class="kc">False</span><span class="p">):</span>
+<div class="viewcode-block" id="CustomLocation.save"><a class="viewcode-back" href="../../python_kemptech_api.objects.html#python_kemptech_api.objects.CustomLocation.save">[docs]</a>    <span class="k">def</span> <span class="nf">save</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">update</span><span class="o">=</span><span class="kc">False</span><span class="p">):</span>
         <span class="k">if</span> <span class="ow">not</span> <span class="n">update</span><span class="p">:</span>
             <span class="n">response</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_get</span><span class="p">(</span><span class="s2">&quot;/addcustomlocation&quot;</span><span class="p">,</span>
                                  <span class="bp">self</span><span class="o">.</span><span class="n">_get_base_parameters</span><span class="p">())</span>
@@ -1909,13 +1909,13 @@
             <span class="k">else</span><span class="p">:</span>
                 <span class="k">raise</span> <span class="n">KempTechApiException</span><span class="p">(</span><span class="n">get_error_msg</span><span class="p">(</span><span class="n">response</span><span class="p">))</span></div>
 
-<div class="viewcode-block" id="CustomLocation.delete"><a class="viewcode-back" href="../../python_kemptech_api.html#python_kemptech_api.objects.CustomLocation.delete">[docs]</a>    <span class="k">def</span> <span class="nf">delete</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+<div class="viewcode-block" id="CustomLocation.delete"><a class="viewcode-back" href="../../python_kemptech_api.objects.html#python_kemptech_api.objects.CustomLocation.delete">[docs]</a>    <span class="k">def</span> <span class="nf">delete</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
         <span class="n">response</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_get</span><span class="p">(</span><span class="s2">&quot;/deletecustomlocation&quot;</span><span class="p">,</span>
                              <span class="bp">self</span><span class="o">.</span><span class="n">_get_base_parameters</span><span class="p">())</span>
         <span class="k">return</span> <span class="n">send_response</span><span class="p">(</span><span class="n">response</span><span class="p">)</span></div></div>
 
 
-<div class="viewcode-block" id="CipherSet"><a class="viewcode-back" href="../../python_kemptech_api.html#python_kemptech_api.objects.CipherSet">[docs]</a><span class="k">class</span> <span class="nc">CipherSet</span><span class="p">(</span><span class="n">BaseKempObject</span><span class="p">):</span>
+<div class="viewcode-block" id="CipherSet"><a class="viewcode-back" href="../../python_kemptech_api.objects.html#python_kemptech_api.objects.CipherSet">[docs]</a><span class="k">class</span> <span class="nc">CipherSet</span><span class="p">(</span><span class="n">BaseKempObject</span><span class="p">):</span>
     <span class="k">def</span> <span class="nf">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">loadmaster_info</span><span class="p">,</span> <span class="n">cipherset_name</span><span class="p">,</span> <span class="n">ciphers</span><span class="p">):</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">cipherset_name</span> <span class="o">=</span> <span class="n">cipherset_name</span>
         <span class="n">cipher_regex</span> <span class="o">=</span> <span class="n">re</span><span class="o">.</span><span class="n">compile</span><span class="p">(</span><span class="s2">&quot;^([A-Z0-9-]*:*)*[^:]$&quot;</span><span class="p">)</span>
@@ -1948,7 +1948,7 @@
             <span class="s2">&quot;value&quot;</span><span class="p">:</span> <span class="bp">self</span><span class="o">.</span><span class="n">ciphers</span>
         <span class="p">}</span>
 
-<div class="viewcode-block" id="CipherSet.save"><a class="viewcode-back" href="../../python_kemptech_api.html#python_kemptech_api.objects.CipherSet.save">[docs]</a>    <span class="k">def</span> <span class="nf">save</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">update</span><span class="o">=</span><span class="kc">False</span><span class="p">):</span>
+<div class="viewcode-block" id="CipherSet.save"><a class="viewcode-back" href="../../python_kemptech_api.objects.html#python_kemptech_api.objects.CipherSet.save">[docs]</a>    <span class="k">def</span> <span class="nf">save</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">update</span><span class="o">=</span><span class="kc">False</span><span class="p">):</span>
         <span class="n">response</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_get</span><span class="p">(</span><span class="s1">&#39;/modifycipherset&#39;</span><span class="p">,</span>
                              <span class="n">parameters</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">_get_base_parameters</span><span class="p">())</span>
         <span class="k">if</span> <span class="n">is_successful</span><span class="p">(</span><span class="n">response</span><span class="p">):</span>
@@ -1956,12 +1956,12 @@
         <span class="k">else</span><span class="p">:</span>
             <span class="k">raise</span> <span class="n">KempTechApiException</span><span class="p">(</span><span class="n">get_error_msg</span><span class="p">(</span><span class="n">response</span><span class="p">))</span></div>
 
-<div class="viewcode-block" id="CipherSet.delete"><a class="viewcode-back" href="../../python_kemptech_api.html#python_kemptech_api.objects.CipherSet.delete">[docs]</a>    <span class="k">def</span> <span class="nf">delete</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+<div class="viewcode-block" id="CipherSet.delete"><a class="viewcode-back" href="../../python_kemptech_api.objects.html#python_kemptech_api.objects.CipherSet.delete">[docs]</a>    <span class="k">def</span> <span class="nf">delete</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
         <span class="n">response</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_get</span><span class="p">(</span><span class="s2">&quot;/delcipherset&quot;</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">_get_base_parameters</span><span class="p">())</span>
         <span class="k">return</span> <span class="n">send_response</span><span class="p">(</span><span class="n">response</span><span class="p">)</span></div></div>
 
 
-<div class="viewcode-block" id="Certificate"><a class="viewcode-back" href="../../python_kemptech_api.html#python_kemptech_api.objects.Certificate">[docs]</a><span class="k">class</span> <span class="nc">Certificate</span><span class="p">(</span><span class="n">BaseKempObject</span><span class="p">):</span>
+<div class="viewcode-block" id="Certificate"><a class="viewcode-back" href="../../python_kemptech_api.objects.html#python_kemptech_api.objects.Certificate">[docs]</a><span class="k">class</span> <span class="nc">Certificate</span><span class="p">(</span><span class="n">BaseKempObject</span><span class="p">):</span>
     <span class="k">def</span> <span class="nf">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">loadmaster_info</span><span class="p">,</span> <span class="n">certname</span><span class="p">,</span>
                  <span class="n">certfile</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">certpass</span><span class="o">=</span><span class="kc">None</span><span class="p">):</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">certname</span> <span class="o">=</span> <span class="n">certname</span>
@@ -2009,7 +2009,7 @@
                 <span class="s2">&quot;password&quot;</span><span class="p">:</span> <span class="bp">self</span><span class="o">.</span><span class="n">certpass</span>
             <span class="p">}</span>
 
-<div class="viewcode-block" id="Certificate.save"><a class="viewcode-back" href="../../python_kemptech_api.html#python_kemptech_api.objects.Certificate.save">[docs]</a>    <span class="k">def</span> <span class="nf">save</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">update</span><span class="o">=</span><span class="kc">False</span><span class="p">):</span>
+<div class="viewcode-block" id="Certificate.save"><a class="viewcode-back" href="../../python_kemptech_api.objects.html#python_kemptech_api.objects.Certificate.save">[docs]</a>    <span class="k">def</span> <span class="nf">save</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">update</span><span class="o">=</span><span class="kc">False</span><span class="p">):</span>
         <span class="n">response</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_post</span><span class="p">(</span><span class="s2">&quot;/addcert&quot;</span><span class="p">,</span> <span class="n">file</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">certfile</span><span class="p">,</span>
                               <span class="n">parameters</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">_get_base_parameters</span><span class="p">())</span>
 
@@ -2018,13 +2018,13 @@
         <span class="k">else</span><span class="p">:</span>
             <span class="k">raise</span> <span class="n">KempTechApiException</span><span class="p">(</span><span class="n">get_error_msg</span><span class="p">(</span><span class="n">response</span><span class="p">))</span></div>
 
-<div class="viewcode-block" id="Certificate.delete"><a class="viewcode-back" href="../../python_kemptech_api.html#python_kemptech_api.objects.Certificate.delete">[docs]</a>    <span class="k">def</span> <span class="nf">delete</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+<div class="viewcode-block" id="Certificate.delete"><a class="viewcode-back" href="../../python_kemptech_api.objects.html#python_kemptech_api.objects.Certificate.delete">[docs]</a>    <span class="k">def</span> <span class="nf">delete</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
         <span class="n">response</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_get</span><span class="p">(</span><span class="s2">&quot;/delcert&quot;</span><span class="p">,</span>
                              <span class="bp">self</span><span class="o">.</span><span class="n">_get_base_parameters</span><span class="p">())</span>
 
         <span class="k">return</span> <span class="n">send_response</span><span class="p">(</span><span class="n">response</span><span class="p">)</span></div>
 
-<div class="viewcode-block" id="Certificate.populate_default_attributes"><a class="viewcode-back" href="../../python_kemptech_api.html#python_kemptech_api.objects.Certificate.populate_default_attributes">[docs]</a>    <span class="k">def</span> <span class="nf">populate_default_attributes</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">dictionary</span><span class="p">):</span>
+<div class="viewcode-block" id="Certificate.populate_default_attributes"><a class="viewcode-back" href="../../python_kemptech_api.objects.html#python_kemptech_api.objects.Certificate.populate_default_attributes">[docs]</a>    <span class="k">def</span> <span class="nf">populate_default_attributes</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">dictionary</span><span class="p">):</span>
         <span class="nb">super</span><span class="p">(</span><span class="n">Certificate</span><span class="p">,</span> <span class="bp">self</span><span class="p">)</span><span class="o">.</span><span class="n">populate_default_attributes</span><span class="p">(</span><span class="n">dictionary</span><span class="p">)</span>
 
         <span class="c1"># If certname is a structure, pull out the name and set the modulus</span>
@@ -2033,7 +2033,7 @@
             <span class="bp">self</span><span class="o">.</span><span class="n">certname</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">certname</span><span class="p">[</span><span class="s1">&#39;name&#39;</span><span class="p">]</span></div></div>
 
 
-<div class="viewcode-block" id="IntermediateCertificate"><a class="viewcode-back" href="../../python_kemptech_api.html#python_kemptech_api.objects.IntermediateCertificate">[docs]</a><span class="k">class</span> <span class="nc">IntermediateCertificate</span><span class="p">(</span><span class="n">BaseKempObject</span><span class="p">):</span>
+<div class="viewcode-block" id="IntermediateCertificate"><a class="viewcode-back" href="../../python_kemptech_api.objects.html#python_kemptech_api.objects.IntermediateCertificate">[docs]</a><span class="k">class</span> <span class="nc">IntermediateCertificate</span><span class="p">(</span><span class="n">BaseKempObject</span><span class="p">):</span>
     <span class="k">def</span> <span class="nf">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">loadmaster_info</span><span class="p">,</span> <span class="n">certname</span><span class="p">,</span> <span class="n">certfile</span><span class="o">=</span><span class="kc">None</span><span class="p">):</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">certname</span> <span class="o">=</span> <span class="n">certname</span>
 
@@ -2065,7 +2065,7 @@
             <span class="s2">&quot;cert&quot;</span><span class="p">:</span> <span class="bp">self</span><span class="o">.</span><span class="n">certname</span><span class="p">,</span>
         <span class="p">}</span>
 
-<div class="viewcode-block" id="IntermediateCertificate.save"><a class="viewcode-back" href="../../python_kemptech_api.html#python_kemptech_api.objects.IntermediateCertificate.save">[docs]</a>    <span class="k">def</span> <span class="nf">save</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">update</span><span class="o">=</span><span class="kc">False</span><span class="p">):</span>
+<div class="viewcode-block" id="IntermediateCertificate.save"><a class="viewcode-back" href="../../python_kemptech_api.objects.html#python_kemptech_api.objects.IntermediateCertificate.save">[docs]</a>    <span class="k">def</span> <span class="nf">save</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">update</span><span class="o">=</span><span class="kc">False</span><span class="p">):</span>
         <span class="n">response</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_post</span><span class="p">(</span><span class="s2">&quot;/addintermediate&quot;</span><span class="p">,</span>
                               <span class="n">file</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">certfile</span><span class="p">,</span>
                               <span class="n">parameters</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">_get_base_parameters</span><span class="p">())</span>
@@ -2075,12 +2075,12 @@
         <span class="k">else</span><span class="p">:</span>
             <span class="k">raise</span> <span class="n">KempTechApiException</span><span class="p">(</span><span class="n">get_error_msg</span><span class="p">(</span><span class="n">response</span><span class="p">))</span></div>
 
-<div class="viewcode-block" id="IntermediateCertificate.delete"><a class="viewcode-back" href="../../python_kemptech_api.html#python_kemptech_api.objects.IntermediateCertificate.delete">[docs]</a>    <span class="k">def</span> <span class="nf">delete</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+<div class="viewcode-block" id="IntermediateCertificate.delete"><a class="viewcode-back" href="../../python_kemptech_api.objects.html#python_kemptech_api.objects.IntermediateCertificate.delete">[docs]</a>    <span class="k">def</span> <span class="nf">delete</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
         <span class="n">response</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_get</span><span class="p">(</span><span class="s2">&quot;/delintermediate&quot;</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">_get_base_parameters</span><span class="p">())</span>
         <span class="k">return</span> <span class="n">send_response</span><span class="p">(</span><span class="n">response</span><span class="p">)</span></div></div>
 
 
-<div class="viewcode-block" id="Interface"><a class="viewcode-back" href="../../python_kemptech_api.html#python_kemptech_api.objects.Interface">[docs]</a><span class="k">class</span> <span class="nc">Interface</span><span class="p">(</span><span class="n">BaseKempObject</span><span class="p">):</span>
+<div class="viewcode-block" id="Interface"><a class="viewcode-back" href="../../python_kemptech_api.objects.html#python_kemptech_api.objects.Interface">[docs]</a><span class="k">class</span> <span class="nc">Interface</span><span class="p">(</span><span class="n">BaseKempObject</span><span class="p">):</span>
     <span class="n">_API_MOD</span> <span class="o">=</span> <span class="s2">&quot;/modiface&quot;</span>
     <span class="n">_API_GET</span> <span class="o">=</span> <span class="s2">&quot;/showiface&quot;</span>
     <span class="n">_API_LIST</span> <span class="o">=</span> <span class="s2">&quot;/stats&quot;</span>
@@ -2149,7 +2149,7 @@
     <span class="k">def</span> <span class="nf">cidr</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">value</span><span class="p">):</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">addr</span> <span class="o">=</span> <span class="s2">&quot;</span><span class="si">{}</span><span class="s2">/</span><span class="si">{}</span><span class="s2">&quot;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">address</span><span class="p">,</span> <span class="n">value</span><span class="p">)</span> <span class="k">if</span> <span class="n">value</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span> <span class="k">else</span> <span class="kc">None</span>
 
-<div class="viewcode-block" id="Interface.save"><a class="viewcode-back" href="../../python_kemptech_api.html#python_kemptech_api.objects.Interface.save">[docs]</a>    <span class="k">def</span> <span class="nf">save</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">update</span><span class="o">=</span><span class="kc">True</span><span class="p">):</span>
+<div class="viewcode-block" id="Interface.save"><a class="viewcode-back" href="../../python_kemptech_api.objects.html#python_kemptech_api.objects.Interface.save">[docs]</a>    <span class="k">def</span> <span class="nf">save</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">update</span><span class="o">=</span><span class="kc">True</span><span class="p">):</span>
         <span class="c1"># pylint: disable=duplicate-code</span>
         <span class="c1"># Duplicate code required due to the lacking nature of interfaces API</span>
         <span class="k">for</span> <span class="n">key</span><span class="p">,</span> <span class="n">value</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">to_api_dict</span><span class="p">()</span><span class="o">.</span><span class="n">items</span><span class="p">():</span>
@@ -2168,7 +2168,7 @@
             <span class="k">else</span><span class="p">:</span>
                 <span class="bp">self</span><span class="o">.</span><span class="n">_is_successful_or_raise</span><span class="p">(</span><span class="n">response</span><span class="p">)</span></div>
 
-<div class="viewcode-block" id="Interface.stats"><a class="viewcode-back" href="../../python_kemptech_api.html#python_kemptech_api.objects.Interface.stats">[docs]</a>    <span class="k">def</span> <span class="nf">stats</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+<div class="viewcode-block" id="Interface.stats"><a class="viewcode-back" href="../../python_kemptech_api.objects.html#python_kemptech_api.objects.Interface.stats">[docs]</a>    <span class="k">def</span> <span class="nf">stats</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
         <span class="k">try</span><span class="p">:</span>
             <span class="n">response</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_get</span><span class="p">(</span>  <span class="c1"># pylint: disable=protected-access</span>
                 <span class="bp">self</span><span class="o">.</span><span class="n">_API_LIST</span><span class="p">)</span>
@@ -2191,7 +2191,7 @@
 
         <span class="k">return</span> <span class="n">stats</span></div>
 
-<div class="viewcode-block" id="Interface.populate_default_attributes"><a class="viewcode-back" href="../../python_kemptech_api.html#python_kemptech_api.objects.Interface.populate_default_attributes">[docs]</a>    <span class="k">def</span> <span class="nf">populate_default_attributes</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">params</span><span class="p">):</span>
+<div class="viewcode-block" id="Interface.populate_default_attributes"><a class="viewcode-back" href="../../python_kemptech_api.objects.html#python_kemptech_api.objects.Interface.populate_default_attributes">[docs]</a>    <span class="k">def</span> <span class="nf">populate_default_attributes</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">params</span><span class="p">):</span>
         <span class="n">params</span> <span class="o">=</span> <span class="p">{}</span> <span class="k">if</span> <span class="n">params</span> <span class="ow">is</span> <span class="kc">None</span> <span class="k">else</span> <span class="n">params</span>
         <span class="nb">super</span><span class="p">(</span><span class="n">Interface</span><span class="p">,</span> <span class="bp">self</span><span class="p">)</span><span class="o">.</span><span class="n">populate_default_attributes</span><span class="p">(</span><span class="n">params</span><span class="p">)</span>
 
@@ -2216,7 +2216,7 @@
         <span class="k">for</span> <span class="n">address</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">additionaladdresses</span><span class="p">:</span>
             <span class="bp">self</span><span class="o">.</span><span class="n">_additionaladdresses</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">address</span><span class="p">)</span></div>
 
-<div class="viewcode-block" id="Interface.set_additionaladdresses"><a class="viewcode-back" href="../../python_kemptech_api.html#python_kemptech_api.objects.Interface.set_additionaladdresses">[docs]</a>    <span class="k">def</span> <span class="nf">set_additionaladdresses</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+<div class="viewcode-block" id="Interface.set_additionaladdresses"><a class="viewcode-back" href="../../python_kemptech_api.objects.html#python_kemptech_api.objects.Interface.set_additionaladdresses">[docs]</a>    <span class="k">def</span> <span class="nf">set_additionaladdresses</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
         <span class="n">new</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">additionaladdresses</span>
         <span class="n">old</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_additionaladdresses</span>
 

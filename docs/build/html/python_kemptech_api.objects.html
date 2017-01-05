@@ -1,0 +1,753 @@
+
+
+<!DOCTYPE html>
+<!--[if IE 8]><html class="no-js lt-ie9" lang="en" > <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js" lang="en" > <!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  
+  <title>python_kemptech_api.objects module &mdash; python-kemptech-api 0.7.14 documentation</title>
+  
+
+  
+  
+
+  
+
+  
+  
+    
+
+  
+
+  
+  
+    <link rel="stylesheet" href="_static/css/theme.css" type="text/css" />
+  
+
+  
+
+  
+        <link rel="index" title="Index"
+              href="genindex.html"/>
+        <link rel="search" title="Search" href="search.html"/>
+    <link rel="top" title="python-kemptech-api 0.7.14 documentation" href="index.html"/>
+        <link rel="up" title="python_kemptech_api package" href="python_kemptech_api.html"/>
+        <link rel="next" title="python_kemptech_api.utils module" href="python_kemptech_api.utils.html"/>
+        <link rel="prev" title="python_kemptech_api.models module" href="python_kemptech_api.models.html"/> 
+
+  
+  <script src="_static/js/modernizr.min.js"></script>
+
+</head>
+
+<body class="wy-body-for-nav" role="document">
+
+  <div class="wy-grid-for-nav">
+
+    
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search">
+          
+
+          
+            <a href="index.html" class="icon icon-home"> python-kemptech-api
+          
+
+          
+          </a>
+
+          
+            
+            
+              <div class="version">
+                0.7.14
+              </div>
+            
+          
+
+          
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+
+          
+        </div>
+
+        <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
+          
+            
+            
+                <p class="caption"><span class="caption-text">Contents:</span></p>
+<ul class="current">
+<li class="toctree-l1 current"><a class="reference internal" href="python_kemptech_api.html">python_kemptech_api package</a><ul class="current">
+<li class="toctree-l2 current"><a class="reference internal" href="python_kemptech_api.html#submodules">Submodules</a><ul class="current">
+<li class="toctree-l3"><a class="reference internal" href="python_kemptech_api.api_xml.html">python_kemptech_api.api_xml module</a></li>
+<li class="toctree-l3"><a class="reference internal" href="python_kemptech_api.capabilities.html">python_kemptech_api.capabilities module</a></li>
+<li class="toctree-l3"><a class="reference internal" href="python_kemptech_api.client.html">python_kemptech_api.client module</a></li>
+<li class="toctree-l3"><a class="reference internal" href="python_kemptech_api.exceptions.html">python_kemptech_api.exceptions module</a></li>
+<li class="toctree-l3"><a class="reference internal" href="python_kemptech_api.generic.html">python_kemptech_api.generic module</a></li>
+<li class="toctree-l3"><a class="reference internal" href="python_kemptech_api.models.html">python_kemptech_api.models module</a></li>
+<li class="toctree-l3 current"><a class="current reference internal" href="#">python_kemptech_api.objects module</a></li>
+<li class="toctree-l3"><a class="reference internal" href="python_kemptech_api.utils.html">python_kemptech_api.utils module</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="python_kemptech_api.html#module-python_kemptech_api">Module contents</a></li>
+</ul>
+</li>
+</ul>
+
+            
+          
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+
+      
+      <nav class="wy-nav-top" role="navigation" aria-label="top navigation">
+        <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+        <a href="index.html">python-kemptech-api</a>
+      </nav>
+
+
+      
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          
+
+ 
+
+
+
+<div role="navigation" aria-label="breadcrumbs navigation">
+  <ul class="wy-breadcrumbs">
+    <li><a href="index.html">Docs</a> &raquo;</li>
+      
+          <li><a href="python_kemptech_api.html">python_kemptech_api package</a> &raquo;</li>
+      
+    <li>python_kemptech_api.objects module</li>
+      <li class="wy-breadcrumbs-aside">
+        
+          
+            <a href="_sources/python_kemptech_api.objects.rst.txt" rel="nofollow"> View page source</a>
+          
+        
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+            
+  <div class="section" id="module-python_kemptech_api.objects">
+<span id="python-kemptech-api-objects-module"></span><h1>python_kemptech_api.objects module</h1>
+<dl class="class">
+<dt id="python_kemptech_api.objects.BaseACLObject">
+<em class="property">class </em><code class="descclassname">python_kemptech_api.objects.</code><code class="descname">BaseACLObject</code><span class="sig-paren">(</span><em>loadmaster_info</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/python_kemptech_api/objects.html#BaseACLObject"><span class="viewcode-link">[source]</span></a></dt>
+<dd><p>Bases: <a class="reference internal" href="python_kemptech_api.generic.html#python_kemptech_api.generic.BaseKempObject" title="python_kemptech_api.generic.BaseKempObject"><code class="xref py py-class docutils literal"><span class="pre">python_kemptech_api.generic.BaseKempObject</span></code></a></p>
+<dl class="attribute">
+<dt id="python_kemptech_api.objects.BaseACLObject.API_INIT_PARAMS">
+<code class="descname">API_INIT_PARAMS</code><em class="property"> = {}</em></dt>
+<dd></dd></dl>
+
+<dl class="method">
+<dt id="python_kemptech_api.objects.BaseACLObject.refresh">
+<code class="descname">refresh</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="_modules/python_kemptech_api/objects.html#BaseACLObject.refresh"><span class="viewcode-link">[source]</span></a></dt>
+<dd></dd></dl>
+
+<dl class="method">
+<dt id="python_kemptech_api.objects.BaseACLObject.save">
+<code class="descname">save</code><span class="sig-paren">(</span><em>update=False</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/python_kemptech_api/objects.html#BaseACLObject.save"><span class="viewcode-link">[source]</span></a></dt>
+<dd></dd></dl>
+
+</dd></dl>
+
+<dl class="class">
+<dt id="python_kemptech_api.objects.Certificate">
+<em class="property">class </em><code class="descclassname">python_kemptech_api.objects.</code><code class="descname">Certificate</code><span class="sig-paren">(</span><em>loadmaster_info</em>, <em>certname</em>, <em>certfile=None</em>, <em>certpass=None</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/python_kemptech_api/objects.html#Certificate"><span class="viewcode-link">[source]</span></a></dt>
+<dd><p>Bases: <a class="reference internal" href="python_kemptech_api.generic.html#python_kemptech_api.generic.BaseKempObject" title="python_kemptech_api.generic.BaseKempObject"><code class="xref py py-class docutils literal"><span class="pre">python_kemptech_api.generic.BaseKempObject</span></code></a></p>
+<dl class="method">
+<dt id="python_kemptech_api.objects.Certificate.delete">
+<code class="descname">delete</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="_modules/python_kemptech_api/objects.html#Certificate.delete"><span class="viewcode-link">[source]</span></a></dt>
+<dd></dd></dl>
+
+<dl class="method">
+<dt id="python_kemptech_api.objects.Certificate.populate_default_attributes">
+<code class="descname">populate_default_attributes</code><span class="sig-paren">(</span><em>dictionary</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/python_kemptech_api/objects.html#Certificate.populate_default_attributes"><span class="viewcode-link">[source]</span></a></dt>
+<dd></dd></dl>
+
+<dl class="method">
+<dt id="python_kemptech_api.objects.Certificate.save">
+<code class="descname">save</code><span class="sig-paren">(</span><em>update=False</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/python_kemptech_api/objects.html#Certificate.save"><span class="viewcode-link">[source]</span></a></dt>
+<dd></dd></dl>
+
+</dd></dl>
+
+<dl class="class">
+<dt id="python_kemptech_api.objects.CipherSet">
+<em class="property">class </em><code class="descclassname">python_kemptech_api.objects.</code><code class="descname">CipherSet</code><span class="sig-paren">(</span><em>loadmaster_info</em>, <em>cipherset_name</em>, <em>ciphers</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/python_kemptech_api/objects.html#CipherSet"><span class="viewcode-link">[source]</span></a></dt>
+<dd><p>Bases: <a class="reference internal" href="python_kemptech_api.generic.html#python_kemptech_api.generic.BaseKempObject" title="python_kemptech_api.generic.BaseKempObject"><code class="xref py py-class docutils literal"><span class="pre">python_kemptech_api.generic.BaseKempObject</span></code></a></p>
+<dl class="method">
+<dt id="python_kemptech_api.objects.CipherSet.delete">
+<code class="descname">delete</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="_modules/python_kemptech_api/objects.html#CipherSet.delete"><span class="viewcode-link">[source]</span></a></dt>
+<dd></dd></dl>
+
+<dl class="method">
+<dt id="python_kemptech_api.objects.CipherSet.save">
+<code class="descname">save</code><span class="sig-paren">(</span><em>update=False</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/python_kemptech_api/objects.html#CipherSet.save"><span class="viewcode-link">[source]</span></a></dt>
+<dd></dd></dl>
+
+</dd></dl>
+
+<dl class="class">
+<dt id="python_kemptech_api.objects.Cluster">
+<em class="property">class </em><code class="descclassname">python_kemptech_api.objects.</code><code class="descname">Cluster</code><span class="sig-paren">(</span><em>loadmaster_info</em>, <em>ip</em>, <em>name</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/python_kemptech_api/objects.html#Cluster"><span class="viewcode-link">[source]</span></a></dt>
+<dd><p>Bases: <a class="reference internal" href="python_kemptech_api.generic.html#python_kemptech_api.generic.BaseKempObject" title="python_kemptech_api.generic.BaseKempObject"><code class="xref py py-class docutils literal"><span class="pre">python_kemptech_api.generic.BaseKempObject</span></code></a></p>
+<dl class="attribute">
+<dt id="python_kemptech_api.objects.Cluster.API_INIT_PARAMS">
+<code class="descname">API_INIT_PARAMS</code><em class="property"> = {'name': 'Name', 'ip': 'IPAddress'}</em></dt>
+<dd></dd></dl>
+
+<dl class="attribute">
+<dt id="python_kemptech_api.objects.Cluster.API_TAG">
+<code class="descname">API_TAG</code><em class="property"> = 'cluster'</em></dt>
+<dd></dd></dl>
+
+<dl class="method">
+<dt id="python_kemptech_api.objects.Cluster.populate_default_attributes">
+<code class="descname">populate_default_attributes</code><span class="sig-paren">(</span><em>dictionary</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/python_kemptech_api/objects.html#Cluster.populate_default_attributes"><span class="viewcode-link">[source]</span></a></dt>
+<dd></dd></dl>
+
+<dl class="method">
+<dt id="python_kemptech_api.objects.Cluster.save">
+<code class="descname">save</code><span class="sig-paren">(</span><em>update=False</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/python_kemptech_api/objects.html#Cluster.save"><span class="viewcode-link">[source]</span></a></dt>
+<dd></dd></dl>
+
+</dd></dl>
+
+<dl class="class">
+<dt id="python_kemptech_api.objects.CustomLocation">
+<em class="property">class </em><code class="descclassname">python_kemptech_api.objects.</code><code class="descname">CustomLocation</code><span class="sig-paren">(</span><em>loadmaster_info</em>, <em>name</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/python_kemptech_api/objects.html#CustomLocation"><span class="viewcode-link">[source]</span></a></dt>
+<dd><p>Bases: <a class="reference internal" href="python_kemptech_api.generic.html#python_kemptech_api.generic.BaseKempObject" title="python_kemptech_api.generic.BaseKempObject"><code class="xref py py-class docutils literal"><span class="pre">python_kemptech_api.generic.BaseKempObject</span></code></a></p>
+<dl class="method">
+<dt id="python_kemptech_api.objects.CustomLocation.delete">
+<code class="descname">delete</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="_modules/python_kemptech_api/objects.html#CustomLocation.delete"><span class="viewcode-link">[source]</span></a></dt>
+<dd></dd></dl>
+
+<dl class="method">
+<dt id="python_kemptech_api.objects.CustomLocation.save">
+<code class="descname">save</code><span class="sig-paren">(</span><em>update=False</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/python_kemptech_api/objects.html#CustomLocation.save"><span class="viewcode-link">[source]</span></a></dt>
+<dd></dd></dl>
+
+</dd></dl>
+
+<dl class="class">
+<dt id="python_kemptech_api.objects.Fqdn">
+<em class="property">class </em><code class="descclassname">python_kemptech_api.objects.</code><code class="descname">Fqdn</code><span class="sig-paren">(</span><em>loadmaster_info</em>, <em>fqdn</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/python_kemptech_api/objects.html#Fqdn"><span class="viewcode-link">[source]</span></a></dt>
+<dd><p>Bases: <a class="reference internal" href="python_kemptech_api.generic.html#python_kemptech_api.generic.BaseKempObject" title="python_kemptech_api.generic.BaseKempObject"><code class="xref py py-class docutils literal"><span class="pre">python_kemptech_api.generic.BaseKempObject</span></code></a></p>
+<dl class="attribute">
+<dt id="python_kemptech_api.objects.Fqdn.API_INIT_PARAMS">
+<code class="descname">API_INIT_PARAMS</code><em class="property"> = {'fqdn': 'FullyQualifiedDomainName'}</em></dt>
+<dd></dd></dl>
+
+<dl class="attribute">
+<dt id="python_kemptech_api.objects.Fqdn.API_TAG">
+<code class="descname">API_TAG</code><em class="property"> = 'fqdn'</em></dt>
+<dd></dd></dl>
+
+<dl class="method">
+<dt id="python_kemptech_api.objects.Fqdn.build_site">
+<code class="descname">build_site</code><span class="sig-paren">(</span><em>site</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/python_kemptech_api/objects.html#Fqdn.build_site"><span class="viewcode-link">[source]</span></a></dt>
+<dd><p>Create a object instance with standard defaults</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="python_kemptech_api.objects.Fqdn.create_site">
+<code class="descname">create_site</code><span class="sig-paren">(</span><em>ip</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/python_kemptech_api/objects.html#Fqdn.create_site"><span class="viewcode-link">[source]</span></a></dt>
+<dd><p>Site factory with pre-configured LoadMaster connection.</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="python_kemptech_api.objects.Fqdn.get_site">
+<code class="descname">get_site</code><span class="sig-paren">(</span><em>ip</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/python_kemptech_api/objects.html#Fqdn.get_site"><span class="viewcode-link">[source]</span></a></dt>
+<dd></dd></dl>
+
+<dl class="method">
+<dt id="python_kemptech_api.objects.Fqdn.get_sites">
+<code class="descname">get_sites</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="_modules/python_kemptech_api/objects.html#Fqdn.get_sites"><span class="viewcode-link">[source]</span></a></dt>
+<dd></dd></dl>
+
+<dl class="method">
+<dt id="python_kemptech_api.objects.Fqdn.populate_default_attributes">
+<code class="descname">populate_default_attributes</code><span class="sig-paren">(</span><em>dictionary</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/python_kemptech_api/objects.html#Fqdn.populate_default_attributes"><span class="viewcode-link">[source]</span></a></dt>
+<dd></dd></dl>
+
+<dl class="method">
+<dt id="python_kemptech_api.objects.Fqdn.save">
+<code class="descname">save</code><span class="sig-paren">(</span><em>update=False</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/python_kemptech_api/objects.html#Fqdn.save"><span class="viewcode-link">[source]</span></a></dt>
+<dd></dd></dl>
+
+<dl class="attribute">
+<dt id="python_kemptech_api.objects.Fqdn.sites">
+<code class="descname">sites</code></dt>
+<dd></dd></dl>
+
+</dd></dl>
+
+<dl class="class">
+<dt id="python_kemptech_api.objects.GlobalACL">
+<em class="property">class </em><code class="descclassname">python_kemptech_api.objects.</code><code class="descname">GlobalACL</code><span class="sig-paren">(</span><em>loadmaster_info</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/python_kemptech_api/objects.html#GlobalACL"><span class="viewcode-link">[source]</span></a></dt>
+<dd><p>Bases: <a class="reference internal" href="#python_kemptech_api.objects.BaseACLObject" title="python_kemptech_api.objects.BaseACLObject"><code class="xref py py-class docutils literal"><span class="pre">python_kemptech_api.objects.BaseACLObject</span></code></a></p>
+</dd></dl>
+
+<dl class="class">
+<dt id="python_kemptech_api.objects.Interface">
+<em class="property">class </em><code class="descclassname">python_kemptech_api.objects.</code><code class="descname">Interface</code><span class="sig-paren">(</span><em>loadmaster_info</em>, <em>interface</em>, <em>params=None</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/python_kemptech_api/objects.html#Interface"><span class="viewcode-link">[source]</span></a></dt>
+<dd><p>Bases: <a class="reference internal" href="python_kemptech_api.generic.html#python_kemptech_api.generic.BaseKempObject" title="python_kemptech_api.generic.BaseKempObject"><code class="xref py py-class docutils literal"><span class="pre">python_kemptech_api.generic.BaseKempObject</span></code></a></p>
+<dl class="attribute">
+<dt id="python_kemptech_api.objects.Interface.API_INIT_PARAMS">
+<code class="descname">API_INIT_PARAMS</code><em class="property"> = {'interface': 'Id'}</em></dt>
+<dd></dd></dl>
+
+<dl class="attribute">
+<dt id="python_kemptech_api.objects.Interface.API_TAG">
+<code class="descname">API_TAG</code><em class="property"> = 'Interface'</em></dt>
+<dd></dd></dl>
+
+<dl class="attribute">
+<dt id="python_kemptech_api.objects.Interface.address">
+<code class="descname">address</code></dt>
+<dd></dd></dl>
+
+<dl class="attribute">
+<dt id="python_kemptech_api.objects.Interface.cidr">
+<code class="descname">cidr</code></dt>
+<dd></dd></dl>
+
+<dl class="method">
+<dt id="python_kemptech_api.objects.Interface.populate_default_attributes">
+<code class="descname">populate_default_attributes</code><span class="sig-paren">(</span><em>params</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/python_kemptech_api/objects.html#Interface.populate_default_attributes"><span class="viewcode-link">[source]</span></a></dt>
+<dd></dd></dl>
+
+<dl class="method">
+<dt id="python_kemptech_api.objects.Interface.save">
+<code class="descname">save</code><span class="sig-paren">(</span><em>update=True</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/python_kemptech_api/objects.html#Interface.save"><span class="viewcode-link">[source]</span></a></dt>
+<dd></dd></dl>
+
+<dl class="method">
+<dt id="python_kemptech_api.objects.Interface.set_additionaladdresses">
+<code class="descname">set_additionaladdresses</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="_modules/python_kemptech_api/objects.html#Interface.set_additionaladdresses"><span class="viewcode-link">[source]</span></a></dt>
+<dd></dd></dl>
+
+<dl class="method">
+<dt id="python_kemptech_api.objects.Interface.stats">
+<code class="descname">stats</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="_modules/python_kemptech_api/objects.html#Interface.stats"><span class="viewcode-link">[source]</span></a></dt>
+<dd></dd></dl>
+
+</dd></dl>
+
+<dl class="class">
+<dt id="python_kemptech_api.objects.IntermediateCertificate">
+<em class="property">class </em><code class="descclassname">python_kemptech_api.objects.</code><code class="descname">IntermediateCertificate</code><span class="sig-paren">(</span><em>loadmaster_info</em>, <em>certname</em>, <em>certfile=None</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/python_kemptech_api/objects.html#IntermediateCertificate"><span class="viewcode-link">[source]</span></a></dt>
+<dd><p>Bases: <a class="reference internal" href="python_kemptech_api.generic.html#python_kemptech_api.generic.BaseKempObject" title="python_kemptech_api.generic.BaseKempObject"><code class="xref py py-class docutils literal"><span class="pre">python_kemptech_api.generic.BaseKempObject</span></code></a></p>
+<dl class="method">
+<dt id="python_kemptech_api.objects.IntermediateCertificate.delete">
+<code class="descname">delete</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="_modules/python_kemptech_api/objects.html#IntermediateCertificate.delete"><span class="viewcode-link">[source]</span></a></dt>
+<dd></dd></dl>
+
+<dl class="method">
+<dt id="python_kemptech_api.objects.IntermediateCertificate.save">
+<code class="descname">save</code><span class="sig-paren">(</span><em>update=False</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/python_kemptech_api/objects.html#IntermediateCertificate.save"><span class="viewcode-link">[source]</span></a></dt>
+<dd></dd></dl>
+
+</dd></dl>
+
+<dl class="class">
+<dt id="python_kemptech_api.objects.Range">
+<em class="property">class </em><code class="descclassname">python_kemptech_api.objects.</code><code class="descname">Range</code><span class="sig-paren">(</span><em>loadmaster_info</em>, <em>ip</em>, <em>mask</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/python_kemptech_api/objects.html#Range"><span class="viewcode-link">[source]</span></a></dt>
+<dd><p>Bases: <a class="reference internal" href="python_kemptech_api.generic.html#python_kemptech_api.generic.BaseKempObject" title="python_kemptech_api.generic.BaseKempObject"><code class="xref py py-class docutils literal"><span class="pre">python_kemptech_api.generic.BaseKempObject</span></code></a></p>
+<dl class="attribute">
+<dt id="python_kemptech_api.objects.Range.API_INIT_PARAMS">
+<code class="descname">API_INIT_PARAMS</code><em class="property"> = {'mask': 'Mask', 'ip': 'IPAddress'}</em></dt>
+<dd></dd></dl>
+
+<dl class="attribute">
+<dt id="python_kemptech_api.objects.Range.API_TAG">
+<code class="descname">API_TAG</code><em class="property"> = 'IPAddress'</em></dt>
+<dd></dd></dl>
+
+<dl class="attribute">
+<dt id="python_kemptech_api.objects.Range.latitude">
+<code class="descname">latitude</code></dt>
+<dd></dd></dl>
+
+<dl class="attribute">
+<dt id="python_kemptech_api.objects.Range.longitude">
+<code class="descname">longitude</code></dt>
+<dd></dd></dl>
+
+<dl class="method">
+<dt id="python_kemptech_api.objects.Range.populate_default_attributes">
+<code class="descname">populate_default_attributes</code><span class="sig-paren">(</span><em>dictionary</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/python_kemptech_api/objects.html#Range.populate_default_attributes"><span class="viewcode-link">[source]</span></a></dt>
+<dd></dd></dl>
+
+<dl class="method">
+<dt id="python_kemptech_api.objects.Range.save">
+<code class="descname">save</code><span class="sig-paren">(</span><em>update=False</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/python_kemptech_api/objects.html#Range.save"><span class="viewcode-link">[source]</span></a></dt>
+<dd></dd></dl>
+
+</dd></dl>
+
+<dl class="class">
+<dt id="python_kemptech_api.objects.RealServer">
+<em class="property">class </em><code class="descclassname">python_kemptech_api.objects.</code><code class="descname">RealServer</code><span class="sig-paren">(</span><em>loadmaster_virt_service_info</em>, <em>ip</em>, <em>port=80</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/python_kemptech_api/objects.html#RealServer"><span class="viewcode-link">[source]</span></a></dt>
+<dd><p>Bases: <a class="reference internal" href="python_kemptech_api.generic.html#python_kemptech_api.generic.BaseKempObject" title="python_kemptech_api.generic.BaseKempObject"><code class="xref py py-class docutils literal"><span class="pre">python_kemptech_api.generic.BaseKempObject</span></code></a></p>
+<dl class="attribute">
+<dt id="python_kemptech_api.objects.RealServer.API_INIT_PARAMS">
+<code class="descname">API_INIT_PARAMS</code><em class="property"> = {'port': 'Port', 'ip': 'Addr'}</em></dt>
+<dd></dd></dl>
+
+<dl class="attribute">
+<dt id="python_kemptech_api.objects.RealServer.API_TAG">
+<code class="descname">API_TAG</code><em class="property"> = 'Rs'</em></dt>
+<dd></dd></dl>
+
+<dl class="attribute">
+<dt id="python_kemptech_api.objects.RealServer.rs">
+<code class="descname">rs</code></dt>
+<dd></dd></dl>
+
+<dl class="method">
+<dt id="python_kemptech_api.objects.RealServer.save">
+<code class="descname">save</code><span class="sig-paren">(</span><em>update=False</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/python_kemptech_api/objects.html#RealServer.save"><span class="viewcode-link">[source]</span></a></dt>
+<dd></dd></dl>
+
+<dl class="method">
+<dt id="python_kemptech_api.objects.RealServer.to_api_dict">
+<code class="descname">to_api_dict</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="_modules/python_kemptech_api/objects.html#RealServer.to_api_dict"><span class="viewcode-link">[source]</span></a></dt>
+<dd></dd></dl>
+
+</dd></dl>
+
+<dl class="class">
+<dt id="python_kemptech_api.objects.Rule">
+<em class="property">class </em><code class="descclassname">python_kemptech_api.objects.</code><code class="descname">Rule</code><span class="sig-paren">(</span><em>loadmaster_info</em>, <em>name</em>, <em>pattern</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/python_kemptech_api/objects.html#Rule"><span class="viewcode-link">[source]</span></a></dt>
+<dd><p>Bases: <a class="reference internal" href="python_kemptech_api.generic.html#python_kemptech_api.generic.BaseKempObject" title="python_kemptech_api.generic.BaseKempObject"><code class="xref py py-class docutils literal"><span class="pre">python_kemptech_api.generic.BaseKempObject</span></code></a></p>
+<dl class="attribute">
+<dt id="python_kemptech_api.objects.Rule.API_INIT_PARAMS">
+<code class="descname">API_INIT_PARAMS</code><em class="property"> = {'pattern': 'Pattern', 'name': 'Name'}</em></dt>
+<dd></dd></dl>
+
+<dl class="method">
+<dt id="python_kemptech_api.objects.Rule.populate_default_attributes">
+<code class="descname">populate_default_attributes</code><span class="sig-paren">(</span><em>parameters</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/python_kemptech_api/objects.html#Rule.populate_default_attributes"><span class="viewcode-link">[source]</span></a></dt>
+<dd><p>Populate object instance with standard defaults</p>
+</dd></dl>
+
+<dl class="attribute">
+<dt id="python_kemptech_api.objects.Rule.type_string">
+<code class="descname">type_string</code></dt>
+<dd></dd></dl>
+
+</dd></dl>
+
+<dl class="class">
+<dt id="python_kemptech_api.objects.Site">
+<em class="property">class </em><code class="descclassname">python_kemptech_api.objects.</code><code class="descname">Site</code><span class="sig-paren">(</span><em>loadmaster_fqdn_info</em>, <em>ip</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/python_kemptech_api/objects.html#Site"><span class="viewcode-link">[source]</span></a></dt>
+<dd><p>Bases: <a class="reference internal" href="python_kemptech_api.generic.html#python_kemptech_api.generic.BaseKempObject" title="python_kemptech_api.generic.BaseKempObject"><code class="xref py py-class docutils literal"><span class="pre">python_kemptech_api.generic.BaseKempObject</span></code></a></p>
+<dl class="attribute">
+<dt id="python_kemptech_api.objects.Site.API_INIT_PARAMS">
+<code class="descname">API_INIT_PARAMS</code><em class="property"> = {'ip': 'IPAddress'}</em></dt>
+<dd></dd></dl>
+
+<dl class="attribute">
+<dt id="python_kemptech_api.objects.Site.API_TAG">
+<code class="descname">API_TAG</code><em class="property"> = 'Map'</em></dt>
+<dd></dd></dl>
+
+<dl class="method">
+<dt id="python_kemptech_api.objects.Site.add_location">
+<code class="descname">add_location</code><span class="sig-paren">(</span><em>location=None</em>, <em>is_continent=False</em>, <em>is_custom=False</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/python_kemptech_api/objects.html#Site.add_location"><span class="viewcode-link">[source]</span></a></dt>
+<dd></dd></dl>
+
+<dl class="attribute">
+<dt id="python_kemptech_api.objects.Site.ipaddress">
+<code class="descname">ipaddress</code></dt>
+<dd></dd></dl>
+
+<dl class="attribute">
+<dt id="python_kemptech_api.objects.Site.locations">
+<code class="descname">locations</code></dt>
+<dd></dd></dl>
+
+<dl class="attribute">
+<dt id="python_kemptech_api.objects.Site.mappedaddress">
+<code class="descname">mappedaddress</code></dt>
+<dd></dd></dl>
+
+<dl class="attribute">
+<dt id="python_kemptech_api.objects.Site.mappedport">
+<code class="descname">mappedport</code></dt>
+<dd></dd></dl>
+
+<dl class="method">
+<dt id="python_kemptech_api.objects.Site.populate_default_attributes">
+<code class="descname">populate_default_attributes</code><span class="sig-paren">(</span><em>dictionary</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/python_kemptech_api/objects.html#Site.populate_default_attributes"><span class="viewcode-link">[source]</span></a></dt>
+<dd></dd></dl>
+
+<dl class="method">
+<dt id="python_kemptech_api.objects.Site.refresh">
+<code class="descname">refresh</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="_modules/python_kemptech_api/objects.html#Site.refresh"><span class="viewcode-link">[source]</span></a></dt>
+<dd></dd></dl>
+
+<dl class="method">
+<dt id="python_kemptech_api.objects.Site.remove_location">
+<code class="descname">remove_location</code><span class="sig-paren">(</span><em>location</em>, <em>is_continent=False</em>, <em>is_custom=False</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/python_kemptech_api/objects.html#Site.remove_location"><span class="viewcode-link">[source]</span></a></dt>
+<dd></dd></dl>
+
+<dl class="method">
+<dt id="python_kemptech_api.objects.Site.save">
+<code class="descname">save</code><span class="sig-paren">(</span><em>update=False</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/python_kemptech_api/objects.html#Site.save"><span class="viewcode-link">[source]</span></a></dt>
+<dd></dd></dl>
+
+<dl class="method">
+<dt id="python_kemptech_api.objects.Site.set_coordinates">
+<code class="descname">set_coordinates</code><span class="sig-paren">(</span><em>latitude=None</em>, <em>longitude=None</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/python_kemptech_api/objects.html#Site.set_coordinates"><span class="viewcode-link">[source]</span></a></dt>
+<dd></dd></dl>
+
+<dl class="method">
+<dt id="python_kemptech_api.objects.Site.set_locations">
+<code class="descname">set_locations</code><span class="sig-paren">(</span><em>locations</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/python_kemptech_api/objects.html#Site.set_locations"><span class="viewcode-link">[source]</span></a></dt>
+<dd></dd></dl>
+
+</dd></dl>
+
+<dl class="class">
+<dt id="python_kemptech_api.objects.Sso">
+<em class="property">class </em><code class="descclassname">python_kemptech_api.objects.</code><code class="descname">Sso</code><span class="sig-paren">(</span><em>loadmaster_info</em>, <em>name</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/python_kemptech_api/objects.html#Sso"><span class="viewcode-link">[source]</span></a></dt>
+<dd><p>Bases: <a class="reference internal" href="python_kemptech_api.generic.html#python_kemptech_api.generic.BaseKempObject" title="python_kemptech_api.generic.BaseKempObject"><code class="xref py py-class docutils literal"><span class="pre">python_kemptech_api.generic.BaseKempObject</span></code></a></p>
+<dl class="method">
+<dt id="python_kemptech_api.objects.Sso.delete">
+<code class="descname">delete</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="_modules/python_kemptech_api/objects.html#Sso.delete"><span class="viewcode-link">[source]</span></a></dt>
+<dd></dd></dl>
+
+<dl class="method">
+<dt id="python_kemptech_api.objects.Sso.populate_default_attributes">
+<code class="descname">populate_default_attributes</code><span class="sig-paren">(</span><em>sso</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/python_kemptech_api/objects.html#Sso.populate_default_attributes"><span class="viewcode-link">[source]</span></a></dt>
+<dd><p>Populate SSO instance with standard defaults</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="python_kemptech_api.objects.Sso.save">
+<code class="descname">save</code><span class="sig-paren">(</span><em>update=False</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/python_kemptech_api/objects.html#Sso.save"><span class="viewcode-link">[source]</span></a></dt>
+<dd></dd></dl>
+
+</dd></dl>
+
+<dl class="class">
+<dt id="python_kemptech_api.objects.Template">
+<em class="property">class </em><code class="descclassname">python_kemptech_api.objects.</code><code class="descname">Template</code><span class="sig-paren">(</span><em>loadmaster_info</em>, <em>name</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/python_kemptech_api/objects.html#Template"><span class="viewcode-link">[source]</span></a></dt>
+<dd><p>Bases: <a class="reference internal" href="python_kemptech_api.generic.html#python_kemptech_api.generic.BaseKempObject" title="python_kemptech_api.generic.BaseKempObject"><code class="xref py py-class docutils literal"><span class="pre">python_kemptech_api.generic.BaseKempObject</span></code></a></p>
+<dl class="attribute">
+<dt id="python_kemptech_api.objects.Template.API_INIT_PARAMS">
+<code class="descname">API_INIT_PARAMS</code><em class="property"> = {'name': 'name'}</em></dt>
+<dd></dd></dl>
+
+<dl class="attribute">
+<dt id="python_kemptech_api.objects.Template.API_TAG">
+<code class="descname">API_TAG</code><em class="property"> = 'template'</em></dt>
+<dd></dd></dl>
+
+<dl class="method">
+<dt id="python_kemptech_api.objects.Template.save">
+<code class="descname">save</code><span class="sig-paren">(</span><em>update=False</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/python_kemptech_api/objects.html#Template.save"><span class="viewcode-link">[source]</span></a></dt>
+<dd></dd></dl>
+
+</dd></dl>
+
+<dl class="class">
+<dt id="python_kemptech_api.objects.VirtualService">
+<em class="property">class </em><code class="descclassname">python_kemptech_api.objects.</code><code class="descname">VirtualService</code><span class="sig-paren">(</span><em>loadmaster_info</em>, <em>vs</em>, <em>port=80</em>, <em>prot='tcp'</em>, <em>is_sub_vs=False</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/python_kemptech_api/objects.html#VirtualService"><span class="viewcode-link">[source]</span></a></dt>
+<dd><p>Bases: <a class="reference internal" href="python_kemptech_api.generic.html#python_kemptech_api.generic.BaseKempObject" title="python_kemptech_api.generic.BaseKempObject"><code class="xref py py-class docutils literal"><span class="pre">python_kemptech_api.generic.BaseKempObject</span></code></a></p>
+<dl class="attribute">
+<dt id="python_kemptech_api.objects.VirtualService.API_INIT_PARAMS">
+<code class="descname">API_INIT_PARAMS</code><em class="property"> = {'port': 'VSPort', 'prot': 'Protocol', 'vs': 'VSAddress'}</em></dt>
+<dd></dd></dl>
+
+<dl class="attribute">
+<dt id="python_kemptech_api.objects.VirtualService.API_TAG">
+<code class="descname">API_TAG</code><em class="property"> = 'VS'</em></dt>
+<dd></dd></dl>
+
+<dl class="attribute">
+<dt id="python_kemptech_api.objects.VirtualService.acl">
+<code class="descname">acl</code></dt>
+<dd></dd></dl>
+
+<dl class="method">
+<dt id="python_kemptech_api.objects.VirtualService.build_real_server">
+<code class="descname">build_real_server</code><span class="sig-paren">(</span><em>server</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/python_kemptech_api/objects.html#VirtualService.build_real_server"><span class="viewcode-link">[source]</span></a></dt>
+<dd></dd></dl>
+
+<dl class="attribute">
+<dt id="python_kemptech_api.objects.VirtualService.checkuse1_1">
+<code class="descname">checkuse1_1</code></dt>
+<dd><p>This property exists because . can not be in a variable name.
+vs.checkuse1_1 is used for access to this variable, but internally the
+data is stored as obj.checkuse1.1 - this is because in order to write
+to the API, the parameter uses the string literal &#8216;checkuse1.1&#8217;</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="python_kemptech_api.objects.VirtualService.create_access_control">
+<code class="descname">create_access_control</code><span class="sig-paren">(</span><em>addvs</em>, <em>addr</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/python_kemptech_api/objects.html#VirtualService.create_access_control"><span class="viewcode-link">[source]</span></a></dt>
+<dd><p>AccessControl factory with pre-configured LoadMaster connection and
+ACL definition.</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="python_kemptech_api.objects.VirtualService.create_real_server">
+<code class="descname">create_real_server</code><span class="sig-paren">(</span><em>ip</em>, <em>port=80</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/python_kemptech_api/objects.html#VirtualService.create_real_server"><span class="viewcode-link">[source]</span></a></dt>
+<dd><p>RealServer factory with pre-configured LoadMaster connection.</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="python_kemptech_api.objects.VirtualService.create_sub_virtual_service">
+<code class="descname">create_sub_virtual_service</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="_modules/python_kemptech_api/objects.html#VirtualService.create_sub_virtual_service"><span class="viewcode-link">[source]</span></a></dt>
+<dd><p>VirtualService factory with pre-configured LoadMaster connection</p>
+<p>When creating a virtual service that is a sub virtual service you must
+pass the parent index to the constructor and mark the is_sub_vs flag
+as true. This will allow the save() method on the newly created subvs
+instance to be able to create a subvs against the parent vs. The index
+attribute will then be overwritten on save with the subvs&#8217;s index.</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="python_kemptech_api.objects.VirtualService.export">
+<code class="descname">export</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="_modules/python_kemptech_api/objects.html#VirtualService.export"><span class="viewcode-link">[source]</span></a></dt>
+<dd></dd></dl>
+
+<dl class="method">
+<dt id="python_kemptech_api.objects.VirtualService.get_real_server">
+<code class="descname">get_real_server</code><span class="sig-paren">(</span><em>real_server_address=None</em>, <em>real_server_port=None</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/python_kemptech_api/objects.html#VirtualService.get_real_server"><span class="viewcode-link">[source]</span></a></dt>
+<dd></dd></dl>
+
+<dl class="method">
+<dt id="python_kemptech_api.objects.VirtualService.get_real_servers">
+<code class="descname">get_real_servers</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="_modules/python_kemptech_api/objects.html#VirtualService.get_real_servers"><span class="viewcode-link">[source]</span></a></dt>
+<dd></dd></dl>
+
+<dl class="method">
+<dt id="python_kemptech_api.objects.VirtualService.get_vs_acl">
+<code class="descname">get_vs_acl</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="_modules/python_kemptech_api/objects.html#VirtualService.get_vs_acl"><span class="viewcode-link">[source]</span></a></dt>
+<dd></dd></dl>
+
+<dl class="method">
+<dt id="python_kemptech_api.objects.VirtualService.populate_default_attributes">
+<code class="descname">populate_default_attributes</code><span class="sig-paren">(</span><em>service</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/python_kemptech_api/objects.html#VirtualService.populate_default_attributes"><span class="viewcode-link">[source]</span></a></dt>
+<dd><p>Populate VirtualService instance with standard defaults</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="python_kemptech_api.objects.VirtualService.save">
+<code class="descname">save</code><span class="sig-paren">(</span><em>update=False</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/python_kemptech_api/objects.html#VirtualService.save"><span class="viewcode-link">[source]</span></a></dt>
+<dd></dd></dl>
+
+<dl class="attribute">
+<dt id="python_kemptech_api.objects.VirtualService.servers">
+<code class="descname">servers</code></dt>
+<dd></dd></dl>
+
+<dl class="method">
+<dt id="python_kemptech_api.objects.VirtualService.to_api_dict">
+<code class="descname">to_api_dict</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="_modules/python_kemptech_api/objects.html#VirtualService.to_api_dict"><span class="viewcode-link">[source]</span></a></dt>
+<dd></dd></dl>
+
+</dd></dl>
+
+<dl class="class">
+<dt id="python_kemptech_api.objects.VirtualServiceACL">
+<em class="property">class </em><code class="descclassname">python_kemptech_api.objects.</code><code class="descname">VirtualServiceACL</code><span class="sig-paren">(</span><em>loadmaster_virt_service_info</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/python_kemptech_api/objects.html#VirtualServiceACL"><span class="viewcode-link">[source]</span></a></dt>
+<dd><p>Bases: <a class="reference internal" href="#python_kemptech_api.objects.BaseACLObject" title="python_kemptech_api.objects.BaseACLObject"><code class="xref py py-class docutils literal"><span class="pre">python_kemptech_api.objects.BaseACLObject</span></code></a></p>
+</dd></dl>
+
+</div>
+
+
+           </div>
+          </div>
+          <footer>
+  
+    <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
+      
+        <a href="python_kemptech_api.utils.html" class="btn btn-neutral float-right" title="python_kemptech_api.utils module" accesskey="n">Next <span class="fa fa-arrow-circle-right"></span></a>
+      
+      
+        <a href="python_kemptech_api.models.html" class="btn btn-neutral" title="python_kemptech_api.models module" accesskey="p"><span class="fa fa-arrow-circle-left"></span> Previous</a>
+      
+    </div>
+  
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>
+        &copy; Copyright 2016, KEMP Technologies.
+
+    </p>
+  </div>
+  Built with <a href="http://sphinx-doc.org/">Sphinx</a> using a <a href="https://github.com/snide/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>. 
+
+</footer>
+
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+  
+
+
+  
+
+    <script type="text/javascript">
+        var DOCUMENTATION_OPTIONS = {
+            URL_ROOT:'./',
+            VERSION:'0.7.14',
+            COLLAPSE_INDEX:false,
+            FILE_SUFFIX:'.html',
+            HAS_SOURCE:  true
+        };
+    </script>
+      <script type="text/javascript" src="_static/jquery.js"></script>
+      <script type="text/javascript" src="_static/underscore.js"></script>
+      <script type="text/javascript" src="_static/doctools.js"></script>
+
+  
+
+  
+  
+    <script type="text/javascript" src="_static/js/theme.js"></script>
+  
+
+  
+  
+  <script type="text/javascript">
+      jQuery(function () {
+          SphinxRtdTheme.StickyNav.enable();
+      });
+  </script>
+   
+
+</body>
+</html>

@@ -4,70 +4,16 @@ python_kemptech_api package
 Submodules
 ----------
 
-python_kemptech_api.api_xml module
-----------------------------------
+.. toctree::
 
-.. automodule:: python_kemptech_api.api_xml
-    :members:
-    :undoc-members:
-    :show-inheritance:
-
-python_kemptech_api.capabilities module
----------------------------------------
-
-.. automodule:: python_kemptech_api.capabilities
-    :members:
-    :undoc-members:
-    :show-inheritance:
-
-python_kemptech_api.client module
----------------------------------
-
-.. automodule:: python_kemptech_api.client
-    :members:
-    :undoc-members:
-    :show-inheritance:
-
-python_kemptech_api.exceptions module
--------------------------------------
-
-.. automodule:: python_kemptech_api.exceptions
-    :members:
-    :undoc-members:
-    :show-inheritance:
-
-python_kemptech_api.generic module
-----------------------------------
-
-.. automodule:: python_kemptech_api.generic
-    :members:
-    :undoc-members:
-    :show-inheritance:
-
-python_kemptech_api.models module
----------------------------------
-
-.. automodule:: python_kemptech_api.models
-    :members:
-    :undoc-members:
-    :show-inheritance:
-
-python_kemptech_api.objects module
-----------------------------------
-
-.. automodule:: python_kemptech_api.objects
-    :members:
-    :undoc-members:
-    :show-inheritance:
-
-python_kemptech_api.utils module
---------------------------------
-
-.. automodule:: python_kemptech_api.utils
-    :members:
-    :undoc-members:
-    :show-inheritance:
-
+   python_kemptech_api.api_xml
+   python_kemptech_api.capabilities
+   python_kemptech_api.client
+   python_kemptech_api.exceptions
+   python_kemptech_api.generic
+   python_kemptech_api.models
+   python_kemptech_api.objects
+   python_kemptech_api.utils
 
 Module contents
 ---------------

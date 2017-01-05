@@ -186,7 +186,7 @@
 <span class="n">log</span> <span class="o">=</span> <span class="n">logging</span><span class="o">.</span><span class="n">getLogger</span><span class="p">(</span><span class="n">__name__</span><span class="p">)</span>
 
 
-<div class="viewcode-block" id="BaseKempAppliance"><a class="viewcode-back" href="../../python_kemptech_api.html#python_kemptech_api.models.BaseKempAppliance">[docs]</a><span class="k">class</span> <span class="nc">BaseKempAppliance</span><span class="p">(</span><span class="n">HttpClient</span><span class="p">,</span> <span class="n">AccessInfoMixin</span><span class="p">):</span>
+<div class="viewcode-block" id="BaseKempAppliance"><a class="viewcode-back" href="../../python_kemptech_api.models.html#python_kemptech_api.models.BaseKempAppliance">[docs]</a><span class="k">class</span> <span class="nc">BaseKempAppliance</span><span class="p">(</span><span class="n">HttpClient</span><span class="p">,</span> <span class="n">AccessInfoMixin</span><span class="p">):</span>
     <span class="k">def</span> <span class="nf">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">ip</span><span class="p">,</span> <span class="n">username</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">password</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">port</span><span class="o">=</span><span class="mi">443</span><span class="p">,</span> <span class="n">cert</span><span class="o">=</span><span class="kc">None</span><span class="p">):</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">ip_address</span> <span class="o">=</span> <span class="n">ip</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">username</span> <span class="o">=</span> <span class="n">username</span>
@@ -197,9 +197,7 @@
         <span class="bp">self</span><span class="o">.</span><span class="n">version</span> <span class="o">=</span> <span class="kc">None</span>
 
         <span class="nb">super</span><span class="p">(</span><span class="n">BaseKempAppliance</span><span class="p">,</span> <span class="bp">self</span><span class="p">)</span><span class="o">.</span><span class="n">__init__</span><span class="p">(</span><span class="n">utils</span><span class="o">.</span><span class="n">DEFAULT_TLS_VERSION</span><span class="p">,</span>
-                                                <span class="bp">self</span><span class="o">.</span><span class="n">cert</span><span class="p">,</span>
-                                                <span class="n">user</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">username</span><span class="p">,</span>
-                                                <span class="n">password</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">password</span><span class="p">)</span>
+                                                <span class="bp">self</span><span class="o">.</span><span class="n">cert</span><span class="p">)</span>
 
     <span class="k">def</span> <span class="nf">__repr__</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
         <span class="k">return</span> <span class="s1">&#39;</span><span class="si">{}</span><span class="s1">:</span><span class="si">{}</span><span class="s1">&#39;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">ip_address</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">port</span><span class="p">)</span>
@@ -250,7 +248,20 @@
 
     <span class="nd">@property</span>
     <span class="k">def</span> <span class="nf">endpoint</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
-        <span class="k">return</span> <span class="s2">&quot;https://</span><span class="si">{}</span><span class="s2">:</span><span class="si">{}</span><span class="s2">/</span><span class="si">{}</span><span class="s2">&quot;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">ip_address</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">port</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">access_point</span><span class="p">)</span>
+        <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">cert</span><span class="p">:</span>
+            <span class="k">return</span> <span class="s2">&quot;https://</span><span class="si">{ip}</span><span class="s2">:</span><span class="si">{port}</span><span class="s2">/</span><span class="si">{access}</span><span class="s2">&quot;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span>
+                <span class="n">ip</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">ip_address</span><span class="p">,</span>
+                <span class="n">port</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">port</span><span class="p">,</span>
+                <span class="n">access</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">access_point</span>
+            <span class="p">)</span>
+        <span class="k">else</span><span class="p">:</span>
+            <span class="k">return</span> <span class="s2">&quot;https://</span><span class="si">{user}</span><span class="s2">:</span><span class="si">{pw}</span><span class="s2">@</span><span class="si">{ip}</span><span class="s2">:</span><span class="si">{port}</span><span class="s2">/</span><span class="si">{access}</span><span class="s2">&quot;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span>
+                <span class="n">user</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">username</span><span class="p">,</span>
+                <span class="n">pw</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">password</span><span class="p">,</span>
+                <span class="n">ip</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">ip_address</span><span class="p">,</span>
+                <span class="n">port</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">port</span><span class="p">,</span>
+                <span class="n">access</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">access_point</span>
+            <span class="p">)</span>
 
     <span class="nd">@property</span>
     <span class="k">def</span> <span class="nf">capabilities</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
@@ -268,8 +279,6 @@
         <span class="n">command</span> <span class="o">=</span> <span class="s1">&#39;</span><span class="si">{}</span><span class="s1">/</span><span class="si">{}</span><span class="s1">&#39;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">endpoint</span><span class="p">,</span> <span class="n">command</span><span class="p">)</span>
         <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">cert</span><span class="p">:</span>
             <span class="n">curl</span><span class="o">.</span><span class="n">extend</span><span class="p">([</span><span class="s1">&#39;-E&#39;</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">cert</span><span class="p">])</span>
-        <span class="k">else</span><span class="p">:</span>
-            <span class="n">curl</span><span class="o">.</span><span class="n">extend</span><span class="p">([</span><span class="s1">&#39;-u&#39;</span><span class="p">,</span> <span class="s1">&#39;</span><span class="si">{}</span><span class="s1">:</span><span class="si">{}</span><span class="s1">&#39;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">username</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">password</span><span class="p">)])</span>
         <span class="n">curl</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">command</span><span class="p">)</span>
         <span class="k">return</span> <span class="n">curl</span>
 
@@ -326,7 +335,7 @@
     <span class="k">def</span> <span class="nf">__setitem__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">parameter</span><span class="p">,</span> <span class="n">value</span><span class="p">):</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">set_parameter</span><span class="p">(</span><span class="n">parameter</span><span class="p">,</span> <span class="n">value</span><span class="p">)</span>
 
-<div class="viewcode-block" id="BaseKempAppliance.set_parameter"><a class="viewcode-back" href="../../python_kemptech_api.html#python_kemptech_api.models.BaseKempAppliance.set_parameter">[docs]</a>    <span class="k">def</span> <span class="nf">set_parameter</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">parameter</span><span class="p">,</span> <span class="n">value</span><span class="p">):</span>
+<div class="viewcode-block" id="BaseKempAppliance.set_parameter"><a class="viewcode-back" href="../../python_kemptech_api.models.html#python_kemptech_api.models.BaseKempAppliance.set_parameter">[docs]</a>    <span class="k">def</span> <span class="nf">set_parameter</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">parameter</span><span class="p">,</span> <span class="n">value</span><span class="p">):</span>
         <span class="sd">&quot;&quot;&quot;Assign the value to the given loadmaster parameter</span>
 
 <span class="sd">        :param parameter: A valid LoadMaster parameter.</span>
@@ -349,10 +358,10 @@
     <span class="k">def</span> <span class="nf">acl</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
         <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">get_global_acl</span><span class="p">()</span>
 
-<div class="viewcode-block" id="BaseKempAppliance.get_global_acl"><a class="viewcode-back" href="../../python_kemptech_api.html#python_kemptech_api.models.BaseKempAppliance.get_global_acl">[docs]</a>    <span class="k">def</span> <span class="nf">get_global_acl</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+<div class="viewcode-block" id="BaseKempAppliance.get_global_acl"><a class="viewcode-back" href="../../python_kemptech_api.models.html#python_kemptech_api.models.BaseKempAppliance.get_global_acl">[docs]</a>    <span class="k">def</span> <span class="nf">get_global_acl</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
         <span class="k">return</span> <span class="n">GlobalACL</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">access_info</span><span class="p">)</span></div>
 
-<div class="viewcode-block" id="BaseKempAppliance.get_parameter"><a class="viewcode-back" href="../../python_kemptech_api.html#python_kemptech_api.models.BaseKempAppliance.get_parameter">[docs]</a>    <span class="k">def</span> <span class="nf">get_parameter</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">parameter</span><span class="p">):</span>
+<div class="viewcode-block" id="BaseKempAppliance.get_parameter"><a class="viewcode-back" href="../../python_kemptech_api.models.html#python_kemptech_api.models.BaseKempAppliance.get_parameter">[docs]</a>    <span class="k">def</span> <span class="nf">get_parameter</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">parameter</span><span class="p">):</span>
         <span class="sd">&quot;&quot;&quot;Get the value of the given LoadMaster parameter</span>
 
 <span class="sd">        :param parameter: A valid LoadMaster parameter.</span>
@@ -376,7 +385,7 @@
 
         <span class="k">return</span> <span class="n">value</span></div>
 
-<div class="viewcode-block" id="BaseKempAppliance.get_all_parameters"><a class="viewcode-back" href="../../python_kemptech_api.html#python_kemptech_api.models.BaseKempAppliance.get_all_parameters">[docs]</a>    <span class="k">def</span> <span class="nf">get_all_parameters</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+<div class="viewcode-block" id="BaseKempAppliance.get_all_parameters"><a class="viewcode-back" href="../../python_kemptech_api.models.html#python_kemptech_api.models.BaseKempAppliance.get_all_parameters">[docs]</a>    <span class="k">def</span> <span class="nf">get_all_parameters</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
         <span class="sd">&quot;&quot;&quot; Return all parameters as a dict with lowercase keys</span>
 <span class="sd">        :return: A dict of all the parameters, with the keys in lowercase</span>
 <span class="sd">        &quot;&quot;&quot;</span>
@@ -384,7 +393,7 @@
         <span class="n">data</span> <span class="o">=</span> <span class="n">get_data</span><span class="p">(</span><span class="n">response</span><span class="p">)</span>
         <span class="k">return</span> <span class="nb">dict</span><span class="p">((</span><span class="n">k</span><span class="o">.</span><span class="n">lower</span><span class="p">(),</span> <span class="n">v</span><span class="p">)</span> <span class="k">for</span> <span class="n">k</span><span class="p">,</span> <span class="n">v</span> <span class="ow">in</span> <span class="n">data</span><span class="o">.</span><span class="n">items</span><span class="p">())</span></div>
 
-<div class="viewcode-block" id="BaseKempAppliance.enable_api"><a class="viewcode-back" href="../../python_kemptech_api.html#python_kemptech_api.models.BaseKempAppliance.enable_api">[docs]</a>    <span class="k">def</span> <span class="nf">enable_api</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">health_check_api</span><span class="o">=</span><span class="kc">False</span><span class="p">):</span>
+<div class="viewcode-block" id="BaseKempAppliance.enable_api"><a class="viewcode-back" href="../../python_kemptech_api.models.html#python_kemptech_api.models.BaseKempAppliance.enable_api">[docs]</a>    <span class="k">def</span> <span class="nf">enable_api</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">health_check_api</span><span class="o">=</span><span class="kc">False</span><span class="p">):</span>
         <span class="sd">&quot;&quot;&quot; Enable LoadMaster RESTfull API</span>
 
 <span class="sd">        This method will attempt to enable the LoadMaster&#39;s REST API the &#39;right&#39; way</span>
@@ -418,25 +427,25 @@
             <span class="k">raise</span> <span class="n">KempTechApiException</span><span class="p">(</span><span class="n">msg</span><span class="o">=</span><span class="s2">&quot;Enable API failed because of: </span><span class="si">{}</span><span class="s2">&quot;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span>
                 <span class="n">e</span><span class="o">.</span><span class="n">__class__</span><span class="o">.</span><span class="n">__name__</span><span class="p">),</span> <span class="n">is_xml_msg</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span></div>
 
-<div class="viewcode-block" id="BaseKempAppliance.stats"><a class="viewcode-back" href="../../python_kemptech_api.html#python_kemptech_api.models.BaseKempAppliance.stats">[docs]</a>    <span class="k">def</span> <span class="nf">stats</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+<div class="viewcode-block" id="BaseKempAppliance.stats"><a class="viewcode-back" href="../../python_kemptech_api.models.html#python_kemptech_api.models.BaseKempAppliance.stats">[docs]</a>    <span class="k">def</span> <span class="nf">stats</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
         <span class="n">response</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_get</span><span class="p">(</span><span class="s1">&#39;/stats&#39;</span><span class="p">)</span>
         <span class="k">return</span> <span class="n">send_response</span><span class="p">(</span><span class="n">response</span><span class="p">)</span></div>
 
-<div class="viewcode-block" id="BaseKempAppliance.update_firmware"><a class="viewcode-back" href="../../python_kemptech_api.html#python_kemptech_api.models.BaseKempAppliance.update_firmware">[docs]</a>    <span class="k">def</span> <span class="nf">update_firmware</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">file</span><span class="p">):</span>
+<div class="viewcode-block" id="BaseKempAppliance.update_firmware"><a class="viewcode-back" href="../../python_kemptech_api.models.html#python_kemptech_api.models.BaseKempAppliance.update_firmware">[docs]</a>    <span class="k">def</span> <span class="nf">update_firmware</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">file</span><span class="p">):</span>
         <span class="n">response</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_post</span><span class="p">(</span><span class="s1">&#39;/installpatch&#39;</span><span class="p">,</span> <span class="n">file</span><span class="p">)</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">version</span> <span class="o">=</span> <span class="kc">None</span>
         <span class="k">return</span> <span class="n">is_successful</span><span class="p">(</span><span class="n">response</span><span class="p">)</span></div>
 
-<div class="viewcode-block" id="BaseKempAppliance.restore_firmware"><a class="viewcode-back" href="../../python_kemptech_api.html#python_kemptech_api.models.BaseKempAppliance.restore_firmware">[docs]</a>    <span class="k">def</span> <span class="nf">restore_firmware</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+<div class="viewcode-block" id="BaseKempAppliance.restore_firmware"><a class="viewcode-back" href="../../python_kemptech_api.models.html#python_kemptech_api.models.BaseKempAppliance.restore_firmware">[docs]</a>    <span class="k">def</span> <span class="nf">restore_firmware</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
         <span class="n">response</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_get</span><span class="p">(</span><span class="s2">&quot;/restorepatch&quot;</span><span class="p">)</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">version</span> <span class="o">=</span> <span class="kc">None</span>
         <span class="k">return</span> <span class="n">is_successful</span><span class="p">(</span><span class="n">response</span><span class="p">)</span></div>
 
-<div class="viewcode-block" id="BaseKempAppliance.reset_logs"><a class="viewcode-back" href="../../python_kemptech_api.html#python_kemptech_api.models.BaseKempAppliance.reset_logs">[docs]</a>    <span class="k">def</span> <span class="nf">reset_logs</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+<div class="viewcode-block" id="BaseKempAppliance.reset_logs"><a class="viewcode-back" href="../../python_kemptech_api.models.html#python_kemptech_api.models.BaseKempAppliance.reset_logs">[docs]</a>    <span class="k">def</span> <span class="nf">reset_logs</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
         <span class="n">response</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_get</span><span class="p">(</span><span class="s2">&quot;/logging/resetlogs&quot;</span><span class="p">)</span>
         <span class="k">return</span> <span class="n">is_successful</span><span class="p">(</span><span class="n">response</span><span class="p">)</span></div>
 
-<div class="viewcode-block" id="BaseKempAppliance.download_logs"><a class="viewcode-back" href="../../python_kemptech_api.html#python_kemptech_api.models.BaseKempAppliance.download_logs">[docs]</a>    <span class="k">def</span> <span class="nf">download_logs</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">filename</span><span class="o">=</span><span class="kc">None</span><span class="p">):</span>
+<div class="viewcode-block" id="BaseKempAppliance.download_logs"><a class="viewcode-back" href="../../python_kemptech_api.models.html#python_kemptech_api.models.BaseKempAppliance.download_logs">[docs]</a>    <span class="k">def</span> <span class="nf">download_logs</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">filename</span><span class="o">=</span><span class="kc">None</span><span class="p">):</span>
         <span class="n">response</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_get</span><span class="p">(</span><span class="s2">&quot;/logging/downloadlogs&quot;</span><span class="p">)</span>
 
         <span class="n">filename</span> <span class="o">=</span> <span class="n">filename</span> <span class="ow">or</span> <span class="s2">&quot;LoadMaster_&quot;</span> <span class="o">+</span> <span class="bp">self</span><span class="o">.</span><span class="n">ip_address</span> <span class="o">+</span> <span class="s2">&quot;_Logs.tgz&quot;</span>
@@ -446,7 +455,7 @@
 
         <span class="k">return</span> <span class="n">filename</span></div>
 
-<div class="viewcode-block" id="BaseKempAppliance.change_bal_password"><a class="viewcode-back" href="../../python_kemptech_api.html#python_kemptech_api.models.BaseKempAppliance.change_bal_password">[docs]</a>    <span class="k">def</span> <span class="nf">change_bal_password</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">new_password</span><span class="p">):</span>
+<div class="viewcode-block" id="BaseKempAppliance.change_bal_password"><a class="viewcode-back" href="../../python_kemptech_api.models.html#python_kemptech_api.models.BaseKempAppliance.change_bal_password">[docs]</a>    <span class="k">def</span> <span class="nf">change_bal_password</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">new_password</span><span class="p">):</span>
         <span class="n">parameters</span> <span class="o">=</span> <span class="p">{</span>
             <span class="s2">&quot;currpassword&quot;</span><span class="p">:</span> <span class="bp">self</span><span class="o">.</span><span class="n">password</span><span class="p">,</span>
             <span class="s2">&quot;password&quot;</span><span class="p">:</span> <span class="n">new_password</span>
@@ -460,7 +469,7 @@
         <span class="k">else</span><span class="p">:</span>
             <span class="k">return</span> <span class="kc">False</span></div>
 
-<div class="viewcode-block" id="BaseKempAppliance.add_local_user"><a class="viewcode-back" href="../../python_kemptech_api.html#python_kemptech_api.models.BaseKempAppliance.add_local_user">[docs]</a>    <span class="k">def</span> <span class="nf">add_local_user</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">user</span><span class="p">,</span> <span class="n">password</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">radius</span><span class="o">=</span><span class="kc">False</span><span class="p">):</span>
+<div class="viewcode-block" id="BaseKempAppliance.add_local_user"><a class="viewcode-back" href="../../python_kemptech_api.models.html#python_kemptech_api.models.BaseKempAppliance.add_local_user">[docs]</a>    <span class="k">def</span> <span class="nf">add_local_user</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">user</span><span class="p">,</span> <span class="n">password</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">radius</span><span class="o">=</span><span class="kc">False</span><span class="p">):</span>
         <span class="n">params</span> <span class="o">=</span> <span class="p">{</span>
             <span class="s1">&#39;user&#39;</span><span class="p">:</span> <span class="n">user</span><span class="p">,</span>
             <span class="s1">&#39;radius&#39;</span><span class="p">:</span> <span class="n">get_api_bool_string</span><span class="p">(</span><span class="n">radius</span><span class="p">),</span>
@@ -479,12 +488,12 @@
                 <span class="k">raise</span>
         <span class="k">return</span> <span class="n">send_response</span><span class="p">(</span><span class="n">response</span><span class="p">)</span></div>
 
-<div class="viewcode-block" id="BaseKempAppliance.delete_local_user"><a class="viewcode-back" href="../../python_kemptech_api.html#python_kemptech_api.models.BaseKempAppliance.delete_local_user">[docs]</a>    <span class="k">def</span> <span class="nf">delete_local_user</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">user</span><span class="p">):</span>
+<div class="viewcode-block" id="BaseKempAppliance.delete_local_user"><a class="viewcode-back" href="../../python_kemptech_api.models.html#python_kemptech_api.models.BaseKempAppliance.delete_local_user">[docs]</a>    <span class="k">def</span> <span class="nf">delete_local_user</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">user</span><span class="p">):</span>
         <span class="n">params</span> <span class="o">=</span> <span class="p">{</span><span class="s1">&#39;user&#39;</span><span class="p">:</span> <span class="n">user</span><span class="p">}</span>
         <span class="n">response</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_get</span><span class="p">(</span><span class="s1">&#39;/userdellocal&#39;</span><span class="p">,</span> <span class="n">params</span><span class="p">)</span>
         <span class="k">return</span> <span class="n">send_response</span><span class="p">(</span><span class="n">response</span><span class="p">)</span></div>
 
-<div class="viewcode-block" id="BaseKempAppliance.set_user_perms"><a class="viewcode-back" href="../../python_kemptech_api.html#python_kemptech_api.models.BaseKempAppliance.set_user_perms">[docs]</a>    <span class="k">def</span> <span class="nf">set_user_perms</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">user</span><span class="p">,</span> <span class="n">perms</span><span class="o">=</span><span class="kc">None</span><span class="p">):</span>
+<div class="viewcode-block" id="BaseKempAppliance.set_user_perms"><a class="viewcode-back" href="../../python_kemptech_api.models.html#python_kemptech_api.models.BaseKempAppliance.set_user_perms">[docs]</a>    <span class="k">def</span> <span class="nf">set_user_perms</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">user</span><span class="p">,</span> <span class="n">perms</span><span class="o">=</span><span class="kc">None</span><span class="p">):</span>
         <span class="n">perms</span> <span class="o">=</span> <span class="p">[]</span> <span class="k">if</span> <span class="n">perms</span> <span class="ow">is</span> <span class="kc">None</span> <span class="k">else</span> <span class="n">perms</span>
         <span class="n">perms</span> <span class="o">=</span> <span class="n">cast_to_list</span><span class="p">(</span><span class="n">perms</span><span class="p">)</span>
         <span class="n">params</span> <span class="o">=</span> <span class="p">{</span>
@@ -494,12 +503,12 @@
         <span class="n">response</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_get</span><span class="p">(</span><span class="s1">&#39;/usersetperms&#39;</span><span class="p">,</span> <span class="n">params</span><span class="p">)</span>
         <span class="k">return</span> <span class="n">send_response</span><span class="p">(</span><span class="n">response</span><span class="p">)</span></div>
 
-<div class="viewcode-block" id="BaseKempAppliance.new_user_cert"><a class="viewcode-back" href="../../python_kemptech_api.html#python_kemptech_api.models.BaseKempAppliance.new_user_cert">[docs]</a>    <span class="k">def</span> <span class="nf">new_user_cert</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">user</span><span class="p">):</span>
+<div class="viewcode-block" id="BaseKempAppliance.new_user_cert"><a class="viewcode-back" href="../../python_kemptech_api.models.html#python_kemptech_api.models.BaseKempAppliance.new_user_cert">[docs]</a>    <span class="k">def</span> <span class="nf">new_user_cert</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">user</span><span class="p">):</span>
         <span class="n">params</span> <span class="o">=</span> <span class="p">{</span><span class="s1">&#39;user&#39;</span><span class="p">:</span> <span class="n">user</span><span class="p">}</span>
         <span class="n">response</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_get</span><span class="p">(</span><span class="s1">&#39;/usernewcert&#39;</span><span class="p">,</span> <span class="n">params</span><span class="p">)</span>
         <span class="k">return</span> <span class="n">send_response</span><span class="p">(</span><span class="n">response</span><span class="p">)</span></div>
 
-<div class="viewcode-block" id="BaseKempAppliance.download_user_cert"><a class="viewcode-back" href="../../python_kemptech_api.html#python_kemptech_api.models.BaseKempAppliance.download_user_cert">[docs]</a>    <span class="k">def</span> <span class="nf">download_user_cert</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">user</span><span class="p">,</span> <span class="n">location</span><span class="o">=</span><span class="n">os</span><span class="o">.</span><span class="n">curdir</span><span class="p">):</span>
+<div class="viewcode-block" id="BaseKempAppliance.download_user_cert"><a class="viewcode-back" href="../../python_kemptech_api.models.html#python_kemptech_api.models.BaseKempAppliance.download_user_cert">[docs]</a>    <span class="k">def</span> <span class="nf">download_user_cert</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">user</span><span class="p">,</span> <span class="n">location</span><span class="o">=</span><span class="n">os</span><span class="o">.</span><span class="n">curdir</span><span class="p">):</span>
         <span class="n">file_name</span> <span class="o">=</span> <span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">location</span><span class="p">,</span> <span class="s2">&quot;</span><span class="si">{}</span><span class="s2">.cert&quot;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">user</span><span class="p">))</span>
 
         <span class="k">with</span> <span class="nb">open</span><span class="p">(</span><span class="n">file_name</span><span class="p">,</span> <span class="s1">&#39;wb&#39;</span><span class="p">)</span> <span class="k">as</span> <span class="n">file</span><span class="p">:</span>
@@ -511,15 +520,15 @@
                 <span class="k">raise</span> <span class="n">DownloadUserCertFailed</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">ip_address</span><span class="p">)</span>
         <span class="k">return</span> <span class="n">file_name</span></div>
 
-<div class="viewcode-block" id="BaseKempAppliance.shutdown"><a class="viewcode-back" href="../../python_kemptech_api.html#python_kemptech_api.models.BaseKempAppliance.shutdown">[docs]</a>    <span class="k">def</span> <span class="nf">shutdown</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+<div class="viewcode-block" id="BaseKempAppliance.shutdown"><a class="viewcode-back" href="../../python_kemptech_api.models.html#python_kemptech_api.models.BaseKempAppliance.shutdown">[docs]</a>    <span class="k">def</span> <span class="nf">shutdown</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
         <span class="n">response</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_get</span><span class="p">(</span><span class="s1">&#39;/shutdown&#39;</span><span class="p">)</span>
         <span class="k">return</span> <span class="n">is_successful</span><span class="p">(</span><span class="n">response</span><span class="p">)</span></div>
 
-<div class="viewcode-block" id="BaseKempAppliance.reboot"><a class="viewcode-back" href="../../python_kemptech_api.html#python_kemptech_api.models.BaseKempAppliance.reboot">[docs]</a>    <span class="k">def</span> <span class="nf">reboot</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+<div class="viewcode-block" id="BaseKempAppliance.reboot"><a class="viewcode-back" href="../../python_kemptech_api.models.html#python_kemptech_api.models.BaseKempAppliance.reboot">[docs]</a>    <span class="k">def</span> <span class="nf">reboot</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
         <span class="n">response</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_get</span><span class="p">(</span><span class="s1">&#39;/reboot&#39;</span><span class="p">)</span>
         <span class="k">return</span> <span class="n">is_successful</span><span class="p">(</span><span class="n">response</span><span class="p">)</span></div>
 
-<div class="viewcode-block" id="BaseKempAppliance.get_license_info"><a class="viewcode-back" href="../../python_kemptech_api.html#python_kemptech_api.models.BaseKempAppliance.get_license_info">[docs]</a>    <span class="k">def</span> <span class="nf">get_license_info</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+<div class="viewcode-block" id="BaseKempAppliance.get_license_info"><a class="viewcode-back" href="../../python_kemptech_api.models.html#python_kemptech_api.models.BaseKempAppliance.get_license_info">[docs]</a>    <span class="k">def</span> <span class="nf">get_license_info</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
         <span class="k">try</span><span class="p">:</span>
             <span class="n">response</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_get</span><span class="p">(</span><span class="s1">&#39;360/licenseinfo&#39;</span><span class="p">)</span>
             <span class="k">return</span> <span class="n">send_response</span><span class="p">(</span><span class="n">response</span><span class="p">)</span>
@@ -528,15 +537,15 @@
             <span class="k">raise</span> <span class="n">CommandNotAvailableException</span><span class="p">(</span>
                 <span class="bp">self</span><span class="p">,</span> <span class="s1">&#39;/access360/licenseinfo&#39;</span><span class="p">)</span></div>
 
-<div class="viewcode-block" id="BaseKempAppliance.list_addons"><a class="viewcode-back" href="../../python_kemptech_api.html#python_kemptech_api.models.BaseKempAppliance.list_addons">[docs]</a>    <span class="k">def</span> <span class="nf">list_addons</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+<div class="viewcode-block" id="BaseKempAppliance.list_addons"><a class="viewcode-back" href="../../python_kemptech_api.models.html#python_kemptech_api.models.BaseKempAppliance.list_addons">[docs]</a>    <span class="k">def</span> <span class="nf">list_addons</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
         <span class="n">response</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_get</span><span class="p">(</span><span class="s1">&#39;/listaddon&#39;</span><span class="p">)</span>
         <span class="k">return</span> <span class="n">send_response</span><span class="p">(</span><span class="n">response</span><span class="p">)</span></div>
 
-<div class="viewcode-block" id="BaseKempAppliance.get_diagnostic"><a class="viewcode-back" href="../../python_kemptech_api.html#python_kemptech_api.models.BaseKempAppliance.get_diagnostic">[docs]</a>    <span class="k">def</span> <span class="nf">get_diagnostic</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">diagnostic</span><span class="p">):</span>
+<div class="viewcode-block" id="BaseKempAppliance.get_diagnostic"><a class="viewcode-back" href="../../python_kemptech_api.models.html#python_kemptech_api.models.BaseKempAppliance.get_diagnostic">[docs]</a>    <span class="k">def</span> <span class="nf">get_diagnostic</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">diagnostic</span><span class="p">):</span>
         <span class="n">response</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_get</span><span class="p">(</span><span class="s1">&#39;/logging/</span><span class="si">{}</span><span class="s1">&#39;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">diagnostic</span><span class="p">))</span>
         <span class="k">return</span> <span class="n">response</span></div>
 
-<div class="viewcode-block" id="BaseKempAppliance.backup"><a class="viewcode-back" href="../../python_kemptech_api.html#python_kemptech_api.models.BaseKempAppliance.backup">[docs]</a>    <span class="k">def</span> <span class="nf">backup</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">location</span><span class="o">=</span><span class="s1">&#39;backups&#39;</span><span class="p">):</span>
+<div class="viewcode-block" id="BaseKempAppliance.backup"><a class="viewcode-back" href="../../python_kemptech_api.models.html#python_kemptech_api.models.BaseKempAppliance.backup">[docs]</a>    <span class="k">def</span> <span class="nf">backup</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">location</span><span class="o">=</span><span class="s1">&#39;backups&#39;</span><span class="p">):</span>
         <span class="k">if</span> <span class="ow">not</span> <span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">exists</span><span class="p">(</span><span class="n">location</span><span class="p">):</span>
             <span class="n">os</span><span class="o">.</span><span class="n">makedirs</span><span class="p">(</span><span class="n">location</span><span class="p">)</span>
         <span class="n">file_name</span> <span class="o">=</span> <span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">location</span><span class="p">,</span> <span class="s2">&quot;</span><span class="si">{}</span><span class="s2">_</span><span class="si">{}</span><span class="s2">.backup&quot;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span>
@@ -550,7 +559,7 @@
                 <span class="k">raise</span> <span class="n">BackupFailed</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">ip_address</span><span class="p">)</span>
         <span class="k">return</span> <span class="n">file_name</span></div>
 
-<div class="viewcode-block" id="BaseKempAppliance.restore_backup"><a class="viewcode-back" href="../../python_kemptech_api.html#python_kemptech_api.models.BaseKempAppliance.restore_backup">[docs]</a>    <span class="k">def</span> <span class="nf">restore_backup</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">backup_type</span><span class="p">,</span> <span class="n">file</span><span class="p">):</span>
+<div class="viewcode-block" id="BaseKempAppliance.restore_backup"><a class="viewcode-back" href="../../python_kemptech_api.models.html#python_kemptech_api.models.BaseKempAppliance.restore_backup">[docs]</a>    <span class="k">def</span> <span class="nf">restore_backup</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">backup_type</span><span class="p">,</span> <span class="n">file</span><span class="p">):</span>
         <span class="c1"># 1 LoadMaster Base Configuration</span>
         <span class="c1"># 2 Virtual Service Configuration</span>
         <span class="c1"># 3 GEO Configuration</span>
@@ -561,7 +570,7 @@
                               <span class="n">parameters</span><span class="o">=</span><span class="n">params</span><span class="p">)</span>
         <span class="k">return</span> <span class="n">send_response</span><span class="p">(</span><span class="n">response</span><span class="p">)</span></div>
 
-<div class="viewcode-block" id="BaseKempAppliance.alsi_license"><a class="viewcode-back" href="../../python_kemptech_api.html#python_kemptech_api.models.BaseKempAppliance.alsi_license">[docs]</a>    <span class="k">def</span> <span class="nf">alsi_license</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">kemp_id</span><span class="p">,</span> <span class="n">password</span><span class="p">):</span>
+<div class="viewcode-block" id="BaseKempAppliance.alsi_license"><a class="viewcode-back" href="../../python_kemptech_api.models.html#python_kemptech_api.models.BaseKempAppliance.alsi_license">[docs]</a>    <span class="k">def</span> <span class="nf">alsi_license</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">kemp_id</span><span class="p">,</span> <span class="n">password</span><span class="p">):</span>
         <span class="n">params</span> <span class="o">=</span> <span class="p">{</span>
             <span class="s2">&quot;kempid&quot;</span><span class="p">:</span> <span class="n">kemp_id</span><span class="p">,</span>
             <span class="s2">&quot;password&quot;</span><span class="p">:</span> <span class="n">password</span><span class="p">,</span>
@@ -569,20 +578,20 @@
         <span class="n">response</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_get</span><span class="p">(</span><span class="s1">&#39;/alsilicense&#39;</span><span class="p">,</span> <span class="n">parameters</span><span class="o">=</span><span class="n">params</span><span class="p">)</span>
         <span class="k">return</span> <span class="n">send_response</span><span class="p">(</span><span class="n">response</span><span class="p">)</span></div>
 
-<div class="viewcode-block" id="BaseKempAppliance.offline_license"><a class="viewcode-back" href="../../python_kemptech_api.html#python_kemptech_api.models.BaseKempAppliance.offline_license">[docs]</a>    <span class="k">def</span> <span class="nf">offline_license</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">license_file</span><span class="p">):</span>
+<div class="viewcode-block" id="BaseKempAppliance.offline_license"><a class="viewcode-back" href="../../python_kemptech_api.models.html#python_kemptech_api.models.BaseKempAppliance.offline_license">[docs]</a>    <span class="k">def</span> <span class="nf">offline_license</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">license_file</span><span class="p">):</span>
         <span class="n">response</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_post</span><span class="p">(</span><span class="s2">&quot;/license&quot;</span><span class="p">,</span> <span class="n">file</span><span class="o">=</span><span class="n">license_file</span><span class="p">)</span>
         <span class="k">return</span> <span class="n">send_response</span><span class="p">(</span><span class="n">response</span><span class="p">)</span></div>
 
-<div class="viewcode-block" id="BaseKempAppliance.set_initial_password"><a class="viewcode-back" href="../../python_kemptech_api.html#python_kemptech_api.models.BaseKempAppliance.set_initial_password">[docs]</a>    <span class="k">def</span> <span class="nf">set_initial_password</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">password</span><span class="p">):</span>
+<div class="viewcode-block" id="BaseKempAppliance.set_initial_password"><a class="viewcode-back" href="../../python_kemptech_api.models.html#python_kemptech_api.models.BaseKempAppliance.set_initial_password">[docs]</a>    <span class="k">def</span> <span class="nf">set_initial_password</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">password</span><span class="p">):</span>
         <span class="n">params</span> <span class="o">=</span> <span class="p">{</span><span class="s2">&quot;passwd&quot;</span><span class="p">:</span> <span class="n">password</span><span class="p">}</span>
         <span class="n">response</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_get</span><span class="p">(</span><span class="s1">&#39;/set_initial_passwd&#39;</span><span class="p">,</span> <span class="n">parameters</span><span class="o">=</span><span class="n">params</span><span class="p">)</span>
         <span class="k">return</span> <span class="n">send_response</span><span class="p">(</span><span class="n">response</span><span class="p">)</span></div>
 
-<div class="viewcode-block" id="BaseKempAppliance.kill_asl_instance"><a class="viewcode-back" href="../../python_kemptech_api.html#python_kemptech_api.models.BaseKempAppliance.kill_asl_instance">[docs]</a>    <span class="k">def</span> <span class="nf">kill_asl_instance</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+<div class="viewcode-block" id="BaseKempAppliance.kill_asl_instance"><a class="viewcode-back" href="../../python_kemptech_api.models.html#python_kemptech_api.models.BaseKempAppliance.kill_asl_instance">[docs]</a>    <span class="k">def</span> <span class="nf">kill_asl_instance</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
         <span class="n">response</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_get</span><span class="p">(</span><span class="s1">&#39;/killaslinstance&#39;</span><span class="p">)</span>
         <span class="k">return</span> <span class="n">send_response</span><span class="p">(</span><span class="n">response</span><span class="p">)</span></div>
 
-<div class="viewcode-block" id="BaseKempAppliance.get_interfaces"><a class="viewcode-back" href="../../python_kemptech_api.html#python_kemptech_api.models.BaseKempAppliance.get_interfaces">[docs]</a>    <span class="k">def</span> <span class="nf">get_interfaces</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+<div class="viewcode-block" id="BaseKempAppliance.get_interfaces"><a class="viewcode-back" href="../../python_kemptech_api.models.html#python_kemptech_api.models.BaseKempAppliance.get_interfaces">[docs]</a>    <span class="k">def</span> <span class="nf">get_interfaces</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
         <span class="n">interfaces</span> <span class="o">=</span> <span class="p">[]</span>
         <span class="k">try</span><span class="p">:</span>
             <span class="n">response</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_get</span><span class="p">(</span><span class="s1">&#39;/showiface&#39;</span><span class="p">)</span>
@@ -620,13 +629,13 @@
             <span class="k">else</span><span class="p">:</span>
                 <span class="k">raise</span></div>
 
-<div class="viewcode-block" id="BaseKempAppliance.get_interface"><a class="viewcode-back" href="../../python_kemptech_api.html#python_kemptech_api.models.BaseKempAppliance.get_interface">[docs]</a>    <span class="k">def</span> <span class="nf">get_interface</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">interface</span><span class="p">):</span>
+<div class="viewcode-block" id="BaseKempAppliance.get_interface"><a class="viewcode-back" href="../../python_kemptech_api.models.html#python_kemptech_api.models.BaseKempAppliance.get_interface">[docs]</a>    <span class="k">def</span> <span class="nf">get_interface</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">interface</span><span class="p">):</span>
         <span class="n">response</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_get</span><span class="p">(</span><span class="s2">&quot;/showiface&quot;</span><span class="p">,</span> <span class="p">{</span><span class="s2">&quot;interface&quot;</span><span class="p">:</span> <span class="n">interface</span><span class="p">})</span>
         <span class="n">xml_object</span> <span class="o">=</span> <span class="n">get_data</span><span class="p">(</span><span class="n">response</span><span class="p">)</span>
         <span class="n">obj</span> <span class="o">=</span> <span class="n">build_object</span><span class="p">(</span><span class="n">Interface</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">access_info</span><span class="p">,</span> <span class="n">xml_object</span><span class="p">)</span>
         <span class="k">return</span> <span class="n">obj</span></div>
 
-<div class="viewcode-block" id="BaseKempAppliance.initial_license"><a class="viewcode-back" href="../../python_kemptech_api.html#python_kemptech_api.models.BaseKempAppliance.initial_license">[docs]</a>    <span class="k">def</span> <span class="nf">initial_license</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span>
+<div class="viewcode-block" id="BaseKempAppliance.initial_license"><a class="viewcode-back" href="../../python_kemptech_api.models.html#python_kemptech_api.models.BaseKempAppliance.initial_license">[docs]</a>    <span class="k">def</span> <span class="nf">initial_license</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span>
                         <span class="n">license_type</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span>
                         <span class="n">callhome</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span>
                         <span class="n">new_password</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span>
@@ -642,7 +651,7 @@
         <span class="k">else</span><span class="p">:</span>
             <span class="k">raise</span> <span class="n">KempTechApiException</span><span class="p">(</span><span class="s2">&quot;Please license before proceeding.&quot;</span><span class="p">)</span></div>
 
-<div class="viewcode-block" id="BaseKempAppliance.get_eula"><a class="viewcode-back" href="../../python_kemptech_api.html#python_kemptech_api.models.BaseKempAppliance.get_eula">[docs]</a>    <span class="k">def</span> <span class="nf">get_eula</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+<div class="viewcode-block" id="BaseKempAppliance.get_eula"><a class="viewcode-back" href="../../python_kemptech_api.models.html#python_kemptech_api.models.BaseKempAppliance.get_eula">[docs]</a>    <span class="k">def</span> <span class="nf">get_eula</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
         <span class="n">api</span> <span class="o">=</span> <span class="s2">&quot;/readeula&quot;</span>
 
         <span class="n">response</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_get</span><span class="p">(</span><span class="n">api</span><span class="p">)</span>
@@ -655,7 +664,7 @@
         <span class="bp">self</span><span class="o">.</span><span class="n">magic</span> <span class="o">=</span> <span class="n">data</span><span class="p">[</span><span class="s1">&#39;Magic&#39;</span><span class="p">]</span>
         <span class="k">return</span> <span class="n">data</span><span class="p">[</span><span class="s1">&#39;Eula&#39;</span><span class="p">]</span></div>
 
-<div class="viewcode-block" id="BaseKempAppliance.accept_eula"><a class="viewcode-back" href="../../python_kemptech_api.html#python_kemptech_api.models.BaseKempAppliance.accept_eula">[docs]</a>    <span class="k">def</span> <span class="nf">accept_eula</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">license_type</span><span class="o">=</span><span class="s2">&quot;trial&quot;</span><span class="p">):</span>
+<div class="viewcode-block" id="BaseKempAppliance.accept_eula"><a class="viewcode-back" href="../../python_kemptech_api.models.html#python_kemptech_api.models.BaseKempAppliance.accept_eula">[docs]</a>    <span class="k">def</span> <span class="nf">accept_eula</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">license_type</span><span class="o">=</span><span class="s2">&quot;trial&quot;</span><span class="p">):</span>
         <span class="n">api</span> <span class="o">=</span> <span class="s2">&quot;/accepteula&quot;</span>
 
         <span class="n">parameters</span> <span class="o">=</span> <span class="p">{</span>
@@ -672,7 +681,7 @@
 
         <span class="bp">self</span><span class="o">.</span><span class="n">magic</span> <span class="o">=</span> <span class="n">data</span><span class="p">[</span><span class="s1">&#39;Magic&#39;</span><span class="p">]</span></div>
 
-<div class="viewcode-block" id="BaseKempAppliance.set_callhome"><a class="viewcode-back" href="../../python_kemptech_api.html#python_kemptech_api.models.BaseKempAppliance.set_callhome">[docs]</a>    <span class="k">def</span> <span class="nf">set_callhome</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">enabled</span><span class="o">=</span><span class="kc">True</span><span class="p">):</span>
+<div class="viewcode-block" id="BaseKempAppliance.set_callhome"><a class="viewcode-back" href="../../python_kemptech_api.models.html#python_kemptech_api.models.BaseKempAppliance.set_callhome">[docs]</a>    <span class="k">def</span> <span class="nf">set_callhome</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">enabled</span><span class="o">=</span><span class="kc">True</span><span class="p">):</span>
         <span class="n">api</span> <span class="o">=</span> <span class="s2">&quot;/accepteula2&quot;</span>
 
         <span class="k">if</span> <span class="n">enabled</span> <span class="ow">is</span> <span class="kc">True</span><span class="p">:</span>
@@ -690,7 +699,7 @@
         <span class="k">if</span> <span class="ow">not</span> <span class="n">is_successful</span><span class="p">(</span><span class="n">response</span><span class="p">):</span>
             <span class="k">raise</span> <span class="n">KempTechApiException</span><span class="p">(</span><span class="n">get_error_msg</span><span class="p">(</span><span class="n">response</span><span class="p">))</span></div>
 
-<div class="viewcode-block" id="BaseKempAppliance.initial_password"><a class="viewcode-back" href="../../python_kemptech_api.html#python_kemptech_api.models.BaseKempAppliance.initial_password">[docs]</a>    <span class="k">def</span> <span class="nf">initial_password</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">password</span><span class="o">=</span><span class="s2">&quot;2fourall&quot;</span><span class="p">):</span>
+<div class="viewcode-block" id="BaseKempAppliance.initial_password"><a class="viewcode-back" href="../../python_kemptech_api.models.html#python_kemptech_api.models.BaseKempAppliance.initial_password">[docs]</a>    <span class="k">def</span> <span class="nf">initial_password</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">password</span><span class="o">=</span><span class="s2">&quot;2fourall&quot;</span><span class="p">):</span>
         <span class="n">api</span> <span class="o">=</span> <span class="s2">&quot;/set_initial_passwd&quot;</span>
 
         <span class="n">parameters</span> <span class="o">=</span> <span class="p">{</span>
@@ -704,7 +713,7 @@
 
         <span class="bp">self</span><span class="o">.</span><span class="n">password</span> <span class="o">=</span> <span class="n">password</span></div>
 
-<div class="viewcode-block" id="BaseKempAppliance.ping"><a class="viewcode-back" href="../../python_kemptech_api.html#python_kemptech_api.models.BaseKempAppliance.ping">[docs]</a>    <span class="k">def</span> <span class="nf">ping</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">host</span><span class="p">,</span> <span class="n">interface</span><span class="o">=</span><span class="kc">None</span><span class="p">):</span>
+<div class="viewcode-block" id="BaseKempAppliance.ping"><a class="viewcode-back" href="../../python_kemptech_api.models.html#python_kemptech_api.models.BaseKempAppliance.ping">[docs]</a>    <span class="k">def</span> <span class="nf">ping</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">host</span><span class="p">,</span> <span class="n">interface</span><span class="o">=</span><span class="kc">None</span><span class="p">):</span>
         <span class="n">parameters</span> <span class="o">=</span> <span class="p">{</span>
             <span class="s2">&quot;addr&quot;</span><span class="p">:</span> <span class="n">host</span>
         <span class="p">}</span>
@@ -721,7 +730,7 @@
                 <span class="k">return</span> <span class="kc">False</span>
             <span class="k">return</span> <span class="kc">True</span></div>
 
-<div class="viewcode-block" id="BaseKempAppliance.refresh_dns"><a class="viewcode-back" href="../../python_kemptech_api.html#python_kemptech_api.models.BaseKempAppliance.refresh_dns">[docs]</a>    <span class="k">def</span> <span class="nf">refresh_dns</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+<div class="viewcode-block" id="BaseKempAppliance.refresh_dns"><a class="viewcode-back" href="../../python_kemptech_api.models.html#python_kemptech_api.models.BaseKempAppliance.refresh_dns">[docs]</a>    <span class="k">def</span> <span class="nf">refresh_dns</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
         <span class="n">api</span> <span class="o">=</span> <span class="s2">&quot;/resolvenow&quot;</span>
         <span class="n">response</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_get</span><span class="p">(</span><span class="n">api</span><span class="p">)</span>
 
@@ -731,7 +740,7 @@
             <span class="k">raise</span> <span class="n">KempTechApiException</span><span class="p">(</span><span class="n">get_error_msg</span><span class="p">(</span><span class="n">response</span><span class="p">))</span></div></div>
 
 
-<div class="viewcode-block" id="Geo"><a class="viewcode-back" href="../../python_kemptech_api.html#python_kemptech_api.models.Geo">[docs]</a><span class="k">class</span> <span class="nc">Geo</span><span class="p">(</span><span class="n">BaseKempAppliance</span><span class="p">):</span>
+<div class="viewcode-block" id="Geo"><a class="viewcode-back" href="../../python_kemptech_api.models.html#python_kemptech_api.models.Geo">[docs]</a><span class="k">class</span> <span class="nc">Geo</span><span class="p">(</span><span class="n">BaseKempAppliance</span><span class="p">):</span>
     <span class="sd">&quot;&quot;&quot;GEO API object.&quot;&quot;&quot;</span>
     <span class="n">_GEO_PARAMS</span> <span class="o">=</span> <span class="p">[</span>
         <span class="s2">&quot;sourceofauthority&quot;</span><span class="p">,</span>
@@ -756,7 +765,7 @@
         <span class="k">else</span><span class="p">:</span>
             <span class="bp">self</span><span class="o">.</span><span class="n">set_parameter</span><span class="p">(</span><span class="n">parameter</span><span class="p">,</span> <span class="n">value</span><span class="p">)</span>
 
-<div class="viewcode-block" id="Geo.set_geo_parameter"><a class="viewcode-back" href="../../python_kemptech_api.html#python_kemptech_api.models.Geo.set_geo_parameter">[docs]</a>    <span class="k">def</span> <span class="nf">set_geo_parameter</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">parameter</span><span class="p">,</span> <span class="n">value</span><span class="p">):</span>
+<div class="viewcode-block" id="Geo.set_geo_parameter"><a class="viewcode-back" href="../../python_kemptech_api.models.html#python_kemptech_api.models.Geo.set_geo_parameter">[docs]</a>    <span class="k">def</span> <span class="nf">set_geo_parameter</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">parameter</span><span class="p">,</span> <span class="n">value</span><span class="p">):</span>
         <span class="sd">&quot;&quot;&quot;assign the value to the given loadmaster parameter</span>
 
 <span class="sd">        :param parameter: a valid LoadMaster parameter.</span>
@@ -772,7 +781,7 @@
         <span class="k">if</span> <span class="ow">not</span> <span class="n">is_successful</span><span class="p">(</span><span class="n">response</span><span class="p">):</span>
             <span class="k">raise</span> <span class="n">LoadMasterParameterError</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">parameters</span><span class="p">)</span></div>
 
-<div class="viewcode-block" id="Geo.get_geo_parameter"><a class="viewcode-back" href="../../python_kemptech_api.html#python_kemptech_api.models.Geo.get_geo_parameter">[docs]</a>    <span class="k">def</span> <span class="nf">get_geo_parameter</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">parameter</span><span class="p">):</span>
+<div class="viewcode-block" id="Geo.get_geo_parameter"><a class="viewcode-back" href="../../python_kemptech_api.models.html#python_kemptech_api.models.Geo.get_geo_parameter">[docs]</a>    <span class="k">def</span> <span class="nf">get_geo_parameter</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">parameter</span><span class="p">):</span>
         <span class="sd">&quot;&quot;&quot;get the value of the given GEO parameter</span>
 
 <span class="sd">        :param parameter: a valid GEO parameter.</span>
@@ -795,11 +804,11 @@
         <span class="n">value</span> <span class="o">=</span> <span class="n">_find_key_recursive</span><span class="p">(</span><span class="n">data</span><span class="p">,</span> <span class="n">parameter</span><span class="p">)</span>
         <span class="k">return</span> <span class="n">value</span></div>
 
-<div class="viewcode-block" id="Geo.enable_geo"><a class="viewcode-back" href="../../python_kemptech_api.html#python_kemptech_api.models.Geo.enable_geo">[docs]</a>    <span class="k">def</span> <span class="nf">enable_geo</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+<div class="viewcode-block" id="Geo.enable_geo"><a class="viewcode-back" href="../../python_kemptech_api.models.html#python_kemptech_api.models.Geo.enable_geo">[docs]</a>    <span class="k">def</span> <span class="nf">enable_geo</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
         <span class="n">response</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_get</span><span class="p">(</span><span class="s1">&#39;/enablegeo&#39;</span><span class="p">)</span>
         <span class="k">return</span> <span class="n">is_successful</span><span class="p">(</span><span class="n">response</span><span class="p">)</span></div>
 
-<div class="viewcode-block" id="Geo.disable_geo"><a class="viewcode-back" href="../../python_kemptech_api.html#python_kemptech_api.models.Geo.disable_geo">[docs]</a>    <span class="k">def</span> <span class="nf">disable_geo</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+<div class="viewcode-block" id="Geo.disable_geo"><a class="viewcode-back" href="../../python_kemptech_api.models.html#python_kemptech_api.models.Geo.disable_geo">[docs]</a>    <span class="k">def</span> <span class="nf">disable_geo</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
         <span class="n">response</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_get</span><span class="p">(</span><span class="s1">&#39;/disablegeo&#39;</span><span class="p">)</span>
         <span class="k">return</span> <span class="n">is_successful</span><span class="p">(</span><span class="n">response</span><span class="p">)</span></div>
 
@@ -820,7 +829,7 @@
         <span class="k">return</span> <span class="p">{</span><span class="n">customlocation</span><span class="o">.</span><span class="n">name</span><span class="p">:</span> <span class="n">customlocation</span>
                 <span class="k">for</span> <span class="n">customlocation</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">get_customlocations</span><span class="p">()}</span>
 
-<div class="viewcode-block" id="Geo.get_acl_settings"><a class="viewcode-back" href="../../python_kemptech_api.html#python_kemptech_api.models.Geo.get_acl_settings">[docs]</a>    <span class="k">def</span> <span class="nf">get_acl_settings</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+<div class="viewcode-block" id="Geo.get_acl_settings"><a class="viewcode-back" href="../../python_kemptech_api.models.html#python_kemptech_api.models.Geo.get_acl_settings">[docs]</a>    <span class="k">def</span> <span class="nf">get_acl_settings</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
         <span class="n">response</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_get</span><span class="p">(</span><span class="s2">&quot;/geoacl/getsettings&quot;</span><span class="p">)</span>
 
         <span class="k">if</span> <span class="n">is_successful</span><span class="p">(</span><span class="n">response</span><span class="p">):</span>
@@ -848,7 +857,7 @@
 
         <span class="k">return</span> <span class="n">acl_settings</span></div>
 
-<div class="viewcode-block" id="Geo.set_acl_settings"><a class="viewcode-back" href="../../python_kemptech_api.html#python_kemptech_api.models.Geo.set_acl_settings">[docs]</a>    <span class="k">def</span> <span class="nf">set_acl_settings</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span>
+<div class="viewcode-block" id="Geo.set_acl_settings"><a class="viewcode-back" href="../../python_kemptech_api.models.html#python_kemptech_api.models.Geo.set_acl_settings">[docs]</a>    <span class="k">def</span> <span class="nf">set_acl_settings</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span>
                          <span class="n">autoupdate</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span>
                          <span class="n">autoinstall</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span>
                          <span class="n">installtime</span><span class="o">=</span><span class="kc">None</span><span class="p">):</span>
@@ -916,7 +925,7 @@
     <span class="k">def</span> <span class="nf">acl_lastinstalled</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
         <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">get_acl_settings</span><span class="p">()[</span><span class="s1">&#39;lastinstalled&#39;</span><span class="p">]</span>
 
-<div class="viewcode-block" id="Geo.acl_update"><a class="viewcode-back" href="../../python_kemptech_api.html#python_kemptech_api.models.Geo.acl_update">[docs]</a>    <span class="k">def</span> <span class="nf">acl_update</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+<div class="viewcode-block" id="Geo.acl_update"><a class="viewcode-back" href="../../python_kemptech_api.models.html#python_kemptech_api.models.Geo.acl_update">[docs]</a>    <span class="k">def</span> <span class="nf">acl_update</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
         <span class="n">response</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_get</span><span class="p">(</span><span class="s2">&quot;/geoacl/updatenow&quot;</span><span class="p">)</span>
 
         <span class="k">if</span> <span class="n">is_successful</span><span class="p">(</span><span class="n">response</span><span class="p">):</span>
@@ -924,7 +933,7 @@
         <span class="k">else</span><span class="p">:</span>
             <span class="k">raise</span> <span class="n">KempTechApiException</span><span class="p">(</span><span class="n">get_error_msg</span><span class="p">(</span><span class="n">response</span><span class="p">))</span></div>
 
-<div class="viewcode-block" id="Geo.acl_install"><a class="viewcode-back" href="../../python_kemptech_api.html#python_kemptech_api.models.Geo.acl_install">[docs]</a>    <span class="k">def</span> <span class="nf">acl_install</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+<div class="viewcode-block" id="Geo.acl_install"><a class="viewcode-back" href="../../python_kemptech_api.models.html#python_kemptech_api.models.Geo.acl_install">[docs]</a>    <span class="k">def</span> <span class="nf">acl_install</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
         <span class="n">response</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_get</span><span class="p">(</span><span class="s2">&quot;/geoacl/installnow&quot;</span><span class="p">)</span>
 
         <span class="k">if</span> <span class="n">is_successful</span><span class="p">(</span><span class="n">response</span><span class="p">):</span>
@@ -954,7 +963,7 @@
 
         <span class="k">return</span> <span class="n">response</span>
 
-<div class="viewcode-block" id="Geo.get_acl"><a class="viewcode-back" href="../../python_kemptech_api.html#python_kemptech_api.models.Geo.get_acl">[docs]</a>    <span class="k">def</span> <span class="nf">get_acl</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="nb">type</span><span class="p">):</span>
+<div class="viewcode-block" id="Geo.get_acl"><a class="viewcode-back" href="../../python_kemptech_api.models.html#python_kemptech_api.models.Geo.get_acl">[docs]</a>    <span class="k">def</span> <span class="nf">get_acl</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="nb">type</span><span class="p">):</span>
         <span class="n">parameters</span> <span class="o">=</span> <span class="p">{</span>
             <span class="s2">&quot;type&quot;</span><span class="p">:</span> <span class="nb">type</span>
         <span class="p">}</span>
@@ -979,7 +988,7 @@
 
         <span class="k">return</span> <span class="n">acl_list</span></div>
 
-<div class="viewcode-block" id="Geo.add_acl"><a class="viewcode-back" href="../../python_kemptech_api.html#python_kemptech_api.models.Geo.add_acl">[docs]</a>    <span class="k">def</span> <span class="nf">add_acl</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="nb">type</span><span class="p">,</span> <span class="n">value</span><span class="p">):</span>
+<div class="viewcode-block" id="Geo.add_acl"><a class="viewcode-back" href="../../python_kemptech_api.models.html#python_kemptech_api.models.Geo.add_acl">[docs]</a>    <span class="k">def</span> <span class="nf">add_acl</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="nb">type</span><span class="p">,</span> <span class="n">value</span><span class="p">):</span>
         <span class="n">parameters</span> <span class="o">=</span> <span class="p">{</span>
             <span class="s2">&quot;type&quot;</span><span class="p">:</span> <span class="nb">type</span><span class="p">,</span>
             <span class="s2">&quot;addr&quot;</span><span class="p">:</span> <span class="n">value</span>
@@ -992,7 +1001,7 @@
         <span class="k">else</span><span class="p">:</span>
             <span class="k">raise</span> <span class="n">KempTechApiException</span><span class="p">(</span><span class="n">get_error_msg</span><span class="p">(</span><span class="n">response</span><span class="p">))</span></div>
 
-<div class="viewcode-block" id="Geo.remove_acl"><a class="viewcode-back" href="../../python_kemptech_api.html#python_kemptech_api.models.Geo.remove_acl">[docs]</a>    <span class="k">def</span> <span class="nf">remove_acl</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="nb">type</span><span class="p">,</span> <span class="n">value</span><span class="p">):</span>
+<div class="viewcode-block" id="Geo.remove_acl"><a class="viewcode-back" href="../../python_kemptech_api.models.html#python_kemptech_api.models.Geo.remove_acl">[docs]</a>    <span class="k">def</span> <span class="nf">remove_acl</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="nb">type</span><span class="p">,</span> <span class="n">value</span><span class="p">):</span>
         <span class="n">parameters</span> <span class="o">=</span> <span class="p">{</span>
             <span class="s2">&quot;type&quot;</span><span class="p">:</span> <span class="nb">type</span><span class="p">,</span>
             <span class="s2">&quot;addr&quot;</span><span class="p">:</span> <span class="n">value</span>
@@ -1005,7 +1014,7 @@
         <span class="k">else</span><span class="p">:</span>
             <span class="k">raise</span> <span class="n">KempTechApiException</span><span class="p">(</span><span class="n">get_error_msg</span><span class="p">(</span><span class="n">response</span><span class="p">))</span></div>
 
-<div class="viewcode-block" id="Geo.set_acl"><a class="viewcode-back" href="../../python_kemptech_api.html#python_kemptech_api.models.Geo.set_acl">[docs]</a>    <span class="k">def</span> <span class="nf">set_acl</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="nb">type</span><span class="p">,</span> <span class="n">value</span><span class="p">):</span>
+<div class="viewcode-block" id="Geo.set_acl"><a class="viewcode-back" href="../../python_kemptech_api.models.html#python_kemptech_api.models.Geo.set_acl">[docs]</a>    <span class="k">def</span> <span class="nf">set_acl</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="nb">type</span><span class="p">,</span> <span class="n">value</span><span class="p">):</span>
         <span class="k">if</span> <span class="ow">not</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">value</span><span class="p">,</span> <span class="nb">list</span><span class="p">):</span>
             <span class="k">raise</span> <span class="ne">ValueError</span><span class="p">(</span><span class="s2">&quot;Setting ACL expects a list of IP networks&quot;</span><span class="p">)</span>
 
@@ -1036,10 +1045,10 @@
     <span class="k">def</span> <span class="nf">acl_blacklist</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">value</span><span class="p">):</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">set_acl</span><span class="p">(</span><span class="s2">&quot;black&quot;</span><span class="p">,</span> <span class="n">value</span><span class="p">)</span>
 
-<div class="viewcode-block" id="Geo.create_fqdn"><a class="viewcode-back" href="../../python_kemptech_api.html#python_kemptech_api.models.Geo.create_fqdn">[docs]</a>    <span class="k">def</span> <span class="nf">create_fqdn</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">fqdn</span><span class="p">):</span>
+<div class="viewcode-block" id="Geo.create_fqdn"><a class="viewcode-back" href="../../python_kemptech_api.models.html#python_kemptech_api.models.Geo.create_fqdn">[docs]</a>    <span class="k">def</span> <span class="nf">create_fqdn</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">fqdn</span><span class="p">):</span>
         <span class="k">return</span> <span class="n">Fqdn</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">access_info</span><span class="p">,</span> <span class="n">fqdn</span><span class="p">)</span></div>
 
-<div class="viewcode-block" id="Geo.get_fqdns"><a class="viewcode-back" href="../../python_kemptech_api.html#python_kemptech_api.models.Geo.get_fqdns">[docs]</a>    <span class="k">def</span> <span class="nf">get_fqdns</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+<div class="viewcode-block" id="Geo.get_fqdns"><a class="viewcode-back" href="../../python_kemptech_api.models.html#python_kemptech_api.models.Geo.get_fqdns">[docs]</a>    <span class="k">def</span> <span class="nf">get_fqdns</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
         <span class="k">try</span><span class="p">:</span>
             <span class="n">response</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_get</span><span class="p">(</span><span class="s2">&quot;/listfqdns&quot;</span><span class="p">)</span>
             <span class="n">data</span> <span class="o">=</span> <span class="n">get_data</span><span class="p">(</span><span class="n">response</span><span class="p">)</span>
@@ -1048,7 +1057,7 @@
             <span class="c1"># If API returns &#39;No geo data found&#39; return an empty list</span>
             <span class="k">return</span> <span class="p">[]</span></div>
 
-<div class="viewcode-block" id="Geo.get_fqdn"><a class="viewcode-back" href="../../python_kemptech_api.html#python_kemptech_api.models.Geo.get_fqdn">[docs]</a>    <span class="k">def</span> <span class="nf">get_fqdn</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">fqdn</span><span class="p">):</span>
+<div class="viewcode-block" id="Geo.get_fqdn"><a class="viewcode-back" href="../../python_kemptech_api.models.html#python_kemptech_api.models.Geo.get_fqdn">[docs]</a>    <span class="k">def</span> <span class="nf">get_fqdn</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">fqdn</span><span class="p">):</span>
         <span class="n">service_id</span> <span class="o">=</span> <span class="p">{</span>
             <span class="s2">&quot;fqdn&quot;</span><span class="p">:</span> <span class="n">fqdn</span>
         <span class="p">}</span>
@@ -1063,11 +1072,11 @@
         <span class="n">fqdn</span> <span class="o">=</span> <span class="n">build_object</span><span class="p">(</span><span class="n">Fqdn</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">access_info</span><span class="p">,</span> <span class="n">data</span><span class="p">)</span>
         <span class="k">return</span> <span class="n">fqdn</span></div>
 
-<div class="viewcode-block" id="Geo.create_cluster"><a class="viewcode-back" href="../../python_kemptech_api.html#python_kemptech_api.models.Geo.create_cluster">[docs]</a>    <span class="k">def</span> <span class="nf">create_cluster</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">ip</span><span class="p">,</span> <span class="n">name</span><span class="p">):</span>
+<div class="viewcode-block" id="Geo.create_cluster"><a class="viewcode-back" href="../../python_kemptech_api.models.html#python_kemptech_api.models.Geo.create_cluster">[docs]</a>    <span class="k">def</span> <span class="nf">create_cluster</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">ip</span><span class="p">,</span> <span class="n">name</span><span class="p">):</span>
         <span class="sd">&quot;&quot;&quot;Cluster factory with pre-configured LoadMaster connection.&quot;&quot;&quot;</span>
         <span class="k">return</span> <span class="n">Cluster</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">access_info</span><span class="p">,</span> <span class="n">ip</span><span class="p">,</span> <span class="n">name</span><span class="p">)</span></div>
 
-<div class="viewcode-block" id="Geo.get_clusters"><a class="viewcode-back" href="../../python_kemptech_api.html#python_kemptech_api.models.Geo.get_clusters">[docs]</a>    <span class="k">def</span> <span class="nf">get_clusters</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+<div class="viewcode-block" id="Geo.get_clusters"><a class="viewcode-back" href="../../python_kemptech_api.models.html#python_kemptech_api.models.Geo.get_clusters">[docs]</a>    <span class="k">def</span> <span class="nf">get_clusters</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
         <span class="k">try</span><span class="p">:</span>
             <span class="n">response</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_get</span><span class="p">(</span><span class="s2">&quot;/listclusters&quot;</span><span class="p">)</span>
             <span class="n">data</span> <span class="o">=</span> <span class="n">get_data</span><span class="p">(</span><span class="n">response</span><span class="p">)</span>
@@ -1082,7 +1091,7 @@
             <span class="n">cluster_list</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">cluster</span><span class="p">)</span>
         <span class="k">return</span> <span class="n">cluster_list</span></div>
 
-<div class="viewcode-block" id="Geo.get_cluster"><a class="viewcode-back" href="../../python_kemptech_api.html#python_kemptech_api.models.Geo.get_cluster">[docs]</a>    <span class="k">def</span> <span class="nf">get_cluster</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">ip</span><span class="p">):</span>
+<div class="viewcode-block" id="Geo.get_cluster"><a class="viewcode-back" href="../../python_kemptech_api.models.html#python_kemptech_api.models.Geo.get_cluster">[docs]</a>    <span class="k">def</span> <span class="nf">get_cluster</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">ip</span><span class="p">):</span>
         <span class="n">service_id</span> <span class="o">=</span> <span class="p">{</span><span class="s2">&quot;ip&quot;</span><span class="p">:</span> <span class="n">ip</span><span class="p">}</span>
         <span class="n">response</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_get</span><span class="p">(</span><span class="s2">&quot;/showcluster&quot;</span><span class="p">,</span> <span class="n">service_id</span><span class="p">)</span>
         <span class="n">data</span> <span class="o">=</span> <span class="n">get_data</span><span class="p">(</span><span class="n">response</span><span class="p">)</span>
@@ -1095,7 +1104,7 @@
         <span class="n">cluster</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">build_cluster</span><span class="p">(</span><span class="n">cluster_data</span><span class="p">)</span>
         <span class="k">return</span> <span class="n">cluster</span></div>
 
-<div class="viewcode-block" id="Geo.build_cluster"><a class="viewcode-back" href="../../python_kemptech_api.html#python_kemptech_api.models.Geo.build_cluster">[docs]</a>    <span class="k">def</span> <span class="nf">build_cluster</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">cluster</span><span class="p">):</span>
+<div class="viewcode-block" id="Geo.build_cluster"><a class="viewcode-back" href="../../python_kemptech_api.models.html#python_kemptech_api.models.Geo.build_cluster">[docs]</a>    <span class="k">def</span> <span class="nf">build_cluster</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">cluster</span><span class="p">):</span>
         <span class="sd">&quot;&quot;&quot;Create a Cluster instance with standard defaults&quot;&quot;&quot;</span>
         <span class="n">cluster_object</span> <span class="o">=</span> <span class="n">Cluster</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">access_info</span><span class="p">,</span>
                                  <span class="n">cluster</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s1">&#39;IPAddress&#39;</span><span class="p">),</span>
@@ -1103,12 +1112,12 @@
         <span class="n">cluster_object</span><span class="o">.</span><span class="n">populate_default_attributes</span><span class="p">(</span><span class="n">cluster</span><span class="p">)</span>
         <span class="k">return</span> <span class="n">cluster_object</span></div>
 
-<div class="viewcode-block" id="Geo.create_range"><a class="viewcode-back" href="../../python_kemptech_api.html#python_kemptech_api.models.Geo.create_range">[docs]</a>    <span class="k">def</span> <span class="nf">create_range</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">ip</span><span class="p">,</span> <span class="n">mask</span><span class="p">):</span>
+<div class="viewcode-block" id="Geo.create_range"><a class="viewcode-back" href="../../python_kemptech_api.models.html#python_kemptech_api.models.Geo.create_range">[docs]</a>    <span class="k">def</span> <span class="nf">create_range</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">ip</span><span class="p">,</span> <span class="n">mask</span><span class="p">):</span>
         <span class="sd">&quot;&quot;&quot;Range factory with pre-configured LoadMaster connection.&quot;&quot;&quot;</span>
         <span class="n">iprange</span> <span class="o">=</span> <span class="n">Range</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">access_info</span><span class="p">,</span> <span class="n">ip</span><span class="p">,</span> <span class="n">mask</span><span class="p">)</span>
         <span class="k">return</span> <span class="n">iprange</span></div>
 
-<div class="viewcode-block" id="Geo.get_ranges"><a class="viewcode-back" href="../../python_kemptech_api.html#python_kemptech_api.models.Geo.get_ranges">[docs]</a>    <span class="k">def</span> <span class="nf">get_ranges</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+<div class="viewcode-block" id="Geo.get_ranges"><a class="viewcode-back" href="../../python_kemptech_api.models.html#python_kemptech_api.models.Geo.get_ranges">[docs]</a>    <span class="k">def</span> <span class="nf">get_ranges</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
         <span class="k">try</span><span class="p">:</span>
             <span class="n">response</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_get</span><span class="p">(</span><span class="s2">&quot;/listips&quot;</span><span class="p">)</span>
             <span class="n">data</span> <span class="o">=</span> <span class="n">get_data</span><span class="p">(</span><span class="n">response</span><span class="p">)</span>
@@ -1123,7 +1132,7 @@
             <span class="n">range_list</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="nb">range</span><span class="p">)</span>
         <span class="k">return</span> <span class="n">range_list</span></div>
 
-<div class="viewcode-block" id="Geo.get_range"><a class="viewcode-back" href="../../python_kemptech_api.html#python_kemptech_api.models.Geo.get_range">[docs]</a>    <span class="k">def</span> <span class="nf">get_range</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">ip</span><span class="p">):</span>
+<div class="viewcode-block" id="Geo.get_range"><a class="viewcode-back" href="../../python_kemptech_api.models.html#python_kemptech_api.models.Geo.get_range">[docs]</a>    <span class="k">def</span> <span class="nf">get_range</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">ip</span><span class="p">):</span>
         <span class="n">service_id</span> <span class="o">=</span> <span class="p">{</span><span class="s2">&quot;ipaddress&quot;</span><span class="p">:</span> <span class="n">ip</span><span class="p">}</span>
         <span class="n">response</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_get</span><span class="p">(</span><span class="s2">&quot;/showip&quot;</span><span class="p">,</span> <span class="n">service_id</span><span class="p">)</span>
         <span class="n">data</span> <span class="o">=</span> <span class="n">get_data</span><span class="p">(</span><span class="n">response</span><span class="p">)</span>
@@ -1134,7 +1143,7 @@
                 <span class="s2">&quot;Unexepected number of ranges returned&quot;</span><span class="p">,</span> <span class="n">range_data</span><span class="p">)</span>
         <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">build_range</span><span class="p">(</span><span class="n">range_data</span><span class="p">)</span></div>
 
-<div class="viewcode-block" id="Geo.build_range"><a class="viewcode-back" href="../../python_kemptech_api.html#python_kemptech_api.models.Geo.build_range">[docs]</a>    <span class="k">def</span> <span class="nf">build_range</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="nb">range</span><span class="p">):</span>
+<div class="viewcode-block" id="Geo.build_range"><a class="viewcode-back" href="../../python_kemptech_api.models.html#python_kemptech_api.models.Geo.build_range">[docs]</a>    <span class="k">def</span> <span class="nf">build_range</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="nb">range</span><span class="p">):</span>
         <span class="sd">&quot;&quot;&quot;Create a Range instance with standard defaults&quot;&quot;&quot;</span>
         <span class="n">range_object</span> <span class="o">=</span> <span class="n">Range</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">access_info</span><span class="p">,</span>
                              <span class="nb">range</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s1">&#39;IPAddress&#39;</span><span class="p">),</span>
@@ -1142,11 +1151,11 @@
         <span class="n">range_object</span><span class="o">.</span><span class="n">populate_default_attributes</span><span class="p">(</span><span class="nb">range</span><span class="p">)</span>
         <span class="k">return</span> <span class="n">range_object</span></div>
 
-<div class="viewcode-block" id="Geo.create_customlocation"><a class="viewcode-back" href="../../python_kemptech_api.html#python_kemptech_api.models.Geo.create_customlocation">[docs]</a>    <span class="k">def</span> <span class="nf">create_customlocation</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">name</span><span class="p">):</span>
+<div class="viewcode-block" id="Geo.create_customlocation"><a class="viewcode-back" href="../../python_kemptech_api.models.html#python_kemptech_api.models.Geo.create_customlocation">[docs]</a>    <span class="k">def</span> <span class="nf">create_customlocation</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">name</span><span class="p">):</span>
         <span class="sd">&quot;&quot;&quot;CustomLocation factory with pre-configured LoadMaster connection.&quot;&quot;&quot;</span>
         <span class="k">return</span> <span class="n">CustomLocation</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">access_info</span><span class="p">,</span> <span class="n">name</span><span class="p">)</span></div>
 
-<div class="viewcode-block" id="Geo.get_customlocations"><a class="viewcode-back" href="../../python_kemptech_api.html#python_kemptech_api.models.Geo.get_customlocations">[docs]</a>    <span class="k">def</span> <span class="nf">get_customlocations</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+<div class="viewcode-block" id="Geo.get_customlocations"><a class="viewcode-back" href="../../python_kemptech_api.models.html#python_kemptech_api.models.Geo.get_customlocations">[docs]</a>    <span class="k">def</span> <span class="nf">get_customlocations</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
         <span class="k">try</span><span class="p">:</span>
             <span class="n">response</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_get</span><span class="p">(</span><span class="s2">&quot;/listcustomlocation&quot;</span><span class="p">)</span>
             <span class="n">data</span> <span class="o">=</span> <span class="n">get_data</span><span class="p">(</span><span class="n">response</span><span class="p">)</span>
@@ -1161,7 +1170,7 @@
             <span class="n">customlocation_list</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">customlocation</span><span class="p">)</span>
         <span class="k">return</span> <span class="n">customlocation_list</span></div>
 
-<div class="viewcode-block" id="Geo.get_customlocation"><a class="viewcode-back" href="../../python_kemptech_api.html#python_kemptech_api.models.Geo.get_customlocation">[docs]</a>    <span class="k">def</span> <span class="nf">get_customlocation</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">name</span><span class="p">):</span>
+<div class="viewcode-block" id="Geo.get_customlocation"><a class="viewcode-back" href="../../python_kemptech_api.models.html#python_kemptech_api.models.Geo.get_customlocation">[docs]</a>    <span class="k">def</span> <span class="nf">get_customlocation</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">name</span><span class="p">):</span>
         <span class="n">service_id</span> <span class="o">=</span> <span class="p">{</span><span class="s2">&quot;name&quot;</span><span class="p">:</span> <span class="n">name</span><span class="p">}</span>
         <span class="n">response</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_get</span><span class="p">(</span><span class="s2">&quot;/listcustomlocation&quot;</span><span class="p">,</span> <span class="n">service_id</span><span class="p">)</span>
         <span class="n">data</span> <span class="o">=</span> <span class="n">get_data</span><span class="p">(</span><span class="n">response</span><span class="p">)</span>
@@ -1178,7 +1187,7 @@
         <span class="n">customlocation</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">build_range</span><span class="p">(</span><span class="n">customlocation_data</span><span class="p">)</span>
         <span class="k">return</span> <span class="n">customlocation</span></div>
 
-<div class="viewcode-block" id="Geo.build_customlocation"><a class="viewcode-back" href="../../python_kemptech_api.html#python_kemptech_api.models.Geo.build_customlocation">[docs]</a>    <span class="k">def</span> <span class="nf">build_customlocation</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">customlocation</span><span class="p">):</span>
+<div class="viewcode-block" id="Geo.build_customlocation"><a class="viewcode-back" href="../../python_kemptech_api.models.html#python_kemptech_api.models.Geo.build_customlocation">[docs]</a>    <span class="k">def</span> <span class="nf">build_customlocation</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">customlocation</span><span class="p">):</span>
         <span class="sd">&quot;&quot;&quot;Create a Range instance with standard defaults&quot;&quot;&quot;</span>
         <span class="n">customlocation_object</span> <span class="o">=</span> <span class="n">CustomLocation</span><span class="p">(</span>
             <span class="bp">self</span><span class="o">.</span><span class="n">access_info</span><span class="p">,</span>
@@ -1186,7 +1195,7 @@
         <span class="k">return</span> <span class="n">customlocation_object</span></div></div>
 
 
-<div class="viewcode-block" id="LoadMaster"><a class="viewcode-back" href="../../python_kemptech_api.html#python_kemptech_api.models.LoadMaster">[docs]</a><span class="k">class</span> <span class="nc">LoadMaster</span><span class="p">(</span><span class="n">BaseKempAppliance</span><span class="p">):</span>
+<div class="viewcode-block" id="LoadMaster"><a class="viewcode-back" href="../../python_kemptech_api.models.html#python_kemptech_api.models.LoadMaster">[docs]</a><span class="k">class</span> <span class="nc">LoadMaster</span><span class="p">(</span><span class="n">BaseKempAppliance</span><span class="p">):</span>
     <span class="sd">&quot;&quot;&quot;LoadMaster API object.&quot;&quot;&quot;</span>
 
     <span class="nd">@property</span>
@@ -1210,13 +1219,13 @@
         <span class="k">return</span> <span class="p">{</span><span class="n">certificate</span><span class="o">.</span><span class="n">certname</span><span class="p">:</span> <span class="n">certificate</span> <span class="k">for</span> <span class="n">certificate</span> <span class="ow">in</span>
                 <span class="bp">self</span><span class="o">.</span><span class="n">get_certificates</span><span class="p">()}</span>
 
-<div class="viewcode-block" id="LoadMaster.get_adaptive_parameters"><a class="viewcode-back" href="../../python_kemptech_api.html#python_kemptech_api.models.LoadMaster.get_adaptive_parameters">[docs]</a>    <span class="k">def</span> <span class="nf">get_adaptive_parameters</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+<div class="viewcode-block" id="LoadMaster.get_adaptive_parameters"><a class="viewcode-back" href="../../python_kemptech_api.models.html#python_kemptech_api.models.LoadMaster.get_adaptive_parameters">[docs]</a>    <span class="k">def</span> <span class="nf">get_adaptive_parameters</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
         <span class="n">response</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_get</span><span class="p">(</span><span class="s2">&quot;/showadaptive&quot;</span><span class="p">)</span>
         <span class="n">data</span> <span class="o">=</span> <span class="n">get_data</span><span class="p">(</span><span class="n">response</span><span class="p">)</span>
 
         <span class="k">return</span> <span class="n">data</span><span class="p">[</span><span class="s1">&#39;Data&#39;</span><span class="p">]</span></div>
 
-<div class="viewcode-block" id="LoadMaster.set_adaptive_parameters"><a class="viewcode-back" href="../../python_kemptech_api.html#python_kemptech_api.models.LoadMaster.set_adaptive_parameters">[docs]</a>    <span class="k">def</span> <span class="nf">set_adaptive_parameters</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span>
+<div class="viewcode-block" id="LoadMaster.set_adaptive_parameters"><a class="viewcode-back" href="../../python_kemptech_api.models.html#python_kemptech_api.models.LoadMaster.set_adaptive_parameters">[docs]</a>    <span class="k">def</span> <span class="nf">set_adaptive_parameters</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span>
                                 <span class="n">adaptiveurl</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span>
                                 <span class="n">adaptiveport</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span>
                                 <span class="n">adaptiveinterval</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span>
@@ -1248,7 +1257,7 @@
         <span class="k">if</span> <span class="ow">not</span> <span class="n">is_successful</span><span class="p">(</span><span class="n">response</span><span class="p">):</span>
             <span class="k">raise</span> <span class="n">LoadMasterParameterError</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">parameters</span><span class="p">)</span></div>
 
-<div class="viewcode-block" id="LoadMaster.get_check_parameters"><a class="viewcode-back" href="../../python_kemptech_api.html#python_kemptech_api.models.LoadMaster.get_check_parameters">[docs]</a>    <span class="k">def</span> <span class="nf">get_check_parameters</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+<div class="viewcode-block" id="LoadMaster.get_check_parameters"><a class="viewcode-back" href="../../python_kemptech_api.models.html#python_kemptech_api.models.LoadMaster.get_check_parameters">[docs]</a>    <span class="k">def</span> <span class="nf">get_check_parameters</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
         <span class="n">response</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_get</span><span class="p">(</span><span class="s2">&quot;/showhealth&quot;</span><span class="p">)</span>
         <span class="n">data</span> <span class="o">=</span> <span class="n">get_data</span><span class="p">(</span><span class="n">response</span><span class="p">)</span>
         <span class="n">formatted</span> <span class="o">=</span> <span class="p">{}</span>
@@ -1258,7 +1267,7 @@
 
         <span class="k">return</span> <span class="n">formatted</span></div>
 
-<div class="viewcode-block" id="LoadMaster.set_check_parameters"><a class="viewcode-back" href="../../python_kemptech_api.html#python_kemptech_api.models.LoadMaster.set_check_parameters">[docs]</a>    <span class="k">def</span> <span class="nf">set_check_parameters</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span>
+<div class="viewcode-block" id="LoadMaster.set_check_parameters"><a class="viewcode-back" href="../../python_kemptech_api.models.html#python_kemptech_api.models.LoadMaster.set_check_parameters">[docs]</a>    <span class="k">def</span> <span class="nf">set_check_parameters</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span>
                              <span class="n">retryinterval</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span>
                              <span class="n">timeout</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span>
                              <span class="n">retrycount</span><span class="o">=</span><span class="kc">None</span><span class="p">):</span>
@@ -1290,10 +1299,10 @@
         <span class="k">if</span> <span class="ow">not</span> <span class="n">is_successful</span><span class="p">(</span><span class="n">response</span><span class="p">):</span>
             <span class="k">raise</span> <span class="n">LoadMasterParameterError</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">parameters</span><span class="p">)</span></div>
 
-<div class="viewcode-block" id="LoadMaster.create_sso"><a class="viewcode-back" href="../../python_kemptech_api.html#python_kemptech_api.models.LoadMaster.create_sso">[docs]</a>    <span class="k">def</span> <span class="nf">create_sso</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">name</span><span class="p">):</span>
+<div class="viewcode-block" id="LoadMaster.create_sso"><a class="viewcode-back" href="../../python_kemptech_api.models.html#python_kemptech_api.models.LoadMaster.create_sso">[docs]</a>    <span class="k">def</span> <span class="nf">create_sso</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">name</span><span class="p">):</span>
         <span class="k">return</span> <span class="n">Sso</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">access_info</span><span class="p">,</span> <span class="n">name</span><span class="p">)</span></div>
 
-<div class="viewcode-block" id="LoadMaster.get_ssos"><a class="viewcode-back" href="../../python_kemptech_api.html#python_kemptech_api.models.LoadMaster.get_ssos">[docs]</a>    <span class="k">def</span> <span class="nf">get_ssos</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+<div class="viewcode-block" id="LoadMaster.get_ssos"><a class="viewcode-back" href="../../python_kemptech_api.models.html#python_kemptech_api.models.LoadMaster.get_ssos">[docs]</a>    <span class="k">def</span> <span class="nf">get_ssos</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
         <span class="n">response</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_get</span><span class="p">(</span><span class="s2">&quot;/showdomain&quot;</span><span class="p">)</span>
         <span class="n">ssos</span> <span class="o">=</span> <span class="n">get_data</span><span class="p">(</span><span class="n">response</span><span class="p">)</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s2">&quot;Domain&quot;</span><span class="p">)</span> <span class="ow">or</span> <span class="p">[]</span>
         <span class="n">ssos_list</span> <span class="o">=</span> <span class="p">[]</span>
@@ -1309,7 +1318,7 @@
             <span class="n">ssos_list</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">sso_object</span><span class="p">)</span>
         <span class="k">return</span> <span class="n">ssos_list</span></div>
 
-<div class="viewcode-block" id="LoadMaster.get_sso"><a class="viewcode-back" href="../../python_kemptech_api.html#python_kemptech_api.models.LoadMaster.get_sso">[docs]</a>    <span class="k">def</span> <span class="nf">get_sso</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">name</span><span class="p">):</span>
+<div class="viewcode-block" id="LoadMaster.get_sso"><a class="viewcode-back" href="../../python_kemptech_api.models.html#python_kemptech_api.models.LoadMaster.get_sso">[docs]</a>    <span class="k">def</span> <span class="nf">get_sso</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">name</span><span class="p">):</span>
         <span class="n">service_id</span> <span class="o">=</span> <span class="p">{</span><span class="s2">&quot;name&quot;</span><span class="p">:</span> <span class="n">name</span><span class="p">}</span>
         <span class="n">response</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_get</span><span class="p">(</span><span class="s2">&quot;/showdomain&quot;</span><span class="p">,</span> <span class="n">service_id</span><span class="p">)</span>
         <span class="n">sso</span> <span class="o">=</span> <span class="n">get_data</span><span class="p">(</span><span class="n">response</span><span class="p">)</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s2">&quot;Domain&quot;</span><span class="p">)</span>
@@ -1318,17 +1327,17 @@
         <span class="n">sso_object</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">build_sso</span><span class="p">(</span><span class="n">sso</span><span class="p">)</span>
         <span class="k">return</span> <span class="n">sso_object</span></div>
 
-<div class="viewcode-block" id="LoadMaster.build_sso"><a class="viewcode-back" href="../../python_kemptech_api.html#python_kemptech_api.models.LoadMaster.build_sso">[docs]</a>    <span class="k">def</span> <span class="nf">build_sso</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">sso</span><span class="p">):</span>
+<div class="viewcode-block" id="LoadMaster.build_sso"><a class="viewcode-back" href="../../python_kemptech_api.models.html#python_kemptech_api.models.LoadMaster.build_sso">[docs]</a>    <span class="k">def</span> <span class="nf">build_sso</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">sso</span><span class="p">):</span>
         <span class="sd">&quot;&quot;&quot;Create a Rule instance with standard defaults&quot;&quot;&quot;</span>
         <span class="n">sso_object</span> <span class="o">=</span> <span class="n">Sso</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">access_info</span><span class="p">,</span> <span class="n">sso</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s1">&#39;Name&#39;</span><span class="p">))</span>
 
         <span class="n">sso_object</span><span class="o">.</span><span class="n">populate_default_attributes</span><span class="p">(</span><span class="n">sso</span><span class="p">)</span>
         <span class="k">return</span> <span class="n">sso_object</span></div>
 
-<div class="viewcode-block" id="LoadMaster.create_rule"><a class="viewcode-back" href="../../python_kemptech_api.html#python_kemptech_api.models.LoadMaster.create_rule">[docs]</a>    <span class="k">def</span> <span class="nf">create_rule</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">name</span><span class="p">,</span> <span class="n">pattern</span><span class="p">):</span>
+<div class="viewcode-block" id="LoadMaster.create_rule"><a class="viewcode-back" href="../../python_kemptech_api.models.html#python_kemptech_api.models.LoadMaster.create_rule">[docs]</a>    <span class="k">def</span> <span class="nf">create_rule</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">name</span><span class="p">,</span> <span class="n">pattern</span><span class="p">):</span>
         <span class="k">return</span> <span class="n">Rule</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">access_info</span><span class="p">,</span> <span class="n">name</span><span class="p">,</span> <span class="n">pattern</span><span class="p">)</span></div>
 
-<div class="viewcode-block" id="LoadMaster.get_rules"><a class="viewcode-back" href="../../python_kemptech_api.html#python_kemptech_api.models.LoadMaster.get_rules">[docs]</a>    <span class="k">def</span> <span class="nf">get_rules</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+<div class="viewcode-block" id="LoadMaster.get_rules"><a class="viewcode-back" href="../../python_kemptech_api.models.html#python_kemptech_api.models.LoadMaster.get_rules">[docs]</a>    <span class="k">def</span> <span class="nf">get_rules</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
         <span class="n">response</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_get</span><span class="p">(</span><span class="s2">&quot;/showrule&quot;</span><span class="p">)</span>
         <span class="n">data</span> <span class="o">=</span> <span class="n">get_data</span><span class="p">(</span><span class="n">response</span><span class="p">)</span>
         <span class="n">rules_list</span> <span class="o">=</span> <span class="p">[]</span>
@@ -1342,7 +1351,7 @@
 
         <span class="k">return</span> <span class="n">rules_list</span></div>
 
-<div class="viewcode-block" id="LoadMaster.get_rule"><a class="viewcode-back" href="../../python_kemptech_api.html#python_kemptech_api.models.LoadMaster.get_rule">[docs]</a>    <span class="k">def</span> <span class="nf">get_rule</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">name</span><span class="p">):</span>
+<div class="viewcode-block" id="LoadMaster.get_rule"><a class="viewcode-back" href="../../python_kemptech_api.models.html#python_kemptech_api.models.LoadMaster.get_rule">[docs]</a>    <span class="k">def</span> <span class="nf">get_rule</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">name</span><span class="p">):</span>
         <span class="n">response</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_get</span><span class="p">(</span><span class="s2">&quot;/showrule&quot;</span><span class="p">,</span> <span class="p">{</span><span class="s2">&quot;name&quot;</span><span class="p">:</span> <span class="n">name</span><span class="p">})</span>
         <span class="n">data</span> <span class="o">=</span> <span class="n">get_data</span><span class="p">(</span><span class="n">response</span><span class="p">)</span>
         <span class="n">rules_list</span> <span class="o">=</span> <span class="p">[]</span>
@@ -1361,11 +1370,11 @@
 
         <span class="k">return</span> <span class="n">rule_object</span></div>
 
-<div class="viewcode-block" id="LoadMaster.create_cipherset"><a class="viewcode-back" href="../../python_kemptech_api.html#python_kemptech_api.models.LoadMaster.create_cipherset">[docs]</a>    <span class="k">def</span> <span class="nf">create_cipherset</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">cipherset_name</span><span class="p">,</span> <span class="n">ciphers</span><span class="p">):</span>
+<div class="viewcode-block" id="LoadMaster.create_cipherset"><a class="viewcode-back" href="../../python_kemptech_api.models.html#python_kemptech_api.models.LoadMaster.create_cipherset">[docs]</a>    <span class="k">def</span> <span class="nf">create_cipherset</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">cipherset_name</span><span class="p">,</span> <span class="n">ciphers</span><span class="p">):</span>
         <span class="n">cipherset</span> <span class="o">=</span> <span class="n">CipherSet</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">access_info</span><span class="p">,</span> <span class="n">cipherset_name</span><span class="p">,</span> <span class="n">ciphers</span><span class="p">)</span>
         <span class="n">cipherset</span><span class="o">.</span><span class="n">save</span><span class="p">()</span></div>
 
-<div class="viewcode-block" id="LoadMaster.create_certificate"><a class="viewcode-back" href="../../python_kemptech_api.html#python_kemptech_api.models.LoadMaster.create_certificate">[docs]</a>    <span class="k">def</span> <span class="nf">create_certificate</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">certificate</span><span class="p">,</span> <span class="n">certfile</span><span class="p">,</span> <span class="n">certpass</span><span class="o">=</span><span class="kc">None</span><span class="p">):</span>
+<div class="viewcode-block" id="LoadMaster.create_certificate"><a class="viewcode-back" href="../../python_kemptech_api.models.html#python_kemptech_api.models.LoadMaster.create_certificate">[docs]</a>    <span class="k">def</span> <span class="nf">create_certificate</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">certificate</span><span class="p">,</span> <span class="n">certfile</span><span class="p">,</span> <span class="n">certpass</span><span class="o">=</span><span class="kc">None</span><span class="p">):</span>
         <span class="sd">&quot;&quot;&quot;Certificate factory with pre-configured LoadMaster connection.&quot;&quot;&quot;</span>
         <span class="n">cert</span> <span class="o">=</span> <span class="n">Certificate</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">access_info</span><span class="p">,</span>
                            <span class="n">certificate</span><span class="p">,</span>
@@ -1373,14 +1382,14 @@
                            <span class="n">certpass</span><span class="o">=</span><span class="n">certpass</span><span class="p">)</span>
         <span class="k">return</span> <span class="n">cert</span></div>
 
-<div class="viewcode-block" id="LoadMaster.create_intermediate_certificate"><a class="viewcode-back" href="../../python_kemptech_api.html#python_kemptech_api.models.LoadMaster.create_intermediate_certificate">[docs]</a>    <span class="k">def</span> <span class="nf">create_intermediate_certificate</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">certificate</span><span class="p">,</span> <span class="n">certfile</span><span class="p">):</span>
+<div class="viewcode-block" id="LoadMaster.create_intermediate_certificate"><a class="viewcode-back" href="../../python_kemptech_api.models.html#python_kemptech_api.models.LoadMaster.create_intermediate_certificate">[docs]</a>    <span class="k">def</span> <span class="nf">create_intermediate_certificate</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">certificate</span><span class="p">,</span> <span class="n">certfile</span><span class="p">):</span>
         <span class="sd">&quot;&quot;&quot;Certificate factory with pre-configured LoadMaster connection.&quot;&quot;&quot;</span>
         <span class="n">cert</span> <span class="o">=</span> <span class="n">IntermediateCertificate</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">access_info</span><span class="p">,</span>
                                        <span class="n">certificate</span><span class="p">,</span>
                                        <span class="n">certfile</span><span class="o">=</span><span class="n">certfile</span><span class="p">)</span>
         <span class="k">return</span> <span class="n">cert</span></div>
 
-<div class="viewcode-block" id="LoadMaster.get_certificates"><a class="viewcode-back" href="../../python_kemptech_api.html#python_kemptech_api.models.LoadMaster.get_certificates">[docs]</a>    <span class="k">def</span> <span class="nf">get_certificates</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="nb">type</span><span class="o">=</span><span class="s1">&#39;cert&#39;</span><span class="p">):</span>
+<div class="viewcode-block" id="LoadMaster.get_certificates"><a class="viewcode-back" href="../../python_kemptech_api.models.html#python_kemptech_api.models.LoadMaster.get_certificates">[docs]</a>    <span class="k">def</span> <span class="nf">get_certificates</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="nb">type</span><span class="o">=</span><span class="s1">&#39;cert&#39;</span><span class="p">):</span>
         <span class="n">response</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_get</span><span class="p">(</span><span class="s2">&quot;/listcert&quot;</span><span class="p">)</span>
         <span class="n">data</span> <span class="o">=</span> <span class="n">get_data</span><span class="p">(</span><span class="n">response</span><span class="p">)</span>
         <span class="n">certificates</span> <span class="o">=</span> <span class="p">[]</span>
@@ -1392,7 +1401,7 @@
             <span class="n">certificates</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">certificate</span><span class="p">)</span>
         <span class="k">return</span> <span class="n">certificates</span></div>
 
-<div class="viewcode-block" id="LoadMaster.get_intermediate_certificates"><a class="viewcode-back" href="../../python_kemptech_api.html#python_kemptech_api.models.LoadMaster.get_intermediate_certificates">[docs]</a>    <span class="k">def</span> <span class="nf">get_intermediate_certificates</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="nb">type</span><span class="o">=</span><span class="s1">&#39;cert&#39;</span><span class="p">):</span>
+<div class="viewcode-block" id="LoadMaster.get_intermediate_certificates"><a class="viewcode-back" href="../../python_kemptech_api.models.html#python_kemptech_api.models.LoadMaster.get_intermediate_certificates">[docs]</a>    <span class="k">def</span> <span class="nf">get_intermediate_certificates</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="nb">type</span><span class="o">=</span><span class="s1">&#39;cert&#39;</span><span class="p">):</span>
         <span class="n">response</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_get</span><span class="p">(</span><span class="s2">&quot;/listintermediate&quot;</span><span class="p">)</span>
         <span class="n">data</span> <span class="o">=</span> <span class="n">get_data</span><span class="p">(</span><span class="n">response</span><span class="p">)</span>
         <span class="n">certificates</span> <span class="o">=</span> <span class="p">[]</span>
@@ -1404,7 +1413,7 @@
             <span class="n">certificates</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">certificate</span><span class="p">)</span>
         <span class="k">return</span> <span class="n">certificates</span></div>
 
-<div class="viewcode-block" id="LoadMaster.build_certificate"><a class="viewcode-back" href="../../python_kemptech_api.html#python_kemptech_api.models.LoadMaster.build_certificate">[docs]</a>    <span class="k">def</span> <span class="nf">build_certificate</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">certificate</span><span class="p">,</span> <span class="n">certfile</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span>
+<div class="viewcode-block" id="LoadMaster.build_certificate"><a class="viewcode-back" href="../../python_kemptech_api.models.html#python_kemptech_api.models.LoadMaster.build_certificate">[docs]</a>    <span class="k">def</span> <span class="nf">build_certificate</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">certificate</span><span class="p">,</span> <span class="n">certfile</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span>
                           <span class="n">certpass</span><span class="o">=</span><span class="kc">None</span><span class="p">):</span>
         <span class="sd">&quot;&quot;&quot;Create a Certificte instance named certificate&quot;&quot;&quot;</span>
         <span class="k">if</span> <span class="n">certfile</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span><span class="p">:</span>
@@ -1414,7 +1423,7 @@
             <span class="n">cert</span> <span class="o">=</span> <span class="n">Certificate</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">access_info</span><span class="p">,</span> <span class="n">certificate</span><span class="p">)</span>
         <span class="k">return</span> <span class="n">cert</span></div>
 
-<div class="viewcode-block" id="LoadMaster.build_intermediate_certificate"><a class="viewcode-back" href="../../python_kemptech_api.html#python_kemptech_api.models.LoadMaster.build_intermediate_certificate">[docs]</a>    <span class="k">def</span> <span class="nf">build_intermediate_certificate</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">certificate</span><span class="p">,</span> <span class="n">certfile</span><span class="o">=</span><span class="kc">None</span><span class="p">):</span>
+<div class="viewcode-block" id="LoadMaster.build_intermediate_certificate"><a class="viewcode-back" href="../../python_kemptech_api.models.html#python_kemptech_api.models.LoadMaster.build_intermediate_certificate">[docs]</a>    <span class="k">def</span> <span class="nf">build_intermediate_certificate</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">certificate</span><span class="p">,</span> <span class="n">certfile</span><span class="o">=</span><span class="kc">None</span><span class="p">):</span>
         <span class="sd">&quot;&quot;&quot;Create a Certificte instance named certificate&quot;&quot;&quot;</span>
         <span class="k">if</span> <span class="n">certfile</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span><span class="p">:</span>
             <span class="n">cert</span> <span class="o">=</span> <span class="n">IntermediateCertificate</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">access_info</span><span class="p">,</span>
@@ -1424,10 +1433,10 @@
             <span class="n">cert</span> <span class="o">=</span> <span class="n">IntermediateCertificate</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">access_info</span><span class="p">,</span> <span class="n">certificate</span><span class="p">)</span>
         <span class="k">return</span> <span class="n">cert</span></div>
 
-<div class="viewcode-block" id="LoadMaster.create_virtual_service"><a class="viewcode-back" href="../../python_kemptech_api.html#python_kemptech_api.models.LoadMaster.create_virtual_service">[docs]</a>    <span class="k">def</span> <span class="nf">create_virtual_service</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">ip</span><span class="p">,</span> <span class="n">port</span><span class="o">=</span><span class="mi">80</span><span class="p">,</span> <span class="n">protocol</span><span class="o">=</span><span class="s2">&quot;tcp&quot;</span><span class="p">):</span>
+<div class="viewcode-block" id="LoadMaster.create_virtual_service"><a class="viewcode-back" href="../../python_kemptech_api.models.html#python_kemptech_api.models.LoadMaster.create_virtual_service">[docs]</a>    <span class="k">def</span> <span class="nf">create_virtual_service</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">ip</span><span class="p">,</span> <span class="n">port</span><span class="o">=</span><span class="mi">80</span><span class="p">,</span> <span class="n">protocol</span><span class="o">=</span><span class="s2">&quot;tcp&quot;</span><span class="p">):</span>
         <span class="k">return</span> <span class="n">VirtualService</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">access_info</span><span class="p">,</span> <span class="n">ip</span><span class="p">,</span> <span class="n">port</span><span class="p">,</span> <span class="n">protocol</span><span class="p">)</span></div>
 
-<div class="viewcode-block" id="LoadMaster.get_virtual_services"><a class="viewcode-back" href="../../python_kemptech_api.html#python_kemptech_api.models.LoadMaster.get_virtual_services">[docs]</a>    <span class="k">def</span> <span class="nf">get_virtual_services</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+<div class="viewcode-block" id="LoadMaster.get_virtual_services"><a class="viewcode-back" href="../../python_kemptech_api.models.html#python_kemptech_api.models.LoadMaster.get_virtual_services">[docs]</a>    <span class="k">def</span> <span class="nf">get_virtual_services</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
         <span class="n">response</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_get</span><span class="p">(</span><span class="s2">&quot;/listvs&quot;</span><span class="p">)</span>
         <span class="n">data</span> <span class="o">=</span> <span class="n">get_data</span><span class="p">(</span><span class="n">response</span><span class="p">)</span>
         <span class="n">virtual_services</span> <span class="o">=</span> <span class="p">[]</span>
@@ -1444,7 +1453,7 @@
             <span class="n">virtual_services</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">virt_serv</span><span class="p">)</span>
         <span class="k">return</span> <span class="n">virtual_services</span></div>
 
-<div class="viewcode-block" id="LoadMaster.get_virtual_service"><a class="viewcode-back" href="../../python_kemptech_api.html#python_kemptech_api.models.LoadMaster.get_virtual_service">[docs]</a>    <span class="k">def</span> <span class="nf">get_virtual_service</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">index</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">address</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">port</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span>
+<div class="viewcode-block" id="LoadMaster.get_virtual_service"><a class="viewcode-back" href="../../python_kemptech_api.models.html#python_kemptech_api.models.LoadMaster.get_virtual_service">[docs]</a>    <span class="k">def</span> <span class="nf">get_virtual_service</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">index</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">address</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">port</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span>
                             <span class="n">protocol</span><span class="o">=</span><span class="kc">None</span><span class="p">):</span>
         <span class="k">if</span> <span class="n">index</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">:</span>
             <span class="n">validate_ip</span><span class="p">(</span><span class="n">address</span><span class="p">)</span>
@@ -1459,7 +1468,7 @@
         <span class="n">virt_serv</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">build_virtual_service</span><span class="p">(</span><span class="n">service</span><span class="p">)</span>
         <span class="k">return</span> <span class="n">virt_serv</span></div>
 
-<div class="viewcode-block" id="LoadMaster.build_virtual_service"><a class="viewcode-back" href="../../python_kemptech_api.html#python_kemptech_api.models.LoadMaster.build_virtual_service">[docs]</a>    <span class="k">def</span> <span class="nf">build_virtual_service</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">service</span><span class="p">,</span> <span class="n">response</span><span class="o">=</span><span class="kc">None</span><span class="p">):</span>
+<div class="viewcode-block" id="LoadMaster.build_virtual_service"><a class="viewcode-back" href="../../python_kemptech_api.models.html#python_kemptech_api.models.LoadMaster.build_virtual_service">[docs]</a>    <span class="k">def</span> <span class="nf">build_virtual_service</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">service</span><span class="p">,</span> <span class="n">response</span><span class="o">=</span><span class="kc">None</span><span class="p">):</span>
         <span class="sd">&quot;&quot;&quot;Create a VirtualService instance with populated with API parameters</span>
 
 <span class="sd">        This does not include potentially attached real servers</span>
@@ -1518,7 +1527,7 @@
         <span class="n">virt_serv</span><span class="o">.</span><span class="n">populate_default_attributes</span><span class="p">(</span><span class="n">service</span><span class="p">)</span>
         <span class="k">return</span> <span class="n">virt_serv</span></div>
 
-<div class="viewcode-block" id="LoadMaster.get_all_objects"><a class="viewcode-back" href="../../python_kemptech_api.html#python_kemptech_api.models.LoadMaster.get_all_objects">[docs]</a>    <span class="k">def</span> <span class="nf">get_all_objects</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+<div class="viewcode-block" id="LoadMaster.get_all_objects"><a class="viewcode-back" href="../../python_kemptech_api.models.html#python_kemptech_api.models.LoadMaster.get_all_objects">[docs]</a>    <span class="k">def</span> <span class="nf">get_all_objects</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
         <span class="c1"># x variables are the object while x_data is the OrderedDict</span>
         <span class="n">virtual_services</span> <span class="o">=</span> <span class="p">[]</span>
         <span class="n">response</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_get</span><span class="p">(</span><span class="s2">&quot;/listvs&quot;</span><span class="p">)</span>
@@ -1551,7 +1560,7 @@
 
         <span class="k">return</span> <span class="n">virtual_services</span></div>
 
-<div class="viewcode-block" id="LoadMaster.clone_virtual_service"><a class="viewcode-back" href="../../python_kemptech_api.html#python_kemptech_api.models.LoadMaster.clone_virtual_service">[docs]</a>    <span class="k">def</span> <span class="nf">clone_virtual_service</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">service</span><span class="p">,</span> <span class="n">ip</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">port</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">protocol</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span>
+<div class="viewcode-block" id="LoadMaster.clone_virtual_service"><a class="viewcode-back" href="../../python_kemptech_api.models.html#python_kemptech_api.models.LoadMaster.clone_virtual_service">[docs]</a>    <span class="k">def</span> <span class="nf">clone_virtual_service</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">service</span><span class="p">,</span> <span class="n">ip</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">port</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">protocol</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span>
                               <span class="n">enable</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span>
                               <span class="n">dry_run</span><span class="o">=</span><span class="kc">False</span><span class="p">):</span>
         <span class="sd">&quot;&quot;&quot;Given a VirtualService instance, add it to this LoadMaster</span>
@@ -1583,12 +1592,12 @@
 
         <span class="k">return</span> <span class="n">service</span></div>
 
-<div class="viewcode-block" id="LoadMaster.upload_template"><a class="viewcode-back" href="../../python_kemptech_api.html#python_kemptech_api.models.LoadMaster.upload_template">[docs]</a>    <span class="k">def</span> <span class="nf">upload_template</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">file</span><span class="p">):</span>
+<div class="viewcode-block" id="LoadMaster.upload_template"><a class="viewcode-back" href="../../python_kemptech_api.models.html#python_kemptech_api.models.LoadMaster.upload_template">[docs]</a>    <span class="k">def</span> <span class="nf">upload_template</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">file</span><span class="p">):</span>
         <span class="c1"># Deprecated, use create_template</span>
         <span class="n">response</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_post</span><span class="p">(</span><span class="s1">&#39;/uploadtemplate&#39;</span><span class="p">,</span> <span class="n">file</span><span class="p">)</span>
         <span class="k">return</span> <span class="n">send_response</span><span class="p">(</span><span class="n">response</span><span class="p">)</span></div>
 
-<div class="viewcode-block" id="LoadMaster.create_template"><a class="viewcode-back" href="../../python_kemptech_api.html#python_kemptech_api.models.LoadMaster.create_template">[docs]</a>    <span class="k">def</span> <span class="nf">create_template</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">file</span><span class="p">):</span>
+<div class="viewcode-block" id="LoadMaster.create_template"><a class="viewcode-back" href="../../python_kemptech_api.models.html#python_kemptech_api.models.LoadMaster.create_template">[docs]</a>    <span class="k">def</span> <span class="nf">create_template</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">file</span><span class="p">):</span>
         <span class="n">existing</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">templates</span><span class="o">.</span><span class="n">keys</span><span class="p">()</span>
 
         <span class="bp">self</span><span class="o">.</span><span class="n">_post</span><span class="p">(</span><span class="s2">&quot;/uploadtemplate&quot;</span><span class="p">,</span> <span class="n">file</span><span class="p">)</span>
@@ -1598,28 +1607,28 @@
 
         <span class="k">return</span> <span class="n">uploaded_templates</span></div>
 
-<div class="viewcode-block" id="LoadMaster.get_templates"><a class="viewcode-back" href="../../python_kemptech_api.html#python_kemptech_api.models.LoadMaster.get_templates">[docs]</a>    <span class="k">def</span> <span class="nf">get_templates</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+<div class="viewcode-block" id="LoadMaster.get_templates"><a class="viewcode-back" href="../../python_kemptech_api.models.html#python_kemptech_api.models.LoadMaster.get_templates">[docs]</a>    <span class="k">def</span> <span class="nf">get_templates</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
         <span class="n">response</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_get</span><span class="p">(</span><span class="s2">&quot;/listtemplates&quot;</span><span class="p">)</span>
         <span class="n">data</span> <span class="o">=</span> <span class="n">get_data</span><span class="p">(</span><span class="n">response</span><span class="p">)</span>
         <span class="k">return</span> <span class="n">list_object</span><span class="p">(</span><span class="n">Template</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">access_info</span><span class="p">,</span> <span class="n">data</span><span class="p">)</span></div>
 
-<div class="viewcode-block" id="LoadMaster.get_template"><a class="viewcode-back" href="../../python_kemptech_api.html#python_kemptech_api.models.LoadMaster.get_template">[docs]</a>    <span class="k">def</span> <span class="nf">get_template</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">name</span><span class="p">):</span>
+<div class="viewcode-block" id="LoadMaster.get_template"><a class="viewcode-back" href="../../python_kemptech_api.models.html#python_kemptech_api.models.LoadMaster.get_template">[docs]</a>    <span class="k">def</span> <span class="nf">get_template</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">name</span><span class="p">):</span>
         <span class="c1"># There is not &#39;get&#39; for templates, only list.</span>
         <span class="n">templates</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">get_templates</span><span class="p">()</span>
         <span class="k">for</span> <span class="n">template</span> <span class="ow">in</span> <span class="n">templates</span><span class="p">:</span>
             <span class="k">if</span> <span class="n">template</span><span class="o">.</span><span class="n">name</span> <span class="o">==</span> <span class="n">name</span><span class="p">:</span>
                 <span class="k">return</span> <span class="n">template</span></div>
 
-<div class="viewcode-block" id="LoadMaster.list_templates"><a class="viewcode-back" href="../../python_kemptech_api.html#python_kemptech_api.models.LoadMaster.list_templates">[docs]</a>    <span class="k">def</span> <span class="nf">list_templates</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+<div class="viewcode-block" id="LoadMaster.list_templates"><a class="viewcode-back" href="../../python_kemptech_api.models.html#python_kemptech_api.models.LoadMaster.list_templates">[docs]</a>    <span class="k">def</span> <span class="nf">list_templates</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
         <span class="c1"># Backward compatability</span>
         <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">get_templates</span><span class="p">()</span></div>
 
-<div class="viewcode-block" id="LoadMaster.delete_template"><a class="viewcode-back" href="../../python_kemptech_api.html#python_kemptech_api.models.LoadMaster.delete_template">[docs]</a>    <span class="k">def</span> <span class="nf">delete_template</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">template_name</span><span class="p">):</span>
+<div class="viewcode-block" id="LoadMaster.delete_template"><a class="viewcode-back" href="../../python_kemptech_api.models.html#python_kemptech_api.models.LoadMaster.delete_template">[docs]</a>    <span class="k">def</span> <span class="nf">delete_template</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">template_name</span><span class="p">):</span>
         <span class="n">params</span> <span class="o">=</span> <span class="p">{</span><span class="s1">&#39;name&#39;</span><span class="p">:</span> <span class="n">template_name</span><span class="p">}</span>
         <span class="n">response</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_get</span><span class="p">(</span><span class="s1">&#39;/deltemplate&#39;</span><span class="p">,</span> <span class="n">parameters</span><span class="o">=</span><span class="n">params</span><span class="p">)</span>
         <span class="k">return</span> <span class="n">send_response</span><span class="p">(</span><span class="n">response</span><span class="p">)</span></div>
 
-<div class="viewcode-block" id="LoadMaster.apply_template"><a class="viewcode-back" href="../../python_kemptech_api.html#python_kemptech_api.models.LoadMaster.apply_template">[docs]</a>    <span class="k">def</span> <span class="nf">apply_template</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">virtual_ip</span><span class="p">,</span> <span class="n">port</span><span class="p">,</span> <span class="n">protocol</span><span class="p">,</span> <span class="n">template_name</span><span class="p">,</span>
+<div class="viewcode-block" id="LoadMaster.apply_template"><a class="viewcode-back" href="../../python_kemptech_api.models.html#python_kemptech_api.models.LoadMaster.apply_template">[docs]</a>    <span class="k">def</span> <span class="nf">apply_template</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">virtual_ip</span><span class="p">,</span> <span class="n">port</span><span class="p">,</span> <span class="n">protocol</span><span class="p">,</span> <span class="n">template_name</span><span class="p">,</span>
                        <span class="n">nickname</span><span class="o">=</span><span class="kc">None</span><span class="p">):</span>
         <span class="n">params</span> <span class="o">=</span> <span class="p">{</span>
             <span class="s1">&#39;vs&#39;</span><span class="p">:</span> <span class="n">virtual_ip</span><span class="p">,</span>
@@ -1643,16 +1652,16 @@
 
         <span class="k">return</span> <span class="n">vs</span></div>
 
-<div class="viewcode-block" id="LoadMaster.get_sdn_controller"><a class="viewcode-back" href="../../python_kemptech_api.html#python_kemptech_api.models.LoadMaster.get_sdn_controller">[docs]</a>    <span class="k">def</span> <span class="nf">get_sdn_controller</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+<div class="viewcode-block" id="LoadMaster.get_sdn_controller"><a class="viewcode-back" href="../../python_kemptech_api.models.html#python_kemptech_api.models.LoadMaster.get_sdn_controller">[docs]</a>    <span class="k">def</span> <span class="nf">get_sdn_controller</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
         <span class="n">response</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_get</span><span class="p">(</span><span class="s1">&#39;/getsdncontroller&#39;</span><span class="p">)</span>
         <span class="k">return</span> <span class="n">send_response</span><span class="p">(</span><span class="n">response</span><span class="p">)</span></div>
 
-<div class="viewcode-block" id="LoadMaster.get_sdn_info"><a class="viewcode-back" href="../../python_kemptech_api.html#python_kemptech_api.models.LoadMaster.get_sdn_info">[docs]</a>    <span class="k">def</span> <span class="nf">get_sdn_info</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+<div class="viewcode-block" id="LoadMaster.get_sdn_info"><a class="viewcode-back" href="../../python_kemptech_api.models.html#python_kemptech_api.models.LoadMaster.get_sdn_info">[docs]</a>    <span class="k">def</span> <span class="nf">get_sdn_info</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
         <span class="n">response</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_get</span><span class="p">(</span><span class="s1">&#39;/sdninfo&#39;</span><span class="p">)</span>
         <span class="k">return</span> <span class="n">send_response</span><span class="p">(</span><span class="n">response</span><span class="p">)</span></div></div>
 
 
-<div class="viewcode-block" id="LoadMasterGeo"><a class="viewcode-back" href="../../python_kemptech_api.html#python_kemptech_api.models.LoadMasterGeo">[docs]</a><span class="k">class</span> <span class="nc">LoadMasterGeo</span><span class="p">(</span><span class="n">LoadMaster</span><span class="p">,</span> <span class="n">Geo</span><span class="p">):</span>
+<div class="viewcode-block" id="LoadMasterGeo"><a class="viewcode-back" href="../../python_kemptech_api.models.html#python_kemptech_api.models.LoadMasterGeo">[docs]</a><span class="k">class</span> <span class="nc">LoadMasterGeo</span><span class="p">(</span><span class="n">LoadMaster</span><span class="p">,</span> <span class="n">Geo</span><span class="p">):</span>
     <span class="k">pass</span></div>
 </pre></div>
 
