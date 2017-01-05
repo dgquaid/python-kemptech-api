@@ -21,9 +21,8 @@ class Test_VirtualService:
 
     def setup(self):
         self.lm_info = {
-            "endpoint": "https://1.1.1.1:443/access",
+            "endpoint": "https://bal:2fourall@1.1.1.1:443/access",
             "ip_address": "1.1.1.1",
-            "auth": ("bal", "2fourall"),
         }
         self.vs = VirtualService(self.lm_info, "1.1.1.2")
         # Contains no subvs's
@@ -49,7 +48,7 @@ class Test_VirtualService:
             VirtualService(lm_info_with_no_endpoint, "1.1.1.2")
 
     def test_init_with_no_ipaddress(self):
-        lm_info_with_no_ip_address = {"endpoint": "https://1.1.1.1:443/access"}
+        lm_info_with_no_ip_address = {"endpoint": "https://bal:2fourall@1.1.1.1:443/access"}
         VirtualService(self.lm_info, "1.1.1.2")
         with assert_raises(exceptions.VirtualServiceMissingLoadmasterInfo):
             VirtualService(lm_info_with_no_ip_address, "1.1.1.2")
@@ -87,16 +86,14 @@ class Test_VirtualService:
         self.vs._ignore = None
         actual = self.vs.to_dict()
         expected = {
-            "endpoint": "https://1.1.1.1:443/access",
+            "endpoint": "https://bal:2fourall@1.1.1.1:443/access",
             "ip_address": "1.1.1.1",
             "vs": "1.1.1.2",
             "port": 80,
             "prot": "tcp",
-            "auth": ("bal", "2fourall"),
             "subvs_entries": [],
             "real_servers": [],
         }
-        print(actual)
         assert_equal(actual, expected)
 
     def test_create_sub_virtual_service(self):
@@ -211,9 +208,8 @@ class Test_get_real_servers:
 
     def setup(self):
         self.lm_info = {
-            "endpoint": "https://1.1.1.1:443/access",
+            "endpoint": "https://bal:2fourall@1.1.1.1:443/access",
             "ip_address": "1.1.1.1",
-            "auth": ("bal", "2fourall"),
         }
         self.vs = VirtualService(self.lm_info, "1.1.1.2")
 
@@ -242,9 +238,8 @@ class Test_get_real_server:
 
     def setup(self):
         self.lm_info = {
-            "endpoint": "https://1.1.1.1:443/access",
+            "endpoint": "https://bal:2fourall@1.1.1.1:443/access",
             "ip_address": "1.1.1.1",
-            "auth": ("bal", "2fourall"),
         }
         self.vs = VirtualService(self.lm_info, "1.1.1.2")
 
@@ -289,9 +284,8 @@ class Test_build_real_server:
 
     def setup(self):
         self.lm_info = {
-            "endpoint": "https://1.1.1.1:443/access",
+            "endpoint": "https://bal:2fourall@1.1.1.1:443/access",
             "ip_address": "1.1.1.1",
-            "auth": ("bal", "2fourall"),
         }
         self.vs = VirtualService(self.lm_info, "1.1.1.2")
 

@@ -681,7 +681,7 @@ class RealServer(BaseKempObject):
         # If a new port is set, update the assigned port value
         # in order to correctly look up the updated RS
         # If .save fails, this will never be performed
-        if getattr(self, 'newport', None):
+        if update and getattr(self, 'newport', None):
             self.rsport = self.newport
         self.refresh()
 

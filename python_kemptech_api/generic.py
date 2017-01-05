@@ -29,10 +29,8 @@ class HttpClient(object):
     ip_address = None
     endpoint = None
 
-    def __init__(self, tls_version=utils.DEFAULT_TLS_VERSION, cert=None,
-                 user=None, password=None):
+    def __init__(self, tls_version=utils.DEFAULT_TLS_VERSION, cert=None):
         self.cert = cert
-        self.auth = (user, password)
         self._tls_version = tls_version
         self._tls_session = Session()
         self._tls_session.mount("http://", UseTlsAdapter(self._tls_version))
@@ -72,8 +70,7 @@ class HttpClient(object):
                                                          verify=False,
                                                          data=payload,
                                                          headers=headers,
-                                                         cert=self.cert,
-                                                         auth=self.auth)
+                                                         cert=self.cert)
             else:
                 response = self._tls_session.request(http_method,
                                                      cmd_url,
@@ -81,8 +78,7 @@ class HttpClient(object):
                                                      timeout=utils.TIMEOUT,
                                                      verify=False,
                                                      headers=headers,
-                                                     cert=self.cert,
-                                                     auth=self.auth)
+                                                     cert=self.cert)
             self._tls_session.close()
 
             # Raise specific error for authentication failure
@@ -147,7 +143,6 @@ class AccessInfoMixin(object):
     endpoint = None
     ip_address = None
     cert = None
-    auth = None
 
     @property
     def access_info(self):
@@ -155,7 +150,6 @@ class AccessInfoMixin(object):
             "endpoint": self.endpoint,
             "ip_address": self.ip_address,
             "cert": self.cert,
-            "auth": self.auth,
             "appliance": self
         }
         return info
@@ -176,7 +170,7 @@ class BaseKempObject(HttpClient, AccessInfoMixin):
     _API_IGNORE = (
         "log_urls", "ip_address", "endpoint", "rsindex", "vsindex", "index",
         "status", "subvs_data", "subvs_entries", "real_servers", "cert",
-        "checkuse1_1", "mastervsid", "API_INIT_PARAMS", "API_TAG", "auth"
+        "checkuse1_1", "mastervsid", "API_INIT_PARAMS", "API_TAG"
     )
 
     def __init__(self, loadmaster_info, **kwargs):
@@ -190,12 +184,7 @@ class BaseKempObject(HttpClient, AccessInfoMixin):
         except KeyError:
             raise GenericObjectMissingLoadMasterInfo(type(self), "ip_address")
 
-        try:
-            self.auth = loadmaster_info["auth"]
-        except KeyError:
-            raise GenericObjectMissingLoadMasterInfo(type(self), "auth")
-        super(BaseKempObject, self).__init__(cert=self.cert,
-                                             user=self.auth[0], password=self.auth[1])
+        super(BaseKempObject, self).__init__(loadmaster_info)
 
     def __repr__(self):
         return '{} {}'.format(

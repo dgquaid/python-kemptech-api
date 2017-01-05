@@ -143,7 +143,7 @@ class Test_LoadMaster:
         lm = python_kemptech_api.models.LoadMaster('ip', 'username', 'password')
         lm.ip_address = "1.1.1.1"
         with patch.object(LoadMaster,'endpoint', new_callable=PropertyMock) as mock_endpoint:
-            mock_endpoint.return_value =  "https://1.1.1.1:443/access"
+            mock_endpoint.return_value =  "https://bal:2fourall@1.1.1.1:443/access"
 
         service= {'VSPort': 80,
                   'Protocol': 'TCP',
@@ -156,7 +156,7 @@ class Test_LoadMaster:
     def test__get_curl_command_list(self):
         lm = client.LoadMaster('ip', 'username', 'password')
         expected = ['curl', '-s', '-k', '--connect-timeout', str(utils.TIMEOUT),
-                    '-u', 'username:password', 'https://ip:443/access/test']
+                    'https://username:password@ip:443/access/test']
         actual = lm._get_curl_command_list("test")
         assert_equal(expected, actual)
 
@@ -172,9 +172,8 @@ class Test_KempBaseObjectModel:
 
     def test_to_api_dict(self):
         loadmaster_access = {
-            "endpoint": "https://1.1.1.1:443/access",
+            "endpoint": "https://bal:1fourall@1.1.1.1:443/access",
             "ip_address": "1.1.1.1",
-            "auth": ("bal", "2fourall"),
         }
 
         kbom = python_kemptech_api.generic.BaseKempObject(loadmaster_access)

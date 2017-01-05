@@ -16,16 +16,14 @@ class Test_RealServer:
 
     def setup(self):
         lm_info = {
-            "endpoint": "https://1.1.1.1:443/access",
+            "endpoint": "https://bal:2fourall@1.1.1.1:443/access",
             "ip_address": "1.1.1.1",
-            "auth": ("bal", "2fourall"),
             }
         self.vs = VirtualService(lm_info, "1.1.1.2")
         self.vs_info = {
             'vs': self.vs,
-            "endpoint": "https://1.1.1.1:443/access",
+            "endpoint": "https://bal:2fourall@1.1.1.1:443/access",
             "ip_address": "1.1.1.1",
-            "auth": ("bal", "2fourall"),
             }
         self.rs = RealServer(self.vs_info, "1.1.1.2")
 
@@ -37,7 +35,7 @@ class Test_RealServer:
     def test_init_with_no_ipaddress(self):
         vs_info_with_no_ip_address = {
             'vs': self.vs,
-            "endpoint": "https://1.1.1.1:443/access"
+            "endpoint": "https://bal:2fourall@1.1.1.1:443/access"
             }
         with assert_raises(exceptions.RealServerMissingLoadmasterInfo):
             RealServer(vs_info_with_no_ip_address, "1.1.1.2")
@@ -45,7 +43,7 @@ class Test_RealServer:
     def test_init_with_vs(self):
         vs_info_with_no_vs = {
              "ip_address": "1.1.1.1",
-            "endpoint": "https://1.1.1.1:443/access"
+            "endpoint": "https://bal:2fourall@1.1.1.1:443/access"
             }
         with assert_raises(exceptions.RealServerMissingVirtualServiceInfo):
             RealServer(vs_info_with_no_vs, "1.1.1.2")
