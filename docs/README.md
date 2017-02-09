@@ -11,3 +11,5 @@ To build run: `make html`
 Docs can be found in `docs/build/html/index.html`
 
 `requirements.txt` found in this folder contains sphinx and the sphinx theme 
+
+To push docs live, move ./build/html/ into `gh-pages` branch.
