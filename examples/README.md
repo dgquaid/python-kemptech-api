@@ -5,3 +5,6 @@ This directory contains example `.py` files that can be used to get started with
 
 
 Note that these files are SDK examples and are not recommended for production deployments.
+
+
+Check out this blogpost for more information on [getting started with the SDK](https://kemptechnologies.com/blog/getting-started-kemp-python-sdk/).
