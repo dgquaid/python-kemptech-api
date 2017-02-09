@@ -8,7 +8,7 @@
   
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   
-  <title>python_kemptech_api.exceptions module &mdash; python-kemptech-api 0.7.15 documentation</title>
+  <title>python_kemptech_api.exceptions module &mdash; python-kemptech-api 0.7.18 documentation</title>
   
 
   
@@ -33,7 +33,7 @@
         <link rel="index" title="Index"
               href="genindex.html"/>
         <link rel="search" title="Search" href="search.html"/>
-    <link rel="top" title="python-kemptech-api 0.7.15 documentation" href="index.html"/>
+    <link rel="top" title="python-kemptech-api 0.7.18 documentation" href="index.html"/>
         <link rel="up" title="python_kemptech_api package" href="python_kemptech_api.html"/>
         <link rel="next" title="python_kemptech_api.generic module" href="python_kemptech_api.generic.html"/>
         <link rel="prev" title="python_kemptech_api.client module" href="python_kemptech_api.client.html"/> 
@@ -64,7 +64,7 @@
             
             
               <div class="version">
-                0.7.15
+                0.7.18
               </div>
             
           
@@ -99,7 +99,7 @@
 <li class="toctree-l3"><a class="reference internal" href="python_kemptech_api.utils.html">python_kemptech_api.utils module</a></li>
 </ul>
 </li>
-<li class="toctree-l2"><a class="reference internal" href="python_kemptech_api.html#module-python_kemptech_api">Module contents</a></li>
+<li class="toctree-l2"><a class="reference internal" href="python_kemptech_api.html#module-contents">Module contents</a></li>
 </ul>
 </li>
 </ul>
@@ -148,359 +148,8 @@
           <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
            <div itemprop="articleBody">
             
-  <div class="section" id="module-python_kemptech_api.exceptions">
-<span id="python-kemptech-api-exceptions-module"></span><h1>python_kemptech_api.exceptions module</h1>
-<dl class="exception">
-<dt id="python_kemptech_api.exceptions.ApiNotEnabledError">
-<em class="property">exception </em><code class="descclassname">python_kemptech_api.exceptions.</code><code class="descname">ApiNotEnabledError</code><span class="sig-paren">(</span><em>code=None</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/python_kemptech_api/exceptions.html#ApiNotEnabledError"><span class="viewcode-link">[source]</span></a></dt>
-<dd><p>Bases: <a class="reference internal" href="#python_kemptech_api.exceptions.KempTechApiException" title="python_kemptech_api.exceptions.KempTechApiException"><code class="xref py py-class docutils literal"><span class="pre">python_kemptech_api.exceptions.KempTechApiException</span></code></a></p>
-</dd></dl>
-
-<dl class="exception">
-<dt id="python_kemptech_api.exceptions.BackupFailed">
-<em class="property">exception </em><code class="descclassname">python_kemptech_api.exceptions.</code><code class="descname">BackupFailed</code><span class="sig-paren">(</span><em>ip_address</em>, <em>code=None</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/python_kemptech_api/exceptions.html#BackupFailed"><span class="viewcode-link">[source]</span></a></dt>
-<dd><p>Bases: <a class="reference internal" href="#python_kemptech_api.exceptions.KempTechApiException" title="python_kemptech_api.exceptions.KempTechApiException"><code class="xref py py-class docutils literal"><span class="pre">python_kemptech_api.exceptions.KempTechApiException</span></code></a></p>
-</dd></dl>
-
-<dl class="exception">
-<dt id="python_kemptech_api.exceptions.CertificateMissingLoadmasterInfo">
-<em class="property">exception </em><code class="descclassname">python_kemptech_api.exceptions.</code><code class="descname">CertificateMissingLoadmasterInfo</code><span class="sig-paren">(</span><em>param</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/python_kemptech_api/exceptions.html#CertificateMissingLoadmasterInfo"><span class="viewcode-link">[source]</span></a></dt>
-<dd><p>Bases: <a class="reference internal" href="#python_kemptech_api.exceptions.MissingInfo" title="python_kemptech_api.exceptions.MissingInfo"><code class="xref py py-class docutils literal"><span class="pre">python_kemptech_api.exceptions.MissingInfo</span></code></a></p>
-<dl class="attribute">
-<dt id="python_kemptech_api.exceptions.CertificateMissingLoadmasterInfo.param_name">
-<code class="descname">param_name</code><em class="property"> = 'LoadMaster'</em></dt>
-<dd></dd></dl>
-
-<dl class="attribute">
-<dt id="python_kemptech_api.exceptions.CertificateMissingLoadmasterInfo.service">
-<code class="descname">service</code><em class="property"> = 'Certificate'</em></dt>
-<dd></dd></dl>
-
-</dd></dl>
-
-<dl class="exception">
-<dt id="python_kemptech_api.exceptions.CipherListInvalid">
-<em class="property">exception </em><code class="descclassname">python_kemptech_api.exceptions.</code><code class="descname">CipherListInvalid</code><span class="sig-paren">(</span><em>ciphers</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/python_kemptech_api/exceptions.html#CipherListInvalid"><span class="viewcode-link">[source]</span></a></dt>
-<dd><p>Bases: <a class="reference internal" href="#python_kemptech_api.exceptions.ValidationError" title="python_kemptech_api.exceptions.ValidationError"><code class="xref py py-class docutils literal"><span class="pre">python_kemptech_api.exceptions.ValidationError</span></code></a></p>
-</dd></dl>
-
-<dl class="exception">
-<dt id="python_kemptech_api.exceptions.ClusterMissingLoadmasterInfo">
-<em class="property">exception </em><code class="descclassname">python_kemptech_api.exceptions.</code><code class="descname">ClusterMissingLoadmasterInfo</code><span class="sig-paren">(</span><em>param</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/python_kemptech_api/exceptions.html#ClusterMissingLoadmasterInfo"><span class="viewcode-link">[source]</span></a></dt>
-<dd><p>Bases: <a class="reference internal" href="#python_kemptech_api.exceptions.MissingInfo" title="python_kemptech_api.exceptions.MissingInfo"><code class="xref py py-class docutils literal"><span class="pre">python_kemptech_api.exceptions.MissingInfo</span></code></a></p>
-<dl class="attribute">
-<dt id="python_kemptech_api.exceptions.ClusterMissingLoadmasterInfo.param_name">
-<code class="descname">param_name</code><em class="property"> = 'LoadMaster'</em></dt>
-<dd></dd></dl>
-
-<dl class="attribute">
-<dt id="python_kemptech_api.exceptions.ClusterMissingLoadmasterInfo.service">
-<code class="descname">service</code><em class="property"> = 'Cluster'</em></dt>
-<dd></dd></dl>
-
-</dd></dl>
-
-<dl class="exception">
-<dt id="python_kemptech_api.exceptions.CommandNotAvailableException">
-<em class="property">exception </em><code class="descclassname">python_kemptech_api.exceptions.</code><code class="descname">CommandNotAvailableException</code><span class="sig-paren">(</span><em>lm</em>, <em>cmd_name</em>, <em>code=None</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/python_kemptech_api/exceptions.html#CommandNotAvailableException"><span class="viewcode-link">[source]</span></a></dt>
-<dd><p>Bases: <a class="reference internal" href="#python_kemptech_api.exceptions.KempTechApiException" title="python_kemptech_api.exceptions.KempTechApiException"><code class="xref py py-class docutils literal"><span class="pre">python_kemptech_api.exceptions.KempTechApiException</span></code></a></p>
-</dd></dl>
-
-<dl class="exception">
-<dt id="python_kemptech_api.exceptions.ConnectionTimeoutException">
-<em class="property">exception </em><code class="descclassname">python_kemptech_api.exceptions.</code><code class="descname">ConnectionTimeoutException</code><span class="sig-paren">(</span><em>lm</em>, <em>code=None</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/python_kemptech_api/exceptions.html#ConnectionTimeoutException"><span class="viewcode-link">[source]</span></a></dt>
-<dd><p>Bases: <a class="reference internal" href="#python_kemptech_api.exceptions.KempTechApiException" title="python_kemptech_api.exceptions.KempTechApiException"><code class="xref py py-class docutils literal"><span class="pre">python_kemptech_api.exceptions.KempTechApiException</span></code></a></p>
-</dd></dl>
-
-<dl class="exception">
-<dt id="python_kemptech_api.exceptions.DownloadUserCertFailed">
-<em class="property">exception </em><code class="descclassname">python_kemptech_api.exceptions.</code><code class="descname">DownloadUserCertFailed</code><span class="sig-paren">(</span><em>ip_address</em>, <em>code=None</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/python_kemptech_api/exceptions.html#DownloadUserCertFailed"><span class="viewcode-link">[source]</span></a></dt>
-<dd><p>Bases: <a class="reference internal" href="#python_kemptech_api.exceptions.KempTechApiException" title="python_kemptech_api.exceptions.KempTechApiException"><code class="xref py py-class docutils literal"><span class="pre">python_kemptech_api.exceptions.KempTechApiException</span></code></a></p>
-</dd></dl>
-
-<dl class="exception">
-<dt id="python_kemptech_api.exceptions.FqdnMissingLoadmasterInfo">
-<em class="property">exception </em><code class="descclassname">python_kemptech_api.exceptions.</code><code class="descname">FqdnMissingLoadmasterInfo</code><span class="sig-paren">(</span><em>param</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/python_kemptech_api/exceptions.html#FqdnMissingLoadmasterInfo"><span class="viewcode-link">[source]</span></a></dt>
-<dd><p>Bases: <a class="reference internal" href="#python_kemptech_api.exceptions.MissingInfo" title="python_kemptech_api.exceptions.MissingInfo"><code class="xref py py-class docutils literal"><span class="pre">python_kemptech_api.exceptions.MissingInfo</span></code></a></p>
-<dl class="attribute">
-<dt id="python_kemptech_api.exceptions.FqdnMissingLoadmasterInfo.param_name">
-<code class="descname">param_name</code><em class="property"> = 'LoadMaster'</em></dt>
-<dd></dd></dl>
-
-<dl class="attribute">
-<dt id="python_kemptech_api.exceptions.FqdnMissingLoadmasterInfo.service">
-<code class="descname">service</code><em class="property"> = 'Fqdn'</em></dt>
-<dd></dd></dl>
-
-</dd></dl>
-
-<dl class="exception">
-<dt id="python_kemptech_api.exceptions.GenericObjectMissingLoadMasterInfo">
-<em class="property">exception </em><code class="descclassname">python_kemptech_api.exceptions.</code><code class="descname">GenericObjectMissingLoadMasterInfo</code><span class="sig-paren">(</span><em>service</em>, <em>param</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/python_kemptech_api/exceptions.html#GenericObjectMissingLoadMasterInfo"><span class="viewcode-link">[source]</span></a></dt>
-<dd><p>Bases: <a class="reference internal" href="#python_kemptech_api.exceptions.MissingInfo" title="python_kemptech_api.exceptions.MissingInfo"><code class="xref py py-class docutils literal"><span class="pre">python_kemptech_api.exceptions.MissingInfo</span></code></a></p>
-</dd></dl>
-
-<dl class="exception">
-<dt id="python_kemptech_api.exceptions.HTTPError">
-<em class="property">exception </em><code class="descclassname">python_kemptech_api.exceptions.</code><code class="descname">HTTPError</code><span class="sig-paren">(</span><em>cmd_url</em>, <em>code=None</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/python_kemptech_api/exceptions.html#HTTPError"><span class="viewcode-link">[source]</span></a></dt>
-<dd><p>Bases: <a class="reference internal" href="#python_kemptech_api.exceptions.KempTechApiException" title="python_kemptech_api.exceptions.KempTechApiException"><code class="xref py py-class docutils literal"><span class="pre">python_kemptech_api.exceptions.KempTechApiException</span></code></a></p>
-</dd></dl>
-
-<dl class="exception">
-<dt id="python_kemptech_api.exceptions.KempConnectionError">
-<em class="property">exception </em><code class="descclassname">python_kemptech_api.exceptions.</code><code class="descname">KempConnectionError</code><span class="sig-paren">(</span><em>endpoint</em>, <em>code=None</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/python_kemptech_api/exceptions.html#KempConnectionError"><span class="viewcode-link">[source]</span></a></dt>
-<dd><p>Bases: <a class="reference internal" href="#python_kemptech_api.exceptions.KempTechApiException" title="python_kemptech_api.exceptions.KempTechApiException"><code class="xref py py-class docutils literal"><span class="pre">python_kemptech_api.exceptions.KempTechApiException</span></code></a></p>
-</dd></dl>
-
-<dl class="exception">
-<dt id="python_kemptech_api.exceptions.KempTechApiException">
-<em class="property">exception </em><code class="descclassname">python_kemptech_api.exceptions.</code><code class="descname">KempTechApiException</code><span class="sig-paren">(</span><em>msg=None</em>, <em>code=None</em>, <em>is_xml_msg=True</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/python_kemptech_api/exceptions.html#KempTechApiException"><span class="viewcode-link">[source]</span></a></dt>
-<dd><p>Bases: <code class="xref py py-class docutils literal"><span class="pre">Exception</span></code></p>
-<p>Raised if HTTP request has failed.</p>
-</dd></dl>
-
-<dl class="exception">
-<dt id="python_kemptech_api.exceptions.LoadMasterParameterError">
-<em class="property">exception </em><code class="descclassname">python_kemptech_api.exceptions.</code><code class="descname">LoadMasterParameterError</code><span class="sig-paren">(</span><em>lm</em>, <em>parameters</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/python_kemptech_api/exceptions.html#LoadMasterParameterError"><span class="viewcode-link">[source]</span></a></dt>
-<dd><p>Bases: <code class="xref py py-class docutils literal"><span class="pre">Exception</span></code></p>
-</dd></dl>
-
-<dl class="exception">
-<dt id="python_kemptech_api.exceptions.MissingInfo">
-<em class="property">exception </em><code class="descclassname">python_kemptech_api.exceptions.</code><code class="descname">MissingInfo</code><span class="sig-paren">(</span><em>param</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/python_kemptech_api/exceptions.html#MissingInfo"><span class="viewcode-link">[source]</span></a></dt>
-<dd><p>Bases: <code class="xref py py-class docutils literal"><span class="pre">Exception</span></code></p>
-<dl class="attribute">
-<dt id="python_kemptech_api.exceptions.MissingInfo.param_name">
-<code class="descname">param_name</code><em class="property"> = 'parameter_name'</em></dt>
-<dd></dd></dl>
-
-<dl class="attribute">
-<dt id="python_kemptech_api.exceptions.MissingInfo.service">
-<code class="descname">service</code><em class="property"> = 'My service'</em></dt>
-<dd></dd></dl>
-
-</dd></dl>
-
-<dl class="exception">
-<dt id="python_kemptech_api.exceptions.NotVirtualServiceInstanceError">
-<em class="property">exception </em><code class="descclassname">python_kemptech_api.exceptions.</code><code class="descname">NotVirtualServiceInstanceError</code><span class="sig-paren">(</span><em>code=None</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/python_kemptech_api/exceptions.html#NotVirtualServiceInstanceError"><span class="viewcode-link">[source]</span></a></dt>
-<dd><p>Bases: <a class="reference internal" href="#python_kemptech_api.exceptions.KempTechApiException" title="python_kemptech_api.exceptions.KempTechApiException"><code class="xref py py-class docutils literal"><span class="pre">python_kemptech_api.exceptions.KempTechApiException</span></code></a></p>
-</dd></dl>
-
-<dl class="exception">
-<dt id="python_kemptech_api.exceptions.RangeMaskInvalid">
-<em class="property">exception </em><code class="descclassname">python_kemptech_api.exceptions.</code><code class="descname">RangeMaskInvalid</code><span class="sig-paren">(</span><em>mask</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/python_kemptech_api/exceptions.html#RangeMaskInvalid"><span class="viewcode-link">[source]</span></a></dt>
-<dd><p>Bases: <a class="reference internal" href="#python_kemptech_api.exceptions.ValidationError" title="python_kemptech_api.exceptions.ValidationError"><code class="xref py py-class docutils literal"><span class="pre">python_kemptech_api.exceptions.ValidationError</span></code></a></p>
-</dd></dl>
-
-<dl class="exception">
-<dt id="python_kemptech_api.exceptions.RangeMissingLoadmasterInfo">
-<em class="property">exception </em><code class="descclassname">python_kemptech_api.exceptions.</code><code class="descname">RangeMissingLoadmasterInfo</code><span class="sig-paren">(</span><em>param</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/python_kemptech_api/exceptions.html#RangeMissingLoadmasterInfo"><span class="viewcode-link">[source]</span></a></dt>
-<dd><p>Bases: <a class="reference internal" href="#python_kemptech_api.exceptions.MissingInfo" title="python_kemptech_api.exceptions.MissingInfo"><code class="xref py py-class docutils literal"><span class="pre">python_kemptech_api.exceptions.MissingInfo</span></code></a></p>
-<dl class="attribute">
-<dt id="python_kemptech_api.exceptions.RangeMissingLoadmasterInfo.param_name">
-<code class="descname">param_name</code><em class="property"> = 'LoadMaster'</em></dt>
-<dd></dd></dl>
-
-<dl class="attribute">
-<dt id="python_kemptech_api.exceptions.RangeMissingLoadmasterInfo.service">
-<code class="descname">service</code><em class="property"> = 'Range'</em></dt>
-<dd></dd></dl>
-
-</dd></dl>
-
-<dl class="exception">
-<dt id="python_kemptech_api.exceptions.RealServerMissingLoadmasterInfo">
-<em class="property">exception </em><code class="descclassname">python_kemptech_api.exceptions.</code><code class="descname">RealServerMissingLoadmasterInfo</code><span class="sig-paren">(</span><em>param</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/python_kemptech_api/exceptions.html#RealServerMissingLoadmasterInfo"><span class="viewcode-link">[source]</span></a></dt>
-<dd><p>Bases: <a class="reference internal" href="#python_kemptech_api.exceptions.MissingInfo" title="python_kemptech_api.exceptions.MissingInfo"><code class="xref py py-class docutils literal"><span class="pre">python_kemptech_api.exceptions.MissingInfo</span></code></a></p>
-<dl class="attribute">
-<dt id="python_kemptech_api.exceptions.RealServerMissingLoadmasterInfo.param_name">
-<code class="descname">param_name</code><em class="property"> = 'LoadMaster'</em></dt>
-<dd></dd></dl>
-
-<dl class="attribute">
-<dt id="python_kemptech_api.exceptions.RealServerMissingLoadmasterInfo.service">
-<code class="descname">service</code><em class="property"> = 'Real server'</em></dt>
-<dd></dd></dl>
-
-</dd></dl>
-
-<dl class="exception">
-<dt id="python_kemptech_api.exceptions.RealServerMissingVirtualServiceInfo">
-<em class="property">exception </em><code class="descclassname">python_kemptech_api.exceptions.</code><code class="descname">RealServerMissingVirtualServiceInfo</code><span class="sig-paren">(</span><em>param</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/python_kemptech_api/exceptions.html#RealServerMissingVirtualServiceInfo"><span class="viewcode-link">[source]</span></a></dt>
-<dd><p>Bases: <a class="reference internal" href="#python_kemptech_api.exceptions.MissingInfo" title="python_kemptech_api.exceptions.MissingInfo"><code class="xref py py-class docutils literal"><span class="pre">python_kemptech_api.exceptions.MissingInfo</span></code></a></p>
-<dl class="attribute">
-<dt id="python_kemptech_api.exceptions.RealServerMissingVirtualServiceInfo.param_name">
-<code class="descname">param_name</code><em class="property"> = 'Virtual service'</em></dt>
-<dd></dd></dl>
-
-<dl class="attribute">
-<dt id="python_kemptech_api.exceptions.RealServerMissingVirtualServiceInfo.service">
-<code class="descname">service</code><em class="property"> = 'Real server'</em></dt>
-<dd></dd></dl>
-
-</dd></dl>
-
-<dl class="exception">
-<dt id="python_kemptech_api.exceptions.RealServerParameterError">
-<em class="property">exception </em><code class="descclassname">python_kemptech_api.exceptions.</code><code class="descname">RealServerParameterError</code><span class="sig-paren">(</span><em>rs</em>, <em>parameters</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/python_kemptech_api/exceptions.html#RealServerParameterError"><span class="viewcode-link">[source]</span></a></dt>
-<dd><p>Bases: <code class="xref py py-class docutils literal"><span class="pre">Exception</span></code></p>
-</dd></dl>
-
-<dl class="exception">
-<dt id="python_kemptech_api.exceptions.RuleMissingLoadmasterInfo">
-<em class="property">exception </em><code class="descclassname">python_kemptech_api.exceptions.</code><code class="descname">RuleMissingLoadmasterInfo</code><span class="sig-paren">(</span><em>param</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/python_kemptech_api/exceptions.html#RuleMissingLoadmasterInfo"><span class="viewcode-link">[source]</span></a></dt>
-<dd><p>Bases: <a class="reference internal" href="#python_kemptech_api.exceptions.MissingInfo" title="python_kemptech_api.exceptions.MissingInfo"><code class="xref py py-class docutils literal"><span class="pre">python_kemptech_api.exceptions.MissingInfo</span></code></a></p>
-<dl class="attribute">
-<dt id="python_kemptech_api.exceptions.RuleMissingLoadmasterInfo.param_name">
-<code class="descname">param_name</code><em class="property"> = 'LoadMaster'</em></dt>
-<dd></dd></dl>
-
-<dl class="attribute">
-<dt id="python_kemptech_api.exceptions.RuleMissingLoadmasterInfo.service">
-<code class="descname">service</code><em class="property"> = 'Rule'</em></dt>
-<dd></dd></dl>
-
-</dd></dl>
-
-<dl class="exception">
-<dt id="python_kemptech_api.exceptions.SiteMissingFQDNInfo">
-<em class="property">exception </em><code class="descclassname">python_kemptech_api.exceptions.</code><code class="descname">SiteMissingFQDNInfo</code><span class="sig-paren">(</span><em>param</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/python_kemptech_api/exceptions.html#SiteMissingFQDNInfo"><span class="viewcode-link">[source]</span></a></dt>
-<dd><p>Bases: <a class="reference internal" href="#python_kemptech_api.exceptions.MissingInfo" title="python_kemptech_api.exceptions.MissingInfo"><code class="xref py py-class docutils literal"><span class="pre">python_kemptech_api.exceptions.MissingInfo</span></code></a></p>
-<dl class="attribute">
-<dt id="python_kemptech_api.exceptions.SiteMissingFQDNInfo.param_name">
-<code class="descname">param_name</code><em class="property"> = 'FQDN'</em></dt>
-<dd></dd></dl>
-
-<dl class="attribute">
-<dt id="python_kemptech_api.exceptions.SiteMissingFQDNInfo.service">
-<code class="descname">service</code><em class="property"> = 'Site'</em></dt>
-<dd></dd></dl>
-
-</dd></dl>
-
-<dl class="exception">
-<dt id="python_kemptech_api.exceptions.SiteMissingLoadmasterInfo">
-<em class="property">exception </em><code class="descclassname">python_kemptech_api.exceptions.</code><code class="descname">SiteMissingLoadmasterInfo</code><span class="sig-paren">(</span><em>param</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/python_kemptech_api/exceptions.html#SiteMissingLoadmasterInfo"><span class="viewcode-link">[source]</span></a></dt>
-<dd><p>Bases: <a class="reference internal" href="#python_kemptech_api.exceptions.MissingInfo" title="python_kemptech_api.exceptions.MissingInfo"><code class="xref py py-class docutils literal"><span class="pre">python_kemptech_api.exceptions.MissingInfo</span></code></a></p>
-<dl class="attribute">
-<dt id="python_kemptech_api.exceptions.SiteMissingLoadmasterInfo.param_name">
-<code class="descname">param_name</code><em class="property"> = 'LoadMaster'</em></dt>
-<dd></dd></dl>
-
-<dl class="attribute">
-<dt id="python_kemptech_api.exceptions.SiteMissingLoadmasterInfo.service">
-<code class="descname">service</code><em class="property"> = 'Site'</em></dt>
-<dd></dd></dl>
-
-</dd></dl>
-
-<dl class="exception">
-<dt id="python_kemptech_api.exceptions.SubVsCannotCreateSubVs">
-<em class="property">exception </em><code class="descclassname">python_kemptech_api.exceptions.</code><code class="descname">SubVsCannotCreateSubVs</code><a class="reference internal" href="_modules/python_kemptech_api/exceptions.html#SubVsCannotCreateSubVs"><span class="viewcode-link">[source]</span></a></dt>
-<dd><p>Bases: <code class="xref py py-class docutils literal"><span class="pre">Exception</span></code></p>
-</dd></dl>
-
-<dl class="exception">
-<dt id="python_kemptech_api.exceptions.TemplateMissingLoadmasterInfo">
-<em class="property">exception </em><code class="descclassname">python_kemptech_api.exceptions.</code><code class="descname">TemplateMissingLoadmasterInfo</code><span class="sig-paren">(</span><em>param</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/python_kemptech_api/exceptions.html#TemplateMissingLoadmasterInfo"><span class="viewcode-link">[source]</span></a></dt>
-<dd><p>Bases: <a class="reference internal" href="#python_kemptech_api.exceptions.MissingInfo" title="python_kemptech_api.exceptions.MissingInfo"><code class="xref py py-class docutils literal"><span class="pre">python_kemptech_api.exceptions.MissingInfo</span></code></a></p>
-<dl class="attribute">
-<dt id="python_kemptech_api.exceptions.TemplateMissingLoadmasterInfo.param_name">
-<code class="descname">param_name</code><em class="property"> = 'LoadMaster'</em></dt>
-<dd></dd></dl>
-
-<dl class="attribute">
-<dt id="python_kemptech_api.exceptions.TemplateMissingLoadmasterInfo.service">
-<code class="descname">service</code><em class="property"> = 'Template'</em></dt>
-<dd></dd></dl>
-
-</dd></dl>
-
-<dl class="exception">
-<dt id="python_kemptech_api.exceptions.TimeoutException">
-<em class="property">exception </em><code class="descclassname">python_kemptech_api.exceptions.</code><code class="descname">TimeoutException</code><span class="sig-paren">(</span><em>endpoint</em>, <em>code=None</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/python_kemptech_api/exceptions.html#TimeoutException"><span class="viewcode-link">[source]</span></a></dt>
-<dd><p>Bases: <a class="reference internal" href="#python_kemptech_api.exceptions.KempTechApiException" title="python_kemptech_api.exceptions.KempTechApiException"><code class="xref py py-class docutils literal"><span class="pre">python_kemptech_api.exceptions.KempTechApiException</span></code></a></p>
-</dd></dl>
-
-<dl class="exception">
-<dt id="python_kemptech_api.exceptions.TooManyRedirectsException">
-<em class="property">exception </em><code class="descclassname">python_kemptech_api.exceptions.</code><code class="descname">TooManyRedirectsException</code><span class="sig-paren">(</span><em>cmd_url</em>, <em>code=None</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/python_kemptech_api/exceptions.html#TooManyRedirectsException"><span class="viewcode-link">[source]</span></a></dt>
-<dd><p>Bases: <a class="reference internal" href="#python_kemptech_api.exceptions.KempTechApiException" title="python_kemptech_api.exceptions.KempTechApiException"><code class="xref py py-class docutils literal"><span class="pre">python_kemptech_api.exceptions.KempTechApiException</span></code></a></p>
-</dd></dl>
-
-<dl class="exception">
-<dt id="python_kemptech_api.exceptions.UnauthorizedAccessError">
-<em class="property">exception </em><code class="descclassname">python_kemptech_api.exceptions.</code><code class="descname">UnauthorizedAccessError</code><span class="sig-paren">(</span><em>cmd_url</em>, <em>code=None</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/python_kemptech_api/exceptions.html#UnauthorizedAccessError"><span class="viewcode-link">[source]</span></a></dt>
-<dd><p>Bases: <a class="reference internal" href="#python_kemptech_api.exceptions.KempTechApiException" title="python_kemptech_api.exceptions.KempTechApiException"><code class="xref py py-class docutils literal"><span class="pre">python_kemptech_api.exceptions.KempTechApiException</span></code></a></p>
-</dd></dl>
-
-<dl class="exception">
-<dt id="python_kemptech_api.exceptions.UrlRequiredError">
-<em class="property">exception </em><code class="descclassname">python_kemptech_api.exceptions.</code><code class="descname">UrlRequiredError</code><span class="sig-paren">(</span><em>cmd_url</em>, <em>code=None</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/python_kemptech_api/exceptions.html#UrlRequiredError"><span class="viewcode-link">[source]</span></a></dt>
-<dd><p>Bases: <a class="reference internal" href="#python_kemptech_api.exceptions.KempTechApiException" title="python_kemptech_api.exceptions.KempTechApiException"><code class="xref py py-class docutils literal"><span class="pre">python_kemptech_api.exceptions.KempTechApiException</span></code></a></p>
-</dd></dl>
-
-<dl class="exception">
-<dt id="python_kemptech_api.exceptions.UserAlreadyExistsException">
-<em class="property">exception </em><code class="descclassname">python_kemptech_api.exceptions.</code><code class="descname">UserAlreadyExistsException</code><span class="sig-paren">(</span><em>user</em>, <em>ip_address</em>, <em>code=None</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/python_kemptech_api/exceptions.html#UserAlreadyExistsException"><span class="viewcode-link">[source]</span></a></dt>
-<dd><p>Bases: <a class="reference internal" href="#python_kemptech_api.exceptions.KempTechApiException" title="python_kemptech_api.exceptions.KempTechApiException"><code class="xref py py-class docutils literal"><span class="pre">python_kemptech_api.exceptions.KempTechApiException</span></code></a></p>
-</dd></dl>
-
-<dl class="exception">
-<dt id="python_kemptech_api.exceptions.ValidationError">
-<em class="property">exception </em><code class="descclassname">python_kemptech_api.exceptions.</code><code class="descname">ValidationError</code><a class="reference internal" href="_modules/python_kemptech_api/exceptions.html#ValidationError"><span class="viewcode-link">[source]</span></a></dt>
-<dd><p>Bases: <code class="xref py py-class docutils literal"><span class="pre">Exception</span></code></p>
-</dd></dl>
-
-<dl class="exception">
-<dt id="python_kemptech_api.exceptions.VirtualServiceACLMissingVirtualServiceInfo">
-<em class="property">exception </em><code class="descclassname">python_kemptech_api.exceptions.</code><code class="descname">VirtualServiceACLMissingVirtualServiceInfo</code><span class="sig-paren">(</span><em>param</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/python_kemptech_api/exceptions.html#VirtualServiceACLMissingVirtualServiceInfo"><span class="viewcode-link">[source]</span></a></dt>
-<dd><p>Bases: <a class="reference internal" href="#python_kemptech_api.exceptions.MissingInfo" title="python_kemptech_api.exceptions.MissingInfo"><code class="xref py py-class docutils literal"><span class="pre">python_kemptech_api.exceptions.MissingInfo</span></code></a></p>
-<dl class="attribute">
-<dt id="python_kemptech_api.exceptions.VirtualServiceACLMissingVirtualServiceInfo.param_name">
-<code class="descname">param_name</code><em class="property"> = 'Virtual service'</em></dt>
-<dd></dd></dl>
-
-<dl class="attribute">
-<dt id="python_kemptech_api.exceptions.VirtualServiceACLMissingVirtualServiceInfo.service">
-<code class="descname">service</code><em class="property"> = 'VirtualServiceACL'</em></dt>
-<dd></dd></dl>
-
-</dd></dl>
-
-<dl class="exception">
-<dt id="python_kemptech_api.exceptions.VirtualServiceMissingLoadmasterInfo">
-<em class="property">exception </em><code class="descclassname">python_kemptech_api.exceptions.</code><code class="descname">VirtualServiceMissingLoadmasterInfo</code><span class="sig-paren">(</span><em>param</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/python_kemptech_api/exceptions.html#VirtualServiceMissingLoadmasterInfo"><span class="viewcode-link">[source]</span></a></dt>
-<dd><p>Bases: <a class="reference internal" href="#python_kemptech_api.exceptions.MissingInfo" title="python_kemptech_api.exceptions.MissingInfo"><code class="xref py py-class docutils literal"><span class="pre">python_kemptech_api.exceptions.MissingInfo</span></code></a></p>
-<dl class="attribute">
-<dt id="python_kemptech_api.exceptions.VirtualServiceMissingLoadmasterInfo.param_name">
-<code class="descname">param_name</code><em class="property"> = 'LoadMaster'</em></dt>
-<dd></dd></dl>
-
-<dl class="attribute">
-<dt id="python_kemptech_api.exceptions.VirtualServiceMissingLoadmasterInfo.service">
-<code class="descname">service</code><em class="property"> = 'Virtual service'</em></dt>
-<dd></dd></dl>
-
-</dd></dl>
-
-<dl class="exception">
-<dt id="python_kemptech_api.exceptions.VirtualServiceParameterError">
-<em class="property">exception </em><code class="descclassname">python_kemptech_api.exceptions.</code><code class="descname">VirtualServiceParameterError</code><span class="sig-paren">(</span><em>vs</em>, <em>parameters</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/python_kemptech_api/exceptions.html#VirtualServiceParameterError"><span class="viewcode-link">[source]</span></a></dt>
-<dd><p>Bases: <code class="xref py py-class docutils literal"><span class="pre">Exception</span></code></p>
-</dd></dl>
-
-<dl class="function">
-<dt id="python_kemptech_api.exceptions.get_api_exception_message">
-<code class="descclassname">python_kemptech_api.exceptions.</code><code class="descname">get_api_exception_message</code><span class="sig-paren">(</span><em>msg</em>, <em>code</em>, <em>is_xml_msg</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/python_kemptech_api/exceptions.html#get_api_exception_message"><span class="viewcode-link">[source]</span></a></dt>
-<dd></dd></dl>
-
-<dl class="function">
-<dt id="python_kemptech_api.exceptions.get_parameter_message">
-<code class="descclassname">python_kemptech_api.exceptions.</code><code class="descname">get_parameter_message</code><span class="sig-paren">(</span><em>obj</em>, <em>parameters</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/python_kemptech_api/exceptions.html#get_parameter_message"><span class="viewcode-link">[source]</span></a></dt>
-<dd></dd></dl>
-
+  <div class="section" id="python-kemptech-api-exceptions-module">
+<h1>python_kemptech_api.exceptions module</h1>
 </div>
 
 
@@ -544,7 +193,7 @@
     <script type="text/javascript">
         var DOCUMENTATION_OPTIONS = {
             URL_ROOT:'./',
-            VERSION:'0.7.15',
+            VERSION:'0.7.18',
             COLLAPSE_INDEX:false,
             FILE_SUFFIX:'.html',
             HAS_SOURCE:  true

@@ -8,7 +8,7 @@
   
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   
-  <title>python_kemptech_api.utils module &mdash; python-kemptech-api 0.7.15 documentation</title>
+  <title>python_kemptech_api.utils module &mdash; python-kemptech-api 0.7.18 documentation</title>
   
 
   
@@ -33,7 +33,7 @@
         <link rel="index" title="Index"
               href="genindex.html"/>
         <link rel="search" title="Search" href="search.html"/>
-    <link rel="top" title="python-kemptech-api 0.7.15 documentation" href="index.html"/>
+    <link rel="top" title="python-kemptech-api 0.7.18 documentation" href="index.html"/>
         <link rel="up" title="python_kemptech_api package" href="python_kemptech_api.html"/>
         <link rel="prev" title="python_kemptech_api.objects module" href="python_kemptech_api.objects.html"/> 
 
@@ -63,7 +63,7 @@
             
             
               <div class="version">
-                0.7.15
+                0.7.18
               </div>
             
           
@@ -98,7 +98,7 @@
 <li class="toctree-l3 current"><a class="current reference internal" href="#">python_kemptech_api.utils module</a></li>
 </ul>
 </li>
-<li class="toctree-l2"><a class="reference internal" href="python_kemptech_api.html#module-python_kemptech_api">Module contents</a></li>
+<li class="toctree-l2"><a class="reference internal" href="python_kemptech_api.html#module-contents">Module contents</a></li>
 </ul>
 </li>
 </ul>
@@ -147,125 +147,8 @@
           <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
            <div itemprop="articleBody">
             
-  <div class="section" id="module-python_kemptech_api.utils">
-<span id="python-kemptech-api-utils-module"></span><h1>python_kemptech_api.utils module</h1>
-<dl class="class">
-<dt id="python_kemptech_api.utils.UseTlsAdapter">
-<em class="property">class </em><code class="descclassname">python_kemptech_api.utils.</code><code class="descname">UseTlsAdapter</code><span class="sig-paren">(</span><em>tls_version=None</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/python_kemptech_api/utils.html#UseTlsAdapter"><span class="viewcode-link">[source]</span></a></dt>
-<dd><p>Bases: <code class="xref py py-class docutils literal"><span class="pre">requests.adapters.HTTPAdapter</span></code></p>
-<dl class="method">
-<dt id="python_kemptech_api.utils.UseTlsAdapter.init_poolmanager">
-<code class="descname">init_poolmanager</code><span class="sig-paren">(</span><em>connections</em>, <em>maxsize</em>, <em>block=False</em>, <em>**kwargs</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/python_kemptech_api/utils.html#UseTlsAdapter.init_poolmanager"><span class="viewcode-link">[source]</span></a></dt>
-<dd></dd></dl>
-
-<dl class="attribute">
-<dt id="python_kemptech_api.utils.UseTlsAdapter.tls_version">
-<code class="descname">tls_version</code><em class="property"> = None</em></dt>
-<dd></dd></dl>
-
-</dd></dl>
-
-<dl class="function">
-<dt id="python_kemptech_api.utils.build_object">
-<code class="descclassname">python_kemptech_api.utils.</code><code class="descname">build_object</code><span class="sig-paren">(</span><em>class_to_build</em>, <em>access_info</em>, <em>data_for_instance</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/python_kemptech_api/utils.html#build_object"><span class="viewcode-link">[source]</span></a></dt>
-<dd><p>Factory method that can can build instances of BaseKempObject</p>
-<table class="docutils field-list" frame="void" rules="none">
-<col class="field-name" />
-<col class="field-body" />
-<tbody valign="top">
-<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><ul class="first simple">
-<li><strong>class_to_build</strong> &#8211; Subclass of BaseKempObject</li>
-<li><strong>access_info</strong> &#8211; Access info that will allow it to attach to parent</li>
-<li><strong>data_for_instance</strong> &#8211; Default data for class instance</li>
-</ul>
-</td>
-</tr>
-<tr class="field-even field"><th class="field-name">Returns:</th><td class="field-body"><p class="first last">Instance of class populated with access info and default data</p>
-</td>
-</tr>
-</tbody>
-</table>
-</dd></dl>
-
-<dl class="function">
-<dt id="python_kemptech_api.utils.cast_to_list">
-<code class="descclassname">python_kemptech_api.utils.</code><code class="descname">cast_to_list</code><span class="sig-paren">(</span><em>data</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/python_kemptech_api/utils.html#cast_to_list"><span class="viewcode-link">[source]</span></a></dt>
-<dd><p>Cast data to a list if it is not already a list.</p>
-<table class="docutils field-list" frame="void" rules="none">
-<col class="field-name" />
-<col class="field-body" />
-<tbody valign="top">
-<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><strong>data</strong> &#8211; The variable to be cast to a list.</td>
-</tr>
-<tr class="field-even field"><th class="field-name">Returns:</th><td class="field-body">The data in a list</td>
-</tr>
-</tbody>
-</table>
-</dd></dl>
-
-<dl class="function">
-<dt id="python_kemptech_api.utils.falsey_to_none">
-<code class="descclassname">python_kemptech_api.utils.</code><code class="descname">falsey_to_none</code><span class="sig-paren">(</span><em>var</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/python_kemptech_api/utils.html#falsey_to_none"><span class="viewcode-link">[source]</span></a></dt>
-<dd><p>Certain parameters return invalid 0 when they should be False</p>
-<p>This function takes a variable, checks if its &#8216;falsey&#8217; and return it
-with the value of None if it is.
-:param var: The variable to check
-:return: The variable that was given, with value of None if it was falsey</p>
-</dd></dl>
-
-<dl class="function">
-<dt id="python_kemptech_api.utils.get_api_bool_string">
-<code class="descclassname">python_kemptech_api.utils.</code><code class="descname">get_api_bool_string</code><span class="sig-paren">(</span><em>api_bool</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/python_kemptech_api/utils.html#get_api_bool_string"><span class="viewcode-link">[source]</span></a></dt>
-<dd><p>Return KEMP restfull API version of a bool string</p>
-</dd></dl>
-
-<dl class="function">
-<dt id="python_kemptech_api.utils.get_dict_entry_as_list">
-<code class="descclassname">python_kemptech_api.utils.</code><code class="descname">get_dict_entry_as_list</code><span class="sig-paren">(</span><em>key</em>, <em>data</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/python_kemptech_api/utils.html#get_dict_entry_as_list"><span class="viewcode-link">[source]</span></a></dt>
-<dd><p>Returns an entry from a dict as a list</p>
-</dd></dl>
-
-<dl class="function">
-<dt id="python_kemptech_api.utils.get_sub_vs_list_from_data">
-<code class="descclassname">python_kemptech_api.utils.</code><code class="descname">get_sub_vs_list_from_data</code><span class="sig-paren">(</span><em>response_data</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/python_kemptech_api/utils.html#get_sub_vs_list_from_data"><span class="viewcode-link">[source]</span></a></dt>
-<dd><p>Get Sub VS IDs and the &#8220;Rs&#8221; data portion of the Sub VSs as a tuple</p>
-<table class="docutils field-list" frame="void" rules="none">
-<col class="field-name" />
-<col class="field-body" />
-<tbody valign="top">
-<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><strong>response_data</strong> &#8211; Data portion of LM API response</td>
-</tr>
-<tr class="field-even field"><th class="field-name">Returns:</th><td class="field-body">Tuple of list of sub VS IDs and a dict of full RS sub VS data</td>
-</tr>
-</tbody>
-</table>
-</dd></dl>
-
-<dl class="function">
-<dt id="python_kemptech_api.utils.list_object">
-<code class="descclassname">python_kemptech_api.utils.</code><code class="descname">list_object</code><span class="sig-paren">(</span><em>class_to_list</em>, <em>access_info</em>, <em>data</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/python_kemptech_api/utils.html#list_object"><span class="viewcode-link">[source]</span></a></dt>
-<dd></dd></dl>
-
-<dl class="function">
-<dt id="python_kemptech_api.utils.send_response">
-<code class="descclassname">python_kemptech_api.utils.</code><code class="descname">send_response</code><span class="sig-paren">(</span><em>response</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/python_kemptech_api/utils.html#send_response"><span class="viewcode-link">[source]</span></a></dt>
-<dd></dd></dl>
-
-<dl class="function">
-<dt id="python_kemptech_api.utils.validate_ip">
-<code class="descclassname">python_kemptech_api.utils.</code><code class="descname">validate_ip</code><span class="sig-paren">(</span><em>ip</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/python_kemptech_api/utils.html#validate_ip"><span class="viewcode-link">[source]</span></a></dt>
-<dd></dd></dl>
-
-<dl class="function">
-<dt id="python_kemptech_api.utils.validate_port">
-<code class="descclassname">python_kemptech_api.utils.</code><code class="descname">validate_port</code><span class="sig-paren">(</span><em>port</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/python_kemptech_api/utils.html#validate_port"><span class="viewcode-link">[source]</span></a></dt>
-<dd></dd></dl>
-
-<dl class="function">
-<dt id="python_kemptech_api.utils.validate_protocol">
-<code class="descclassname">python_kemptech_api.utils.</code><code class="descname">validate_protocol</code><span class="sig-paren">(</span><em>protocol</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/python_kemptech_api/utils.html#validate_protocol"><span class="viewcode-link">[source]</span></a></dt>
-<dd></dd></dl>
-
+  <div class="section" id="python-kemptech-api-utils-module">
+<h1>python_kemptech_api.utils module</h1>
 </div>
 
 
@@ -307,7 +190,7 @@ with the value of None if it is.
     <script type="text/javascript">
         var DOCUMENTATION_OPTIONS = {
             URL_ROOT:'./',
-            VERSION:'0.7.15',
+            VERSION:'0.7.18',
             COLLAPSE_INDEX:false,
             FILE_SUFFIX:'.html',
             HAS_SOURCE:  true
