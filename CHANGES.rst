@@ -1,3 +1,5 @@
+v0.7.18, 2-9-2017
+    * Added performance improvements
 v0.7.0, 10-8-2016
     * Added Access Control, Template, Rule, SSO, FQDN, Site, Cluster, Range, CustomLocation, Certificate and Interface objects. Added more Virtual Service parameters.
 v0.6.19, 23-6-2016
