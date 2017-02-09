@@ -11,7 +11,7 @@ To install run:
 
 Documentation
 =====
-Documentation can be found in [dannyzen.github.io/python-kemptech-api](https://dannyzen.github.io/python-kemptech-api/)
+Documentation can be found in [kemptechnologies.github.io/python-kemptech-api](https://kemptechnologies.github.io/python-kemptech-api/)
 
 Examples
 =====
