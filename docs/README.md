@@ -1,5 +1,7 @@
 Building
 ========
+We're using `sphinx_rtd_theme` make sure to `pip install sphinx_rtd_theme` to build
+
 Use `sphinx-apidoc ../ -o source/ -e -f` to generate sources and insert them into `source/`. 
 
 Edit `source/config.py` to bump the version or change settings
