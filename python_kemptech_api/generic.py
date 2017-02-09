@@ -45,7 +45,7 @@ class HttpClient(object):
         return False
 
     def _do_request(self, http_method, rest_command,
-                    parameters=None, file=None,
+                    parameters=None, file=None, data=None,
                     headers=None, retries=0):
         """Perform a HTTP request.
 
@@ -75,6 +75,7 @@ class HttpClient(object):
                 response = self._tls_session.request(http_method,
                                                      cmd_url,
                                                      params=parameters,
+                                                     data=data,
                                                      timeout=utils.TIMEOUT,
                                                      verify=False,
                                                      headers=headers,
@@ -134,9 +135,9 @@ class HttpClient(object):
         return self._do_request('GET', rest_command, parameters,
                                 headers=headers)
 
-    def _post(self, rest_command, file=None, parameters=None, headers=None):
+    def _post(self, rest_command, file=None, parameters=None, headers=None, data=None):
         return self._do_request('POST', rest_command, parameters=parameters,
-                                file=file)
+                                file=file, data=data)
 
 
 class AccessInfoMixin(object):

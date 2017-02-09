@@ -1,6 +1,7 @@
 """Encapsulate the awful XML response and provide helpful functions."""
 
 import xmltodict
+from pylru import lrudecorator
 
 
 def get_success_msg(xml):
@@ -22,6 +23,7 @@ def get_data_field(xml, field):
     return value or ""
 
 
+@lrudecorator(64)
 def get_data(xml):
     """Return the 'Data' entry from LM's XML as a dict"""
     success_xml_entry = _get_xml_field(xml, "Success")

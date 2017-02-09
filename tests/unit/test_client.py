@@ -64,19 +64,6 @@ class Test_HttpClient_do_request:
         self.p_Session.stop()
         self.p_requests.stop()
 
-    def test_no_file_parameter_set(self):
-        open_ = mock_open(read_data='myData')
-        with patch.object(client, "open", open_, create=True): # as my_open:
-           self.client._do_request('GET','MyCommand')
-           args = self.request.call_args
-           # check positional arguments
-           assert_equal(args[0], ('GET', 'ep/MyCommand?'))
-           # check kwargs
-           kw = args[1]
-           assert_equal(kw['verify'], False)
-           assert_equal(kw['params'], None)
-           assert_false('data' in kw)
-
     def test_file_parameter_set(self):
         open_ = mock_open(read_data='myData')
         with patch.object(generic, "open", open_, create=True): # as my_open:
