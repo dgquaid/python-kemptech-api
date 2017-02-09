@@ -1,0 +1,378 @@
+
+
+<!DOCTYPE html>
+<!--[if IE 8]><html class="no-js lt-ie9" lang="en" > <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js" lang="en" > <!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  
+  <title>tests.unit.test_client &mdash; python-kemptech-api 0.7.15 documentation</title>
+  
+
+  
+  
+
+  
+
+  
+  
+    
+
+  
+
+  
+  
+    <link rel="stylesheet" href="../../../_static/css/theme.css" type="text/css" />
+  
+
+  
+
+  
+        <link rel="index" title="Index"
+              href="../../../genindex.html"/>
+        <link rel="search" title="Search" href="../../../search.html"/>
+    <link rel="top" title="python-kemptech-api 0.7.15 documentation" href="../../../index.html"/>
+        <link rel="up" title="Module code" href="../../index.html"/> 
+
+  
+  <script src="../../../_static/js/modernizr.min.js"></script>
+
+</head>
+
+<body class="wy-body-for-nav" role="document">
+
+  <div class="wy-grid-for-nav">
+
+    
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search">
+          
+
+          
+            <a href="../../../index.html" class="icon icon-home"> python-kemptech-api
+          
+
+          
+          </a>
+
+          
+            
+            
+              <div class="version">
+                0.7.15
+              </div>
+            
+          
+
+          
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../../../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+
+          
+        </div>
+
+        <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
+          
+            
+            
+                <p class="caption"><span class="caption-text">Contents:</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../../../python_kemptech_api.html">python_kemptech_api package</a></li>
+</ul>
+
+            
+          
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+
+      
+      <nav class="wy-nav-top" role="navigation" aria-label="top navigation">
+        <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+        <a href="../../../index.html">python-kemptech-api</a>
+      </nav>
+
+
+      
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          
+
+
+
+
+
+<div role="navigation" aria-label="breadcrumbs navigation">
+  <ul class="wy-breadcrumbs">
+    <li><a href="../../../index.html">Docs</a> &raquo;</li>
+      
+          <li><a href="../../index.html">Module code</a> &raquo;</li>
+      
+    <li>tests.unit.test_client</li>
+      <li class="wy-breadcrumbs-aside">
+        
+          
+        
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+            
+  <h1>Source code for tests.unit.test_client</h1><div class="highlight"><pre>
+<span></span><span class="kn">import</span> <span class="nn">requests</span>
+<span class="kn">from</span> <span class="nn">nose.tools</span> <span class="k">import</span> <span class="p">(</span><span class="n">assert_equal</span><span class="p">,</span> <span class="n">assert_is_instance</span><span class="p">,</span> <span class="n">assert_raises</span><span class="p">,</span>
+   <span class="n">assert_false</span><span class="p">,</span> <span class="n">assert_in</span><span class="p">)</span>
+
+<span class="kn">import</span> <span class="nn">python_kemptech_api.generic</span>
+<span class="kn">import</span> <span class="nn">python_kemptech_api.models</span>
+<span class="kn">import</span> <span class="nn">python_kemptech_api.objects</span>
+<span class="kn">from</span> <span class="nn">python_kemptech_api</span> <span class="k">import</span> <span class="n">api_xml</span>
+<span class="kn">from</span> <span class="nn">python_kemptech_api</span> <span class="k">import</span> <span class="n">generic</span>
+
+<span class="k">try</span><span class="p">:</span>
+    <span class="kn">import</span> <span class="nn">unittest.mock</span> <span class="k">as</span> <span class="nn">mock</span>
+<span class="k">except</span> <span class="ne">ImportError</span><span class="p">:</span>
+    <span class="kn">import</span> <span class="nn">mock</span>
+
+<span class="n">mock_open</span> <span class="o">=</span> <span class="n">mock</span><span class="o">.</span><span class="n">mock_open</span>
+<span class="n">patch</span> <span class="o">=</span> <span class="n">mock</span><span class="o">.</span><span class="n">patch</span>
+<span class="n">MagicMock</span> <span class="o">=</span> <span class="n">mock</span><span class="o">.</span><span class="n">MagicMock</span>
+<span class="n">sentinel</span> <span class="o">=</span> <span class="n">mock</span><span class="o">.</span><span class="n">sentinel</span>
+<span class="n">PropertyMock</span> <span class="o">=</span> <span class="n">mock</span><span class="o">.</span><span class="n">PropertyMock</span>
+
+<span class="kn">from</span> <span class="nn">requests</span> <span class="k">import</span> <span class="n">exceptions</span>
+
+<span class="kn">import</span> <span class="nn">python_kemptech_api.client</span> <span class="k">as</span> <span class="nn">client</span>
+<span class="kn">from</span> <span class="nn">python_kemptech_api</span> <span class="k">import</span> <span class="n">utils</span>
+
+<span class="n">LoadMaster</span> <span class="o">=</span> <span class="n">python_kemptech_api</span><span class="o">.</span><span class="n">models</span><span class="o">.</span><span class="n">LoadMaster</span>
+
+<div class="viewcode-block" id="MyError"><a class="viewcode-back" href="../../../tests.unit.test_client.html#tests.unit.test_client.MyError">[docs]</a><span class="k">class</span> <span class="nc">MyError</span><span class="p">(</span><span class="ne">Exception</span><span class="p">):</span>
+    <span class="k">pass</span></div>
+
+
+<div class="viewcode-block" id="Test_HttpClient_as_context_manager"><a class="viewcode-back" href="../../../tests.unit.test_client.html#tests.unit.test_client.Test_HttpClient_as_context_manager">[docs]</a><span class="k">class</span> <span class="nc">Test_HttpClient_as_context_manager</span><span class="p">:</span>
+
+<div class="viewcode-block" id="Test_HttpClient_as_context_manager.test_context_manager_enter"><a class="viewcode-back" href="../../../tests.unit.test_client.html#tests.unit.test_client.Test_HttpClient_as_context_manager.test_context_manager_enter">[docs]</a>    <span class="k">def</span> <span class="nf">test_context_manager_enter</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="k">with</span> <span class="n">python_kemptech_api</span><span class="o">.</span><span class="n">generic</span><span class="o">.</span><span class="n">HttpClient</span><span class="p">()</span> <span class="k">as</span> <span class="n">aclient</span><span class="p">:</span>
+            <span class="n">assert_is_instance</span><span class="p">(</span><span class="n">aclient</span><span class="p">,</span> <span class="n">python_kemptech_api</span><span class="o">.</span><span class="n">generic</span><span class="o">.</span><span class="n">HttpClient</span><span class="p">)</span></div>
+
+<div class="viewcode-block" id="Test_HttpClient_as_context_manager.test_context_manager_exit"><a class="viewcode-back" href="../../../tests.unit.test_client.html#tests.unit.test_client.Test_HttpClient_as_context_manager.test_context_manager_exit">[docs]</a>    <span class="k">def</span> <span class="nf">test_context_manager_exit</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="k">with</span> <span class="n">assert_raises</span><span class="p">(</span><span class="n">MyError</span><span class="p">):</span>
+            <span class="k">with</span> <span class="n">python_kemptech_api</span><span class="o">.</span><span class="n">generic</span><span class="o">.</span><span class="n">HttpClient</span><span class="p">():</span>
+                <span class="k">raise</span> <span class="n">MyError</span><span class="p">(</span><span class="s1">&#39;An Error&#39;</span><span class="p">)</span></div></div>
+
+
+<div class="viewcode-block" id="Test_HttpClient_do_request"><a class="viewcode-back" href="../../../tests.unit.test_client.html#tests.unit.test_client.Test_HttpClient_do_request">[docs]</a><span class="k">class</span> <span class="nc">Test_HttpClient_do_request</span><span class="p">:</span>
+
+<div class="viewcode-block" id="Test_HttpClient_do_request.setup"><a class="viewcode-back" href="../../../tests.unit.test_client.html#tests.unit.test_client.Test_HttpClient_do_request.setup">[docs]</a>    <span class="k">def</span> <span class="nf">setup</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">p_Session</span> <span class="o">=</span> <span class="n">patch</span><span class="o">.</span><span class="n">object</span><span class="p">(</span><span class="n">generic</span><span class="p">,</span> <span class="s1">&#39;Session&#39;</span><span class="p">)</span>
+        <span class="n">Session</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">p_Session</span><span class="o">.</span><span class="n">start</span><span class="p">()</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">p_requests</span> <span class="o">=</span> <span class="n">patch</span><span class="o">.</span><span class="n">object</span><span class="p">(</span><span class="n">generic</span><span class="p">,</span> <span class="s1">&#39;requests&#39;</span><span class="p">)</span>
+        <span class="n">rquests</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">p_requests</span><span class="o">.</span><span class="n">start</span><span class="p">()</span>
+        <span class="n">Session</span><span class="o">.</span><span class="n">return_value</span> <span class="o">=</span> <span class="n">rquests</span>
+
+        <span class="bp">self</span><span class="o">.</span><span class="n">response</span> <span class="o">=</span> <span class="n">MagicMock</span><span class="p">()</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">response</span><span class="o">.</span><span class="n">status_code</span> <span class="o">=</span> <span class="mi">200</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">response</span><span class="o">.</span><span class="n">text</span> <span class="o">=</span> <span class="n">sentinel</span><span class="o">.</span><span class="n">response_text</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">request</span> <span class="o">=</span> <span class="n">rquests</span><span class="o">.</span><span class="n">request</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">request</span><span class="o">.</span><span class="n">return_value</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">response</span>
+
+        <span class="bp">self</span><span class="o">.</span><span class="n">client</span> <span class="o">=</span> <span class="n">python_kemptech_api</span><span class="o">.</span><span class="n">generic</span><span class="o">.</span><span class="n">HttpClient</span><span class="p">()</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">client</span><span class="o">.</span><span class="n">endpoint</span> <span class="o">=</span> <span class="s1">&#39;ep/&#39;</span></div>
+
+<div class="viewcode-block" id="Test_HttpClient_do_request.teardown"><a class="viewcode-back" href="../../../tests.unit.test_client.html#tests.unit.test_client.Test_HttpClient_do_request.teardown">[docs]</a>    <span class="k">def</span> <span class="nf">teardown</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">p_Session</span><span class="o">.</span><span class="n">stop</span><span class="p">()</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">p_requests</span><span class="o">.</span><span class="n">stop</span><span class="p">()</span></div>
+
+<div class="viewcode-block" id="Test_HttpClient_do_request.test_no_file_parameter_set"><a class="viewcode-back" href="../../../tests.unit.test_client.html#tests.unit.test_client.Test_HttpClient_do_request.test_no_file_parameter_set">[docs]</a>    <span class="k">def</span> <span class="nf">test_no_file_parameter_set</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="n">open_</span> <span class="o">=</span> <span class="n">mock_open</span><span class="p">(</span><span class="n">read_data</span><span class="o">=</span><span class="s1">&#39;myData&#39;</span><span class="p">)</span>
+        <span class="k">with</span> <span class="n">patch</span><span class="o">.</span><span class="n">object</span><span class="p">(</span><span class="n">client</span><span class="p">,</span> <span class="s2">&quot;open&quot;</span><span class="p">,</span> <span class="n">open_</span><span class="p">,</span> <span class="n">create</span><span class="o">=</span><span class="kc">True</span><span class="p">):</span> <span class="c1"># as my_open:</span>
+           <span class="bp">self</span><span class="o">.</span><span class="n">client</span><span class="o">.</span><span class="n">_do_request</span><span class="p">(</span><span class="s1">&#39;GET&#39;</span><span class="p">,</span><span class="s1">&#39;MyCommand&#39;</span><span class="p">)</span>
+           <span class="n">args</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">request</span><span class="o">.</span><span class="n">call_args</span>
+           <span class="c1"># check positional arguments</span>
+           <span class="n">assert_equal</span><span class="p">(</span><span class="n">args</span><span class="p">[</span><span class="mi">0</span><span class="p">],</span> <span class="p">(</span><span class="s1">&#39;GET&#39;</span><span class="p">,</span> <span class="s1">&#39;ep/MyCommand?&#39;</span><span class="p">))</span>
+           <span class="c1"># check kwargs</span>
+           <span class="n">kw</span> <span class="o">=</span> <span class="n">args</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span>
+           <span class="n">assert_equal</span><span class="p">(</span><span class="n">kw</span><span class="p">[</span><span class="s1">&#39;verify&#39;</span><span class="p">],</span> <span class="kc">False</span><span class="p">)</span>
+           <span class="n">assert_equal</span><span class="p">(</span><span class="n">kw</span><span class="p">[</span><span class="s1">&#39;params&#39;</span><span class="p">],</span> <span class="kc">None</span><span class="p">)</span>
+           <span class="n">assert_false</span><span class="p">(</span><span class="s1">&#39;data&#39;</span> <span class="ow">in</span> <span class="n">kw</span><span class="p">)</span></div>
+
+<div class="viewcode-block" id="Test_HttpClient_do_request.test_file_parameter_set"><a class="viewcode-back" href="../../../tests.unit.test_client.html#tests.unit.test_client.Test_HttpClient_do_request.test_file_parameter_set">[docs]</a>    <span class="k">def</span> <span class="nf">test_file_parameter_set</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="n">open_</span> <span class="o">=</span> <span class="n">mock_open</span><span class="p">(</span><span class="n">read_data</span><span class="o">=</span><span class="s1">&#39;myData&#39;</span><span class="p">)</span>
+        <span class="k">with</span> <span class="n">patch</span><span class="o">.</span><span class="n">object</span><span class="p">(</span><span class="n">generic</span><span class="p">,</span> <span class="s2">&quot;open&quot;</span><span class="p">,</span> <span class="n">open_</span><span class="p">,</span> <span class="n">create</span><span class="o">=</span><span class="kc">True</span><span class="p">):</span> <span class="c1"># as my_open:</span>
+           <span class="bp">self</span><span class="o">.</span><span class="n">client</span><span class="o">.</span><span class="n">_do_request</span><span class="p">(</span><span class="s1">&#39;GET&#39;</span><span class="p">,</span><span class="s1">&#39;MyCommand&#39;</span><span class="p">,</span>
+                                                <span class="n">parameters</span><span class="o">=</span><span class="n">sentinel</span><span class="o">.</span><span class="n">params</span><span class="p">,</span>
+                                                <span class="n">file</span><span class="o">=</span><span class="s1">&#39;my_filename&#39;</span><span class="p">)</span>
+           <span class="n">args</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">request</span><span class="o">.</span><span class="n">call_args</span>
+           <span class="c1"># check positional arguments</span>
+           <span class="n">assert_equal</span><span class="p">(</span><span class="n">args</span><span class="p">[</span><span class="mi">0</span><span class="p">],</span> <span class="p">(</span><span class="s1">&#39;GET&#39;</span><span class="p">,</span> <span class="s1">&#39;ep/MyCommand?&#39;</span><span class="p">))</span>
+           <span class="c1"># check kwargs</span>
+           <span class="n">kw</span> <span class="o">=</span> <span class="n">args</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span>
+           <span class="n">assert_equal</span><span class="p">(</span><span class="n">kw</span><span class="p">[</span><span class="s1">&#39;params&#39;</span><span class="p">],</span> <span class="n">sentinel</span><span class="o">.</span><span class="n">params</span><span class="p">)</span>
+           <span class="n">assert_in</span><span class="p">(</span><span class="s1">&#39;data&#39;</span><span class="p">,</span> <span class="n">kw</span><span class="p">)</span></div>
+
+<div class="viewcode-block" id="Test_HttpClient_do_request.test_400_status_code"><a class="viewcode-back" href="../../../tests.unit.test_client.html#tests.unit.test_client.Test_HttpClient_do_request.test_400_status_code">[docs]</a>    <span class="k">def</span> <span class="nf">test_400_status_code</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">response</span><span class="o">.</span><span class="n">status_code</span> <span class="o">=</span> <span class="mi">400</span>
+        <span class="n">res</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">client</span><span class="o">.</span><span class="n">_do_request</span><span class="p">(</span><span class="s1">&#39;GET&#39;</span><span class="p">,</span><span class="s1">&#39;MyCommand&#39;</span><span class="p">)</span>
+        <span class="n">assert_equal</span><span class="p">(</span><span class="n">res</span><span class="p">,</span> <span class="n">sentinel</span><span class="o">.</span><span class="n">response_text</span><span class="p">)</span></div>
+
+<div class="viewcode-block" id="Test_HttpClient_do_request.test_401_status_code"><a class="viewcode-back" href="../../../tests.unit.test_client.html#tests.unit.test_client.Test_HttpClient_do_request.test_401_status_code">[docs]</a>    <span class="k">def</span> <span class="nf">test_401_status_code</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="k">with</span> <span class="n">assert_raises</span><span class="p">(</span><span class="n">client</span><span class="o">.</span><span class="n">KempTechApiException</span><span class="p">):</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">response</span><span class="o">.</span><span class="n">status_code</span> <span class="o">=</span> <span class="mi">401</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">response</span><span class="o">.</span><span class="n">text</span> <span class="o">=</span> <span class="s2">&quot;my error text&quot;</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">client</span><span class="o">.</span><span class="n">_do_request</span><span class="p">(</span><span class="s1">&#39;GET&#39;</span><span class="p">,</span><span class="s1">&#39;MyCommand&#39;</span><span class="p">)</span></div>
+
+    <span class="c1"># we test all the exceptions to confirm no errors will arise is their</span>
+    <span class="c1"># call</span>
+
+<div class="viewcode-block" id="Test_HttpClient_do_request.test_re_raised_exceptions"><a class="viewcode-back" href="../../../tests.unit.test_client.html#tests.unit.test_client.Test_HttpClient_do_request.test_re_raised_exceptions">[docs]</a>    <span class="k">def</span> <span class="nf">test_re_raised_exceptions</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="n">my_exceptions</span> <span class="o">=</span> <span class="p">(</span><span class="n">exceptions</span><span class="o">.</span><span class="n">ConnectionError</span><span class="p">,</span>
+                                     <span class="n">exceptions</span><span class="o">.</span><span class="n">URLRequired</span><span class="p">,</span>
+                                     <span class="n">exceptions</span><span class="o">.</span><span class="n">TooManyRedirects</span><span class="p">,</span>
+                                     <span class="n">exceptions</span><span class="o">.</span><span class="n">Timeout</span><span class="p">,</span>
+                                     <span class="n">exceptions</span><span class="o">.</span><span class="n">RequestException</span><span class="p">)</span>
+        <span class="k">for</span> <span class="n">e</span> <span class="ow">in</span> <span class="n">my_exceptions</span><span class="p">:</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">response</span><span class="o">.</span><span class="n">raise_for_status</span><span class="o">.</span><span class="n">side_effect</span> <span class="o">=</span> <span class="n">e</span>
+            <span class="k">with</span> <span class="n">assert_raises</span><span class="p">(</span><span class="n">e</span><span class="p">):</span>
+                <span class="bp">self</span><span class="o">.</span><span class="n">client</span><span class="o">.</span><span class="n">_do_request</span><span class="p">(</span><span class="s1">&#39;GET&#39;</span><span class="p">,</span><span class="s1">&#39;MyCommand&#39;</span><span class="p">)</span></div>
+
+<div class="viewcode-block" id="Test_HttpClient_do_request.test_ConnectionTimeoutException"><a class="viewcode-back" href="../../../tests.unit.test_client.html#tests.unit.test_client.Test_HttpClient_do_request.test_ConnectionTimeoutException">[docs]</a>    <span class="k">def</span> <span class="nf">test_ConnectionTimeoutException</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">response</span><span class="o">.</span><span class="n">raise_for_status</span><span class="o">.</span><span class="n">side_effect</span> <span class="o">=</span> \
+                <span class="n">exceptions</span><span class="o">.</span><span class="n">ConnectTimeout</span>
+        <span class="k">with</span> <span class="n">assert_raises</span><span class="p">(</span><span class="n">client</span><span class="o">.</span><span class="n">ConnectionTimeoutException</span><span class="p">):</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">client</span><span class="o">.</span><span class="n">_do_request</span><span class="p">(</span><span class="s1">&#39;GET&#39;</span><span class="p">,</span><span class="s1">&#39;MyCommand&#39;</span><span class="p">)</span></div>
+
+<div class="viewcode-block" id="Test_HttpClient_do_request.test_HttpError"><a class="viewcode-back" href="../../../tests.unit.test_client.html#tests.unit.test_client.Test_HttpClient_do_request.test_HttpError">[docs]</a>    <span class="k">def</span> <span class="nf">test_HttpError</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="c1"># this raises a KempTechApiException, whose</span>
+        <span class="c1"># constructor expects an xml message, so we have</span>
+        <span class="c1"># to choose a careful path through</span>
+        <span class="c1">#  KempTechApiException.__init__</span>
+
+        <span class="bp">self</span><span class="o">.</span><span class="n">response</span><span class="o">.</span><span class="n">text</span> <span class="o">=</span> <span class="kc">None</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">response</span><span class="o">.</span><span class="n">status_code</span> <span class="o">=</span> <span class="mi">999</span>
+
+        <span class="bp">self</span><span class="o">.</span><span class="n">response</span><span class="o">.</span><span class="n">raise_for_status</span><span class="o">.</span><span class="n">side_effect</span> <span class="o">=</span> \
+                <span class="n">exceptions</span><span class="o">.</span><span class="n">HTTPError</span>
+        <span class="k">with</span> <span class="n">assert_raises</span><span class="p">(</span><span class="n">client</span><span class="o">.</span><span class="n">KempTechApiException</span><span class="p">):</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">client</span><span class="o">.</span><span class="n">_do_request</span><span class="p">(</span><span class="s1">&#39;GET&#39;</span><span class="p">,</span><span class="s1">&#39;MyCommand&#39;</span><span class="p">)</span></div></div>
+
+
+<div class="viewcode-block" id="Test_LoadMaster"><a class="viewcode-back" href="../../../tests.unit.test_client.html#tests.unit.test_client.Test_LoadMaster">[docs]</a><span class="k">class</span> <span class="nc">Test_LoadMaster</span><span class="p">:</span>
+
+<div class="viewcode-block" id="Test_LoadMaster.test_build_virtual_server"><a class="viewcode-back" href="../../../tests.unit.test_client.html#tests.unit.test_client.Test_LoadMaster.test_build_virtual_server">[docs]</a>    <span class="k">def</span> <span class="nf">test_build_virtual_server</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="n">lm</span> <span class="o">=</span> <span class="n">python_kemptech_api</span><span class="o">.</span><span class="n">models</span><span class="o">.</span><span class="n">LoadMaster</span><span class="p">(</span><span class="s1">&#39;ip&#39;</span><span class="p">,</span> <span class="s1">&#39;username&#39;</span><span class="p">,</span> <span class="s1">&#39;password&#39;</span><span class="p">)</span>
+        <span class="n">lm</span><span class="o">.</span><span class="n">ip_address</span> <span class="o">=</span> <span class="s2">&quot;1.1.1.1&quot;</span>
+        <span class="k">with</span> <span class="n">patch</span><span class="o">.</span><span class="n">object</span><span class="p">(</span><span class="n">LoadMaster</span><span class="p">,</span><span class="s1">&#39;endpoint&#39;</span><span class="p">,</span> <span class="n">new_callable</span><span class="o">=</span><span class="n">PropertyMock</span><span class="p">)</span> <span class="k">as</span> <span class="n">mock_endpoint</span><span class="p">:</span>
+            <span class="n">mock_endpoint</span><span class="o">.</span><span class="n">return_value</span> <span class="o">=</span>  <span class="s2">&quot;https://bal:2fourall@1.1.1.1:443/access&quot;</span>
+
+        <span class="n">service</span><span class="o">=</span> <span class="p">{</span><span class="s1">&#39;VSPort&#39;</span><span class="p">:</span> <span class="mi">80</span><span class="p">,</span>
+                  <span class="s1">&#39;Protocol&#39;</span><span class="p">:</span> <span class="s1">&#39;TCP&#39;</span><span class="p">,</span>
+                  <span class="s1">&#39;VSAddress&#39;</span><span class="p">:</span> <span class="s1">&#39;1.1.1.1&#39;</span><span class="p">}</span>
+        <span class="k">with</span> <span class="n">patch</span><span class="o">.</span><span class="n">object</span><span class="p">(</span><span class="n">api_xml</span><span class="p">,</span> <span class="s1">&#39;get_data&#39;</span><span class="p">)</span> <span class="k">as</span> <span class="n">get_data</span><span class="p">:</span>
+            <span class="n">get_data</span><span class="o">.</span><span class="n">return_value</span> <span class="o">=</span> <span class="p">{}</span>
+            <span class="n">res</span> <span class="o">=</span> <span class="n">lm</span><span class="o">.</span><span class="n">build_virtual_service</span><span class="p">(</span><span class="n">service</span><span class="p">,</span> <span class="s2">&quot;not none&quot;</span><span class="p">)</span>
+        <span class="n">assert_is_instance</span><span class="p">(</span><span class="n">res</span><span class="p">,</span> <span class="n">client</span><span class="o">.</span><span class="n">VirtualService</span><span class="p">)</span></div>
+
+<div class="viewcode-block" id="Test_LoadMaster.test__get_curl_command_list"><a class="viewcode-back" href="../../../tests.unit.test_client.html#tests.unit.test_client.Test_LoadMaster.test__get_curl_command_list">[docs]</a>    <span class="k">def</span> <span class="nf">test__get_curl_command_list</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="n">lm</span> <span class="o">=</span> <span class="n">client</span><span class="o">.</span><span class="n">LoadMaster</span><span class="p">(</span><span class="s1">&#39;ip&#39;</span><span class="p">,</span> <span class="s1">&#39;username&#39;</span><span class="p">,</span> <span class="s1">&#39;password&#39;</span><span class="p">)</span>
+        <span class="n">expected</span> <span class="o">=</span> <span class="p">[</span><span class="s1">&#39;curl&#39;</span><span class="p">,</span> <span class="s1">&#39;-s&#39;</span><span class="p">,</span> <span class="s1">&#39;-k&#39;</span><span class="p">,</span> <span class="s1">&#39;--connect-timeout&#39;</span><span class="p">,</span> <span class="nb">str</span><span class="p">(</span><span class="n">utils</span><span class="o">.</span><span class="n">TIMEOUT</span><span class="p">),</span>
+                    <span class="s1">&#39;https://username:password@ip:443/access/test&#39;</span><span class="p">]</span>
+        <span class="n">actual</span> <span class="o">=</span> <span class="n">lm</span><span class="o">.</span><span class="n">_get_curl_command_list</span><span class="p">(</span><span class="s2">&quot;test&quot;</span><span class="p">)</span>
+        <span class="n">assert_equal</span><span class="p">(</span><span class="n">expected</span><span class="p">,</span> <span class="n">actual</span><span class="p">)</span></div>
+
+<div class="viewcode-block" id="Test_LoadMaster.test__get_curl_command_list_with_cert"><a class="viewcode-back" href="../../../tests.unit.test_client.html#tests.unit.test_client.Test_LoadMaster.test__get_curl_command_list_with_cert">[docs]</a>    <span class="k">def</span> <span class="nf">test__get_curl_command_list_with_cert</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="n">lm</span> <span class="o">=</span> <span class="n">client</span><span class="o">.</span><span class="n">LoadMaster</span><span class="p">(</span><span class="s1">&#39;ip&#39;</span><span class="p">,</span> <span class="n">cert</span><span class="o">=</span><span class="s2">&quot;./some/path&quot;</span><span class="p">)</span>
+        <span class="n">expected</span> <span class="o">=</span> <span class="p">[</span><span class="s1">&#39;curl&#39;</span><span class="p">,</span> <span class="s1">&#39;-s&#39;</span><span class="p">,</span> <span class="s1">&#39;-k&#39;</span><span class="p">,</span> <span class="s1">&#39;--connect-timeout&#39;</span><span class="p">,</span> <span class="nb">str</span><span class="p">(</span><span class="n">utils</span><span class="o">.</span><span class="n">TIMEOUT</span><span class="p">),</span>
+                    <span class="s1">&#39;-E&#39;</span><span class="p">,</span> <span class="s1">&#39;./some/path&#39;</span><span class="p">,</span> <span class="s1">&#39;https://ip:443/access/test&#39;</span><span class="p">]</span>
+        <span class="n">actual</span> <span class="o">=</span> <span class="n">lm</span><span class="o">.</span><span class="n">_get_curl_command_list</span><span class="p">(</span><span class="s2">&quot;test&quot;</span><span class="p">)</span>
+        <span class="n">assert_equal</span><span class="p">(</span><span class="n">expected</span><span class="p">,</span> <span class="n">actual</span><span class="p">)</span></div></div>
+
+
+<div class="viewcode-block" id="Test_KempBaseObjectModel"><a class="viewcode-back" href="../../../tests.unit.test_client.html#tests.unit.test_client.Test_KempBaseObjectModel">[docs]</a><span class="k">class</span> <span class="nc">Test_KempBaseObjectModel</span><span class="p">:</span>
+
+<div class="viewcode-block" id="Test_KempBaseObjectModel.test_to_api_dict"><a class="viewcode-back" href="../../../tests.unit.test_client.html#tests.unit.test_client.Test_KempBaseObjectModel.test_to_api_dict">[docs]</a>    <span class="k">def</span> <span class="nf">test_to_api_dict</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="n">loadmaster_access</span> <span class="o">=</span> <span class="p">{</span>
+            <span class="s2">&quot;endpoint&quot;</span><span class="p">:</span> <span class="s2">&quot;https://bal:1fourall@1.1.1.1:443/access&quot;</span><span class="p">,</span>
+            <span class="s2">&quot;ip_address&quot;</span><span class="p">:</span> <span class="s2">&quot;1.1.1.1&quot;</span><span class="p">,</span>
+        <span class="p">}</span>
+
+        <span class="n">kbom</span> <span class="o">=</span> <span class="n">python_kemptech_api</span><span class="o">.</span><span class="n">generic</span><span class="o">.</span><span class="n">BaseKempObject</span><span class="p">(</span><span class="n">loadmaster_access</span><span class="p">)</span>
+        <span class="n">kbom</span><span class="o">.</span><span class="n">none</span> <span class="o">=</span> <span class="kc">None</span>
+        <span class="n">kbom</span><span class="o">.</span><span class="n">real_one</span> <span class="o">=</span> <span class="s1">&#39;real&#39;</span>
+        <span class="n">kbom</span><span class="o">.</span><span class="n">_underscore</span> <span class="o">=</span> <span class="s1">&#39;not wanted&#39;</span>
+        <span class="n">res</span> <span class="o">=</span> <span class="n">kbom</span><span class="o">.</span><span class="n">to_api_dict</span><span class="p">()</span>
+        <span class="n">assert_equal</span><span class="p">(</span><span class="n">res</span><span class="p">,</span> <span class="p">{</span><span class="s1">&#39;real_one&#39;</span><span class="p">:</span> <span class="s1">&#39;real&#39;</span><span class="p">})</span></div></div>
+</pre></div>
+
+           </div>
+          </div>
+          <footer>
+  
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>
+        &copy; Copyright 2016, KEMP Technologies.
+
+    </p>
+  </div>
+  Built with <a href="http://sphinx-doc.org/">Sphinx</a> using a <a href="https://github.com/snide/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>. 
+
+</footer>
+
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+  
+
+
+  
+
+    <script type="text/javascript">
+        var DOCUMENTATION_OPTIONS = {
+            URL_ROOT:'../../../',
+            VERSION:'0.7.15',
+            COLLAPSE_INDEX:false,
+            FILE_SUFFIX:'.html',
+            HAS_SOURCE:  true
+        };
+    </script>
+      <script type="text/javascript" src="../../../_static/jquery.js"></script>
+      <script type="text/javascript" src="../../../_static/underscore.js"></script>
+      <script type="text/javascript" src="../../../_static/doctools.js"></script>
+
+  
+
+  
+  
+    <script type="text/javascript" src="../../../_static/js/theme.js"></script>
+  
+
+  
+  
+  <script type="text/javascript">
+      jQuery(function () {
+          SphinxRtdTheme.StickyNav.enable();
+      });
+  </script>
+   
+
+</body>
+</html>
