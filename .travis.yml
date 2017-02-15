@@ -9,11 +9,10 @@ before_install:
   - "conda update --yes conda"
   - "sudo rm -rf /dev/shm"
   - "sudo ln -s /run/shm /dev/shm"
-  - "git pull git@github.com:KEMPtechnologies/python-kemptech-api.git $HOME/python-kemptech-api"
 install: 
   - "conda install --yes python=\"2.7\" sphinx"
   - "pip install --user travis-sphinx"
 language: "python - \"2.7\""
 script: 
-  - "travis-sphinx --source=$HOME/python-kemptech-api/docs/source --pullrequests --branches=test_doc_build build"
+  - "travis-sphinx --source=KEMPtechnologies/python-kemptech-api/docs/source --pullrequests --branches=test_doc_build build"
   - "travis-sphinx deploy"
