@@ -7,17 +7,13 @@ Installation
 To install run:
 `pip install python-kemptech-api`
 
-Getting Started
+Documentation
 =====
-Check out this blogpost for more information on [getting started with the SDK](https://kemptechnologies.com/blog/getting-started-kemp-python-sdk/).
+Documentation can be found in [kemptechnologies.github.io/python-kemptech-api](https://kemptechnologies.github.io/python-kemptech-api/)
 
 Examples
 =====
 To help our end-users with use cases and examples, we've created an [examples](examples) section. If you're in need of assitance and would like an example created, please create an issue explaining your use case and we'll consider it for review.
-
-Documentation
-=====
-Documentation can be found in [kemptechnologies.github.io/python-kemptech-api](https://kemptechnologies.github.io/python-kemptech-api/)
 
 Tests
 =====
