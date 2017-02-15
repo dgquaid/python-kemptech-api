@@ -1,10 +1,17 @@
-language: python - "2.7"
-sudo: false
-
-install:
-    - pip install --user git+https://github.com/Syntaf/travis-sphinx.git
-    - export PATH=$HOME/.local/bin:$PATH
-
-script:
-    - travis-sphinx --source=/docs/source --pullrequests --branches=master
-- travis-sphinx deploy
+--- 
+after_success: 
+  - "travis-sphinx deploy"
+before_install: 
+  - "wget http://repo.continuum.io/miniconda/Miniconda-latest-Linux-x86_64.sh -O miniconda.sh"
+  - "chmod +x miniconda.sh"
+  - "./miniconda.sh -b"
+  - "export PATH=/home/travis/miniconda2/bin:$PATH"
+  - "conda update --yes conda"
+  - "sudo rm -rf /dev/shm"
+  - "sudo ln -s /run/shm /dev/shm"
+install: 
+  - "conda install --yes python=\"2.7\" sphinx"
+  - "pip install --user travis-sphinx"
+language: "python - \"2.7\""
+script: 
+  - "travis-sphinx build"
