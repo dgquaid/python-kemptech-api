@@ -4,6 +4,8 @@ after_success:
 
 install:
   - "pip install --user python-kemptech-api"
+  - "pip install --user bin"
+  - "pip install --user setup"
   - "pip install --user travis-sphinx"
   - "pip install --user sphinx_rtd_theme"
 language: "python - \"2.7\""
