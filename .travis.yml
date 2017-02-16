@@ -5,6 +5,5 @@ install:
   - "pip install --user sphinx_rtd_theme"
 language: "python - \"2.7\""
 script: 
-  - "travis-sphinx --source=docs/source --nowarn --branches=test_doc_build build"
-  - "travis-sphinx --branches=test_doc_build deploy"
-  - "echo $GH_TOKEN | md5sum"
+  - "travis-sphinx --source=docs/source --nowarn --branches=master build"
+  - "travis-sphinx --branches=master deploy"
