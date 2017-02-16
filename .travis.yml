@@ -1,7 +1,4 @@
 --- 
-after_success: 
-  - "travis-sphinx --branches=test_doc_build deploy"
-
 install:
   - "pip install --user python-kemptech-api"
   - "pip install --user travis-sphinx"
@@ -9,4 +6,4 @@ install:
 language: "python - \"2.7\""
 script: 
   - "travis-sphinx --source=docs/source --nowarn --branches=test_doc_build build"
-
+  - "travis-sphinx --branches=test_doc_build deploy"
