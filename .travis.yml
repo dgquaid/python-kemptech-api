@@ -2,7 +2,8 @@
 after_success: 
   - "travis-sphinx deploy"
 
-install: 
+install:
+  - "pip install --user python-kemptech-api"
   - "pip install --user travis-sphinx"
   - "pip install --user sphinx_rtd_theme"
 language: "python - \"2.7\""
