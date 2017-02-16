@@ -25,7 +25,7 @@ sys.path.insert(0, os.path.abspath('../../python-kemptech-api/python_kemptech_ap
 # Using RTD theme 
 html_theme = "sphinx_rtd_theme"
 html_theme_path = [sphinx_rtd_theme.get_html_theme_path()]
-html_add_permalinks = None
+html_add_permalinks = "unicode"
 
 # -- General configuration ------------------------------------------------
 
