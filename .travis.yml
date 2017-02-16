@@ -1,0 +1,9 @@
+---
+install:
+  - "pip install --user python-kemptech-api"
+  - "pip install --user travis-sphinx"
+  - "pip install --user sphinx_rtd_theme"
+language: "python - \"2.7\""
+script:
+  - "travis-sphinx --source=docs/source --nowarn --branches=master build"
+  - "travis-sphinx --branches=master deploy"
