@@ -9,11 +9,80 @@ To install run:
 
 Documentation
 =====
-Documentation can be found in [kemptechnologies.github.io/python-kemptech-api](https://kemptechnologies.github.io/python-kemptech-api/)
+For sphinx generated API documentation see [kemptechnologies.github.io/python-kemptech-api](https://kemptechnologies.github.io/python-kemptech-api/) which is based on the `gh-pages` branch. Generated using [Travis](https://travis-ci.org/KEMPtechnologies/python-kemptech-api). Doc sources can be found in [docs](docs). 
+
+##Models 
+
+### BaseKempAppliance
+
+* Contains the basic capabilities available in all LoadMaster products 
+    * Patching
+    * General parameter control
+    * Rebooting
+    * Licensing
+    * User and password management
+    * Logs/Diagnostics
+    * Backup/Restore
+    * Stats
+    * Network Management
+
+### LoadMaster
+
+* Contains L4/L7 ADC Logic
+    * Virtual Services
+        * SubVSs
+    * Real Servers
+    * Content Rules
+    * Certificates
+    * Cipher Suites
+    * Templates
+    * SSO Management
+    * WAF Rule Download
+    * Adaptive Parameter Control
+    * Healthcheck Parameter Control
+    * SDN Controller
+
+### GEO
+
+* Contains DNS Load Balancer logic
+    * FQDNs
+    * Sites
+    * Clusters
+    * IP Ranges
+    * Custom Location
+    * IP Blacklist Download
+    * DNSSEC Management
+    
+### LoadMasterGEO
+
+* Meta-subclass of both LoadMaster and GEO and allows control of both sets of functionality within one object.
+ 
+### Objects 
+
+  * VirtualService
+  * RealServer
+  * BaseACLObject
+  * GlobalACL
+  * VirtualServiceACL
+  * Template
+  * Rule
+  * Sso
+  * Fqdn
+  * Site
+  * Cluster
+  * Range
+  * CustomLocation
+  * CipherSet
+  * Certificate
+  * IntermediateCertificate
+  * Interface
+
 
 Examples
 =====
 To help our end-users with use cases and examples, we've created an [examples](examples) section. If you're in need of assitance and would like an example created, please create an issue explaining your use case and we'll consider it for review.
+
+If you need help getting started check out [this blogpost](https://kemptechnologies.com/blog/getting-started-kemp-python-sdk/) for help.
 
 Tests
 =====
@@ -21,15 +90,20 @@ To run tests run `nosetests`
 
 Contributions
 =============
-If you're interested in contributing to this project, please note the following requirements:
+If you're interested in contributing to this project, please read: 
 
 * If you'd like to contribute but would like help, please open an issue.
 * All code contributions require test coverage. If a pull request is lacking tests, it will be closed.
-* If you're submitting a feature, please clearly explain its use case in your pull request. Our team gets warm and fuzzies every time a contribution is made and it helps greatly.
+* Docstrings are welcomed. We auto-gen docs into the `gh-pages` branch using [Travis](https://travis-ci.org/KEMPtechnologies/python-kemptech-api). 
+* If you're submitting a feature, please clearly explain its use case in your pull request. Our team gets warm and fuzzies every time a contribution is made and explanations help greatly.
 
 Bugs
 =====
-If you believed you've found a bug please create an issue. We may not get to it right away, but rest assured we've seen it and have it queued up for a response.
+If you believe you've found a bug please create an issue. We may not get to it right away, but rest assured we've seen it and have it queued up for a response. Seriously, we're watching.
+
+Changelog
+=========
+For changelog see [changes.rst](CHANGES.rst)
 
 Core Contributors
 ============
@@ -38,10 +112,6 @@ Core Contributors
 * Andrew Conti, KEMP Technologies
 * Jonathan Malek, KEMP Technologies
 * Stephen Power, KEMP Technologies
-
-Changelog
-=========
-For changelog see [changes.rst](CHANGES.rst)
 
 License
 =====
