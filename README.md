@@ -37,7 +37,7 @@ For sphinx generated API documentation see [kemptechnologies.github.io/python-ke
     * Cipher Suites
     * Templates
     * SSO Management
-    * WAF Rule Download
+    * [WAF](https://kemptechnologies.com/solutions/WAF/) Rule Download
     * Adaptive Parameter Control
     * Healthcheck Parameter Control
     * SDN Controller
